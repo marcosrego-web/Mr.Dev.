@@ -1,0 +1,741 @@
+.mrwid-theme.mrwid-default .mrwid-layout .mrwid-container {
+	position: relative;
+}
+.mrwid-theme.mrwid-default .mrwid-layout .mr-wid {
+	-o-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-windowheight) .mrwid-pages.mrwid-perliner .mr-wid:not(.active) {
+  min-height: 4.5rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout .mr-wid:not(.active) {
+    width: 100%;
+    z-index: 0;
+	overflow: hidden;
+}
+
+/*----THEME----*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-title {
+	margin: 0;
+	z-index: 14;
+	padding: 0.75rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle:not(.mrwid-verticaltitle) .mrwid-title {
+	overflow-x: hidden;
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container .mrwid-content {
+  padding: 0.75rem;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container {
+  position: relative;
+  z-index: 1;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid:after {
+    content: '';
+    position: absolute;
+    z-index: 0;
+    border: 0.0625rem solid;
+    opacity: 0.25;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-expandactive .mrwid-pages:not(.mrwid-1perline) .mr-wid:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pages.mrwid-1perline .mr-wid:after {
+	top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	box-shadow: 0 0 0.3125rem 0 inset;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) .mr-wid:after {
+	top: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+	box-shadow: 0 0 0.3125rem 0;
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) .mr-wid {
+	padding: 0.75rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid.active:before {
+  display: none;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination {
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle  .mrwid-next {
+	background: transparent;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev span, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle  .mrwid-next span {
+	display: none;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev {
+	float: left;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-next {
+	float: right;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle  .mrwid-next:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-below:not(.loading):after {
+	content: "";
+	display: block;
+    border-style: solid;
+    opacity: 0.25;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev:after {
+	border-width: 0.75rem 0.75rem 0.75rem 0rem;
+	border-color: transparent currentColor transparent transparent;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-next:after {
+	border-width: 0.75rem 0 0.75rem 0.75rem;
+	border-color: transparent transparent transparent currentColor;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination .mrwid-pageselect {
+	margin: 0 auto;
+    background: transparent;
+	border: 0;
+	display: block;
+	opacity: 0.5;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination .mrwid-pageselect:checked {
+	background: currentColor;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination .mrwid-radio {
+	background: transparent;
+    border: 1px solid;
+    width: 1rem;
+    opacity: 0.5;
+    height: 1rem;
+    border-radius: 100%;
+    display: inline-block;
+	margin: 0.3rem;
+	vertical-align: middle;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-prev:hover:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-next:hover:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination .mrwid-radio:hover, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pagination .mrwid-pageselect:hover {
+	opacity: 1;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-below {
+	background: transparent;
+	opacity: 0.25;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-contentpagination .mrwid-below {
+	box-shadow: 0 0.3125rem 0.3125rem 0 inset;
+	height: 2.75rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle:not(.mrwid-contentpagination) .mrwid-below {
+	height: 1.75rem;
+	width: calc(100% - 0.75rem - 0.75rem - 0.75rem - 0.75rem);
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-below:not(.loading) span {
+	display: none;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-below:not(.loading):after {
+	opacity: 1;
+	border-width: 0.75rem 0.75rem 0 0.75rem;
+	border-color: currentColor transparent transparent transparent;
+	width: 0.75rem;
+    margin: 0 auto;
+}
+
+/*--PAGINATION ON CONTENT--*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination {
+	position: relative;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mrwid-pagination {
+	position: absolute;
+    bottom: 1rem;
+	width: 100%;
+	z-index: 1;
+	text-align: center;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mrwid-below {
+	position: absolute;
+	width: 100%;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mrwid-next, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination  .mrwid-prev {
+	position: absolute;
+	top: calc(50% - 0.75rem);
+	float: inherit;
+	z-index: 1;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mrwid-prev {
+	left: 0;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mrwid-next {
+	right: 0;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination .mr-wid .mrwid-container {
+	padding: 0 1.75rem 4rem 1.75rem;
+}
+
+
+/*--CURRENT CATEGORIES---*/
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-themestyle).mrwid-checkcurrent .mr-wid.mrwid-current .mrwid-container {
+	border-bottom: 1px solid;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-checkcurrent .mr-wid.mrwid-current:after {
+	opacity: 0.5;
+}
+
+/*----PER LINE----*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pages:not(.mrwid-perliner) .mr-wid {
+	overflow: hidden;
+}
+@media only screen and (orientation: landscape) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait):not(.mrwid-verticaltitle) .mrwid-pages .mr-wid .mrwid-container .mrwid-title, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait):not(.mrwid-verticaltitle) .mrwid-pages .mr-wid .mrwid-container .mrwid-content {
+		width: max-content;
+		min-width: 100%;
+		max-width: 100vw;
+	}
+	
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait .mrwid-pages:not(.mrwid-perliner) {
+		flex-direction: column;
+	}
+}
+@media only screen and (orientation: portrait) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait):not(.mrwid-verticaltitle) .mrwid-pages:not(.mrwid-perliner) .mr-wid .mrwid-container .mrwid-title, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait.mrwid-landscape:not(.mrwid-verticaltitle) .mrwid-pages:not(.mrwid-perliner) .mr-wid.mrwid-container .mrwid-content, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait):not(.mrwid-verticaltitle) .mrwid-pages:not(.mrwid-perliner) .mr-wid .mrwid-container .mrwid-content {
+		width: max-content;
+		min-width: 100%;
+		max-width: 100vw;
+	}
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) {
+	margin: 0 -0.75rem;
+    width: calc(100% + 0.75rem + 0.75rem);
+}
+
+/*--EXPAND ACTIVE---*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-verticaltitle .mrwid-pages:not(.mrwid-perliner) .mrwid-container {
+	width: max-content;
+	min-width: 100%;
+	max-width: 100vw;
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive .mrwid-pages:not(.mrwid-perliner) .mr-wid.active .mrwid-container {
+	height: 100%;
+    overflow: auto;
+}
+
+@media only screen and (orientation: landscape) {
+   .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.active .mrwid-container {
+	  overflow: auto;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages:not(.mrwid-perliner) .mr-wid.active {
+    width: 1600%;
+    z-index: 1;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait:not(.mrwid-landscape) .mrwid-pages:not(.mrwid-perliner) .mr-wid.active, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait.mrwid-landscape .mrwid-pages:not(.mrwid-perliner) .mr-wid.active {
+    height: 1600%;
+    z-index: 1;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait .mrwid-pages:not(.mrwid-perliner) .mr-wid:not(.active) {
+	  height: 100%;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-portrait:not(.mrwid-landscape) .mr-wid:not(.active) .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-portrait.mrwid-landscape .mr-wid:not(.active) .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive .mrwid-pages .mr-wid:not(.active) .mrwid-content * {
+		line-height: 0;
+		height: 0;
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+   }
+   .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-portrait:not(.mrwid-landscape) .mr-wid .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-portrait.mrwid-landscape .mr-wid .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive .mrwid-pages .mr-wid .mrwid-content * {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+   }
+   .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll):not(.mrwid-windowheight).mrwid-portrait:not(.mrwid-landscape) .mr-wid.active .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll):not(.mrwid-windowheight).mrwid-portrait.mrwid-landscape .mr-wid.active .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll).mrwid-revealactive .mrwid-pages .mr-wid.active .mrwid-content * {
+		height: 100%;
+	}
+}
+@media only screen and (min-width: 59.94em) and (orientation: landscape) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.active, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.inactive:nth-child(2n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-3perline .mr-wid.inactive:nth-child(3n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-4perline .mr-wid.inactive:nth-child(4n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-5perline .mr-wid.inactive:nth-child(5n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-6perline .mr-wid.inactive:nth-child(6n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-7perline .mr-wid.inactive:nth-child(7n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-8perline .mr-wid.inactive:nth-child(8n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-9perline .mr-wid.inactive:nth-child(9n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-10perline .mr-wid.inactive:nth-child(10n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-11perline .mr-wid.inactive:nth-child(11n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-12perline .mr-wid.inactive:nth-child(12n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-13perline .mr-wid.inactive:nth-child(13n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-14perline .mr-wid.inactive:nth-child(14n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-15perline .mr-wid.inactive:nth-child(15n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-16perline .mr-wid.inactive:nth-child(16n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-17perline .mr-wid.inactive:nth-child(17n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-18perline .mr-wid.inactive:nth-child(18n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-19perline .mr-wid.inactive:nth-child(19n), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-20perline .mr-wid.inactive:nth-child(20n) {
+		width: 75%;
+	}
+	
+	/*.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.inactive {
+		width: 50%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.active:nth-child(odd) + .mr-wid.inactive {
+		width: 25%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.active:nth-child(even) + .mr-wid.inactive {
+		width: 25%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.inactive:nth-child(2n):nth-child(odd) {
+		width: 25%;
+	}*/
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-20perline .mr-wid.inactive {
+			width: 1.315789473684211%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-19perline .mr-wid.inactive {
+		width: 1.388888888888889%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-18perline .mr-wid.inactive {
+		width: 1.470588235294118%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-17perline .mr-wid.inactive {
+		width: 1.5625%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-16perline .mr-wid.inactive {
+		width: 1.666666666666667%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-15perline .mr-wid.inactive {
+		width: 1.785714285714286%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-14perline .mr-wid.inactive {
+		width: 1.923076923076923%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-13perline .mr-wid.inactive {
+		width: 2.083333333333333%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-12perline .mr-wid.inactive {
+		width: 2.272727272727273%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-11perline .mr-wid.inactive {
+		width: 2.5%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-10perline .mr-wid.inactive {
+		width: 2.777777777777778%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-9perline .mr-wid.inactive {
+		width: 3.125%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-8perline .mr-wid.inactive {
+		width: 3.571428571428571%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-7perline .mr-wid.inactive {
+		width: 4.166666666666667%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-6perline .mr-wid.inactive {
+		width: 5%;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-5perline .mr-wid.inactive {
+		width: 6.25%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-4perline .mr-wid.inactive {
+		width: 8.333333333333333%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-3perline .mr-wid.inactive {
+		width: 8.333333333333333%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid.inactive {
+		width: 25%;
+	}
+
+	/*.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid.inactive, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid.inactive, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-landscape .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid.inactive, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait.mrwid-landscape .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid.inactive {
+	width: 100%;
+	}*/
+}
+@media only screen and (max-width: 47.94em) and (orientation: landscape) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.active {
+		width: 75%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-portrait) .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.inactive {
+		width: 25%;
+	}
+}
+@media only screen and (orientation: portrait) {
+	/*.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.active {
+		width: 100%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid.inactive {
+		width: 50%;
+	}*/
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-landscape) .mrwid-pages.mrwid-perliner {
+		flex-wrap: nowrap;
+		flex-direction: column;
+		width: 100%;
+		margin: 0 0;
+	}
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape) .mrwid-pages .mr-wid:not(.active) {
+	height: 100%;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape) .mrwid-pages .mr-wid.active {
+    height: 1600%;
+    z-index: 1;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-landscape .mrwid-pages:not(.mrwid-perliner) .mr-wid.active, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-landscape.mrwid-portrait .mrwid-pages:not(.mrwid-perliner) .mr-wid.active {
+    width: 1600%;
+    z-index: 1;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-landscape .mr-wid:not(.active), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-landscape.mrwid-portrait .mr-wid:not(.active) {
+    width: 100%;
+    z-index: 0;
+  }
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape:not(.mrwid-portrait) .mr-wid:not(.active) .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape.mrwid-portrait .mr-wid:not(.active) .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight):not(.mrwid-landscape):not(.mrwid-portrait) .mr-wid:not(.active) .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive .mrwid-pages .mr-wid:not(.active) .mrwid-content * {
+		line-height: 0;
+		margin: 0;
+		padding: 0;
+		opacity: 0;
+		height: 0;
+   }
+   .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape:not(.mrwid-portrait) .mr-wid .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape.mrwid-portrait .mr-wid .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-windowheight):not(.mrwid-landscape):not(.mrwid-portrait) .mr-wid .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive .mrwid-pages .mr-wid .mrwid-content * {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+   }
+   .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll).mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape:not(.mrwid-portrait) .mr-wid.active .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll).mrwid-expandactive:not(.mrwid-windowheight).mrwid-landscape.mrwid-portrait .mr-wid.active .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll).mrwid-expandactive:not(.mrwid-windowheight):not(.mrwid-landscape):not(.mrwid-portrait) .mr-wid.active .mrwid-content *, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-autoscroll).mrwid-revealactive .mrwid-pages .mr-wid.active .mrwid-content * {
+		height: 100%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-landscape) .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
+		width: 100%;
+		overflow: hidden;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape) .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid.active .mrwid-container {
+		overflow: auto;
+    	height: 100%;
+	}
+}
+
+/*--SCALE ACTIVE---*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-scaleactive .mr-wid.active {
+	transform: scale(1.05);
+	transform-origin: center;
+}
+
+/*--OPAQUE ACTIVE---*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-opaqueactive .mr-wid.inactive {
+	opacity: 0.5;
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-opaqueactive .mr-wid.active {
+	opacity: 1;
+}
+
+/*----Plus/Minus Toggle------*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02) .mr-wid .mrwid-container:after {
+    position: absolute;
+    top: 0;
+    right: 0.85rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.25;
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02) .mr-wid:not(.active) .mrwid-container:after {
+	content: "+";
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-donotclose):not(.mrwid-toggle02):not(.mrwid-toggle03) .mr-wid.active .mrwid-container:after {
+    content: "-";
+    right: 0.98rem;
+}
+
+/*----Direction Toggle------*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid .mrwid-container:after {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    cursor: pointer;
+    opacity: 0.25;
+}
+
+@media only screen and (orientation: landscape) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0 0.75rem;
+		border-color: currentColor transparent transparent transparent;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01):not(.mrwid-toggle03):not(.mrwid-donotclose) .mr-wid.active .mrwid-container:after {
+		content: "";
+		border-width: 0 0.75rem 0.75rem 0.75rem;
+		border-color: transparent transparent currentColor transparent;
+	}
+	
+	.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait):not(.mrwid-list).mrwid-toggle02:not(.mrwid-toggle01) .mrwid-pages:not(.mrwid-perliner) .mr-wid:not(.active) .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0 0.75rem 0.75rem;
+		border-color: transparent transparent transparent currentColor;
+	}
+	
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-portrait):not(.mrwid-list).mrwid-toggle02:not(.mrwid-toggle01) .mrwid-pages:not(.mrwid-perliner) .mr-wid.active .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0.75rem 0rem;
+		border-color: transparent currentColor transparent transparent;
+	}
+}
+
+@media only screen and (orientation: portrait) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0 0.75rem;
+		border-color: currentColor transparent transparent transparent;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01):not(.mrwid-toggle03):not(.mrwid-donotclose) .mr-wid.active .mrwid-container:after {
+		content: "";
+		border-width: 0 0.75rem 0.75rem 0.75rem;
+		border-color: transparent transparent currentColor transparent;
+	}
+	
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape:not(.mrwid-list):not(.mrwid-toggle01) .mrwid-pages:not(.mrwid-perliner) .mr-wid:not(.active) .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0 0.75rem 0.75rem;
+		border-color: transparent transparent transparent currentColor;
+	}
+	
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape:not(.mrwid-list):not(.mrwid-toggle01) .mrwid-pages:not(.mrwid-perliner) .mr-wid.active .mrwid-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0.75rem 0rem;
+		border-color: transparent currentColor transparent transparent;
+	}
+}
+
+/*----Close Toggle------*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03 .mr-wid.active .mrwid-container:after {
+    position: absolute;
+    top: 0;
+    right: 0.85rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.25;
+	border: 0;
+	width: auto;
+	height: auto;
+}
+
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-donotclose) .mr-wid.active .mrwid-container:after {
+    content: "+" !important;
+	border: 0;
+	transform: rotate(45deg) scale(1.2);
+	width: 0;
+    height: 0;
+}
+
+/*----WINDOW HEIGHT----*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-windowheight .mrwid-pages {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-list).mrwid-windowheight .mrwid-pages:not(.mrwid-perliner) {
+	overflow: auto;
+}
+
+/*----VERTICAL TITLES----*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-verticaltitle .mrwid-title {
+	-webkit-writing-mode: tb-rl;
+    writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-verticaltitle .mr-wid .mrwid-container .mrwid-content {
+	height: 100%;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-verticaltitle .mrwid-container {
+	display: -webkit-box;
+ 	display: -moz-box;
+ 	display: -ms-flexbox;
+  	display: -webkit-flex;
+	display: flex;
+}
+
+/*----ONLY SHOW SUBCAT OF ACTIVE----*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-subcatactive.mrwid-opaqueactive .mr-wid.mrwid-subcat {
+	opacity: 1;
+}
+
+/*----LANDSCAPE ON PORTRAIT---*/
+@media only screen and (max-width: 59.94em) and (min-width: 47.94em) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages:not(.mrwid-perliner):not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline).mrwid-1perline .mr-wid {
+		width: 100%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-3perline .mr-wid {
+		width: 33.33333333333333%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-4perline .mr-wid {
+		width: 25%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-5perline .mr-wid {
+		width: 20%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-6perline .mr-wid {
+		width: 16.66666666666667%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-7perline .mr-wid {
+		width: 14.28571428571429%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-8perline .mr-wid {
+		width: 12.5%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-9perline .mr-wid {
+		width: 11.11111111111111%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-10perline .mr-wid {
+		width: 10%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-11perline .mr-wid {
+		width: 9.090909090909091%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-12perline .mr-wid {
+		width: 8.333333333333333%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-13perline .mr-wid {
+		width: 7.692307692307692%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-14perline .mr-wid {
+		width: 7.142857142857143%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-15perline .mr-wid {
+		width: 6.666666666666667%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-16perline .mr-wid {
+		width: 6.25%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-17perline .mr-wid {
+		width: 5.882352941176471%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-18perline .mr-wid {
+		width: 5.555555555555556%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-19perline .mr-wid {
+		width: 5.263157894736842%;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline).mrwid-20perline .mr-wid {
+		width: 5%;
+	}
+}
+@media only screen and (orientation: portrait) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape.mrwid-expandactive .mrwid-pages:not(.mrwid-perliner) {
+   		 flex-direction: row;
+	}
+}
+@media only screen and (orientation: portrait) and (max-width: 47.94em)  {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-landscape .mrwid-pages.mrwid-perliner:not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
+		width: 50%;
+	}
+}
+
+/*----PORTRAIT ON LANDSCAPE---*/
+@media only screen and (orientation: landscape) {
+    .mrwid-theme.mrwid-default .mrwid-layout.mrwid-portrait .mrwid-pages:not(.mrwid-perliner) {
+		flex-direction: column;
+	}
+}
+@media only screen and (min-width: 59.94em) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-portrait .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
+		width: 33.333333%;
+	}
+}
+@media only screen and (orientation: landscape) and (max-width: 47.94em) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-portrait .mrwid-pages.mrwid-perliner:not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
+		width: 100%;
+	}
+}
+
+/*---HIDE INACTIVE---*/
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hideinactives .mr-wid.inactive {
+	display: none;
+}
+
+/*---HAMBURGUER MOBILE TOGGLE---*/
+@media only screen and (min-width: 59.94em) and (orientation: landscape) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:hover, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:hover {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:not(:hover), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:not(:hover) {
+		width: 2.5rem;
+		height: 1.5rem;
+		overflow: hidden;
+		position: relative;
+		margin: 0;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:not(:hover):before, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:not(:hover):before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 1.5rem;
+		border: 0.2rem solid;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0.2rem;
+		opacity: 0.25;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:not(:hover):after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:not(:hover):after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 0.85rem;
+		border-bottom: 0.2rem solid;
+		opacity: 0.25;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:not(:hover) li, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:not(:hover) li {
+		opacity: 0;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-portrait .mrwid-pages:not(:hover) li:first-child, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob.mrwid-landscape.mrwid-portrait .mrwid-pages:not(:hover) li:first-child {
+		margin-top: 1.5rem;
+	}
+}
+
+@media only screen and (max-width: 59.94em), (orientation: portrait) {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:hover {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:not(:hover) {
+		width: 2.5rem;
+		height: 1.5rem;
+		overflow: hidden;
+		position: relative;
+		margin: 0;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:not(:hover):before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 1.5rem;
+		border: 0.2rem solid;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0.2rem;
+		opacity: 0.25;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:not(:hover):after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 0.85rem;
+		border-bottom: 0.2rem solid;
+		opacity: 0.25;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:not(:hover) li {
+		opacity: 0;
+	}
+
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-hambmob .mrwid-pages:not(:hover) li:first-child {
+		margin-top: 1.5rem;
+	}
+}
