@@ -14,6 +14,6 @@
     
     "sections" : {
         "description" : "<p>Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.</p>",
-        "changelog" : "<p><strong>0.4.0</strong> - First public release. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev.#changelog' target='_blank'><strong>Github</strong></a>.</em></p>"
+        "changelog" : "<p><strong>0.4.0</strong> - First public release. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'><strong>Github</strong></a>.</em></p>"
     }
 }
