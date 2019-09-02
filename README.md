@@ -8,4 +8,4 @@ Starting with the widget 'MR Categories' for Wordpress.
 ### [Features](https://marcosrego.com/en/web-en/mrplugins-features/)
 
 
-### [Changelog](https://github.com/marcosrego-web/mrdev/releases)
+### [Changelog](https://github.com/marcosrego-web/Mr.Dev./releases)
