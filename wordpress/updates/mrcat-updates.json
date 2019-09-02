@@ -1,0 +1,19 @@
+{
+    "name" : "Mr.Cat.",
+    "slug" : "mrcat",
+    "homepage" : "https://marcosrego.com/en/web-en/mrcat-en/",
+    "download_url" : "",
+    
+    "version" : "0.4.0",
+    "tested" : "5.2.2",
+    "last_updated" : "2019-09-02 20:50:00",
+    "upgrade_notice" : "",
+    
+    "author" : "Marcos Rego",
+    "author_homepage" : "https://marcosrego.com",
+    
+    "sections" : {
+        "description" : "<p>Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.</p>",
+        "changelog" : "<p><strong>0.4.0</strong> - First public release. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/editor4roks#changelog' target='_blank'><strong>Github</strong></a>.</em></p>"
+    }
+}
