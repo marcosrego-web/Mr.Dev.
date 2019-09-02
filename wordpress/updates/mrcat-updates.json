@@ -2,7 +2,7 @@
     "name" : "Mr.Cat.",
     "slug" : "mrcat",
     "homepage" : "https://marcosrego.com/en/web-en/mrcat-en/",
-    "download_url" : "",
+    "download_url" : "https://github.com/marcosrego-web/mrdev/releases/download/v0.4.0/mrcat-wordpress.zip",
     
     "version" : "0.4.0",
     "tested" : "5.2.2",
