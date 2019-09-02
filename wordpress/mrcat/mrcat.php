@@ -49,7 +49,7 @@ defined('ABSPATH') or die;
 /*------UPDATER-----*/
 require 'update/plugin-update-checker.php';
 $myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
-	'https://raw.githubusercontent.com/marcosrego-web/mrdev/master/mrcat/updates/wordpress-updates.json',
+	'https://raw.githubusercontent.com/marcosrego-web/mrdev/master/wordpress/updates/mrcat-updates.json',
 	__FILE__,
 	'mrcat'
 );
