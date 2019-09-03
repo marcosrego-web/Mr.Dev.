@@ -434,7 +434,6 @@ class mr_categories extends WP_Widget {
 						If you need more features then you need <strong>Mr.Dev.</strong><br>One plugin that combines all MR widgets, add-ons and utilities giving to "MR Categories" extras such as:</p>
 						<ol>
 						<li>Insert widgets inside the content on posts/pages/categories using <strong>blocks, classic editor button or shortcodes</strong>.</li>
-						<li><strong>Custom layout</strong> with selectable options.</li>
 						<li>Choose a <strong>main category</strong> to only display the childs.</li>
 						<li>Manually <strong>reorder</strong>.</li>
 						<li><strong>Pin</strong> to choose the one starting active.</li>
