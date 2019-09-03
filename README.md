@@ -1,6 +1,6 @@
 # Mr.Dev.
 ### Description
-A pack of developing tools for content management systems, with *'MR Widgets / Modules'* to display content using many customizable layouts and options.
+A pack of developing tools for content management systems. Use *'MR Widgets / Modules'* to display content with many customizable layouts and options.
 
 ### Widgets / Modules
 #### MR Categories
