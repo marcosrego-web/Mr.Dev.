@@ -1,7 +1,7 @@
 <?php
  /*
 
-	Layout Name: Custom
+	Theme Name:  Default
 	
 	Author:      Marcos Rego (Mr.Dev.)
 
@@ -15,7 +15,7 @@ defined('ABSPATH') or die;
 Layout:<br>
 <select  class="widefat mrwid-layouts" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
 <?php
-$options = array( 'List','Grid','Collapsible','Accordion','Slider','Menu');
+$options = array( 'List','Grid','Collapsible','Accordion','Slider','Menu','Custom');
 foreach ( $options as $option ) {
 	echo '<option value="' . $option . '" id="' . $option . '"', $layout == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 }
@@ -125,6 +125,10 @@ jQuery(document).ready(function( $ ) {
 		
 		if(jQuery(this).val() != 'Custom') {
 			jQuery(this).parent().parent().find('.mrwid-customoptions').slideUp();
+		}
+		
+		if(jQuery(this).val() == 'Custom') {
+			jQuery(this).parent().parent().find('.mrwid-customoptions').slideDown();
 		}
 	});
 });
