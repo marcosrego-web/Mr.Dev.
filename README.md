@@ -4,7 +4,7 @@ A pack of developing tools for content management systems such as Wordpress. Use
 
 ### Widgets / Modules
 #### MR Categories
-Mr.Dev. starts with the widget 'MR Categories' for Wordpress, because some content display plugins and even CMS fail to not highlight categories as much as posts/articles. That could be practicle for a better organization, search engine optimization and more friendly for users/clients to understand the front and the backoffice.
+Mr.Dev. started with the widget/module 'MR Categories' because some *content display plugins* and *CMS* do not highlight categories as much as posts/articles. But that could be practicle for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.
 
 'MR Categories' makes it easier and faster to have websites structured in ways such as:\
 *Page/Menu with categories > Category page with posts/articles > Post/Article*\
