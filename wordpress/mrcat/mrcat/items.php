@@ -14,22 +14,30 @@ defined('ABSPATH') or die;
 					Main title depends of the selected display option.
 					Widget title is the default.
 					*/
-					if($maintitle == "Main category title") {
-						if ( ! empty( $maincat ) ) {
-							echo $args['before_title'] . get_cat_name( $maincat ) . $args['after_title'];
-						}
-					} else if($maintitle == "Theme and layout title") {
+					if($maintitle == 3) { // Theme and layout title
+
 						echo $args['before_title'] . $theme . ' - ' . $layout . $args['after_title'];
-					} else if($maintitle == "Theme title") {
+
+					} else if($maintitle == 4) { // Theme title
+
 						echo $args['before_title'] . $theme . $args['after_title'];
-					} else if($maintitle == "Layout title") {
+
+					} else if($maintitle == 5) { // Layout title
+
 						echo $args['before_title'] . $layout . $args['after_title'];
-					} else if($maintitle == "No main title") {
+
+					} else if($maintitle == 6) { // No main title
+
 						
-					} else {
+
+					} else { // Widget title
+
 						if ( ! empty( $title ) ) {
+
 							echo $args['before_title'] . $title . $args['after_title'];
+
 						}
+
 					}
 					
 					/*
@@ -96,19 +104,9 @@ defined('ABSPATH') or die;
 				/*
 				Join all the previous options for the main array of categories.
 				*/
-				$catarray = array('parent' => $maincat, 'orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang);
+				$catarray = array('orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang, 'hierarchical' => true);
+				$catlist = get_terms('category',$catarray);
 				
-				/*
-				Create the main array of categories using 'get_terms' without subcategories.
-				The subcategories will be added after, the reason for that is to create a hierarchy that works with the main category and parent id.
-				*/
-				if($orderby == 'parent' && $order == 'DESC') {
-					$catlist = array_reverse(get_terms('category',$catarray));
-				} else {
-					$catlist = get_terms('category',$catarray);
-				}
-				
-				/* Get extra classes to give to the main container */
 				if ( ! empty( $catlist ) ) {
 
 						/*
@@ -146,12 +144,7 @@ defined('ABSPATH') or die;
 
 										$itemcount = ($itemcount + 1);
 								} else {
-									/*
-									Check if current category was not group excluded.
-									*/
-									if($item->parent == $maincat || $maincat == 0) {
-										if($excludeinclude == 'Exclude' && is_array($groupexclude) && in_array('samelink', $groupexclude) && !in_array('differentlink', $groupexclude) && str_replace("/./","/",get_category_link($item->term_id)) != $currentLink || $excludeinclude == 'Exclude' && is_array($groupexclude) && in_array('differentlink', $groupexclude) && !in_array('samelink', $groupexclude) && str_replace("/./","/",get_category_link($item->term_id)) == $currentLink || $excludeinclude == 'Exclude' && is_array($groupexclude) && in_array('differentlink', $groupexclude) && !in_array('samelink', $groupexclude) && str_replace("/./","/",get_category_link($item->term_id)) == $currentLink || !is_array($groupexclude) || is_array($groupexclude) && !in_array('samelink', $groupexclude) && !in_array('differentlink', $groupexclude) || $excludeinclude == 'Include') {
-										
+									
 										/*
 										Check if current category was not manually excluded.
 										*/
@@ -203,6 +196,22 @@ defined('ABSPATH') or die;
 											} else {
 												$mrcurrent = '';
 											}
+
+											/*
+
+											Add classes for subcategories
+
+											*/
+
+											if($item->parent != 0) {
+
+												$mrsubcat = 'mrwid-subcat parentcatid-'.$item->parent;
+
+											} else {
+
+												$mrsubcat = '';
+
+											}
 											
 											/*
 											Check if this item should be on a new page.
@@ -214,134 +223,49 @@ defined('ABSPATH') or die;
 												}
 											}
 
-											$content .= '<li class="catid-'.$item->term_id.' '.$item->slug.' mr-wid '.$mrcurrent.'" '.((is_array($catoptions) AND in_array("url", $catoptions))?'url='.get_category_link($item->term_id):"").' ><div class="mrwid-container">'.$showcattitle.'<div class="mrwid-content">'.$showcatdesc.$bottomlinktext.'</div></div></li>';
+											$content .= '<li class="catid-'.$item->term_id.' '.$item->slug.' '.$mrsubcat.' mr-wid '.$mrcurrent.'" '.((is_array($catoptions) AND in_array("url", $catoptions))?'url='.get_category_link($item->term_id):"").' ><div class="mrwid-container">'.$showcattitle.'<div class="mrwid-content">'.$showcatdesc.$bottomlinktext.'</div></div></li>';
 
 											$itemcount = ($itemcount + 1);
-										}
-										}
-									}
-								}
-								
-										
-								/*------SUBCATEGORIES------*/
-								/*
-								If parent category was manually removed do not show subcategories
-								*/
-								if($excludeinclude == 'Exclude' && is_array( $catexclude ) && !in_array($item->term_id, $catexclude) || $excludeinclude != 'Exclude') {
-									
-										/*
-										Before continuing the mainarray of the other main categories, create a new array with the subcategories of the previous category. 
-										By doing this, the selected main category is respected even if the order is not 'Parent'.
-										*/
-										$subcatarray = array('child_of' => $item->term_id, 'orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang);
-										
-										if($orderby == 'parent' && $order == 'DESC') {
-											$childs = array_reverse(get_terms( 'category',$subcatarray));
-										} else {
-											$childs = get_terms( 'category',$subcatarray);
-										}
-										
-										foreach ( $childs as $key => $item ) {
+
 											/*
-											If parent category was not included do not show subcategories
+											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
 											*/
-											if($excludeinclude == 'Include' && is_array( $catexclude ) && in_array($item->parent, $catexclude) || $excludeinclude != 'Include') {
-										
-											if(is_admin()) {
-													echo '<div class="mrwid-childs">';
-													?>
-												
-														<label >
-														<input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catexclude' ) ); ?>[]" value="<?php echo $item->term_id; ?>" <?php checked( ( is_array( $catexclude ) AND in_array( $item->term_id, $catexclude ) ) ? $item->term_id : '', $item->term_id ); ?>/> <?php echo $item->name; ?></label>
-														
-													<?php 
-													echo "</div>";
+
+											if(is_array($layoutoptions) && in_array( "subcatactive", $layoutoptions ) && $mrsubcat != '' && $mrsubcat != null || !is_array($layoutoptions ) && $layoutoptions == "subcatactive" && $mrsubcat != '' && $mrsubcat != null) {
+
 											} else {
-												$currentLink = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-												
-												if($excludeinclude == 'Exclude' && is_array($groupexclude) && in_array('samelink', $groupexclude) && !in_array('differentlink', $groupexclude) && str_replace("/./","/",get_category_link($item->term_id)) != $currentLink || $excludeinclude == 'Exclude' && is_array($groupexclude) && in_array('differentlink', $groupexclude) && !in_array('samelink', $groupexclude) && str_replace("/./","/",get_category_link($item->term_id)) == $currentLink || !is_array($groupexclude) || is_array($groupexclude) && !in_array('samelink', $groupexclude) && !in_array('differentlink', $groupexclude) || $excludeinclude == 'Include') {
-													
-												/*
-												Check if current child category was not manually excluded.
-												*/
-												if($excludeinclude == 'Exclude' AND is_array( $catexclude ) AND !in_array($item->term_id, $catexclude) OR $excludeinclude == 'Include' AND is_array( $catexclude ) AND in_array($item->term_id, $catexclude)) {
-													/*
-													Child title starts here
-													*/
-													if($titletag == null || $titletag == "") {
-														$titletag == 'h3';
-													}
-													
-													if($cattitle == "Category title") {
-														$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->name.((is_array($catoptions) AND in_array("artcount", $catoptions))?' <small>('.$item->count.')</small>':"").'</'.$titletag.'>';
-													} else if($cattitle == "No title")  {
-														$showcattitle = ''.((is_array($catoptions) AND in_array("artcount", $catoptions))?'<'.$titletag.' class="mrwid-title">('.$item->count.')</'.$titletag.'>':"");
-													} else  {
-														$showcattitle = '<'.$titletag.' class="mrwid-title">'.'<a href="'.get_category_link($item->term_id).'">'.$item->name.((is_array($catoptions) AND in_array("artcount", $catoptions))?' <small>('.$item->count.')</small>':"").'</a>'.'</'.$titletag.'>';
-													}
-															
-													/*
-													Child description starts here
-													*/														
-													if($catdesc == "No description") {
-														$showcatdesc = '';
-													} else  {
-														$showcatdesc = '<div class="mrwid-desc">'.do_shortcode( $item->description).'</div>';
-													}
-														
-													/*
-													Child bottom link starts here
-													*/														
-													if($catlink == "No bottom link") {
-														$bottomlinktext="";
+												if($itemcount == $perpage) {
+
+													if(is_admin()) {
+
+														echo '</div><hr>';
+
 													} else {
-														if($bottomlink == "") {
-															$bottomlink = "Know more...";
+
+														if($pagecount > 1) {
+
+															$content .= '</noscript>';
+
 														}
-																		
-														$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.get_category_link($item->term_id).'" title="'. $item->name .'">'.$bottomlink.'</a></div>';
-													}
-													
 
-													/*
-													Check front for active category and adds a class if it's the current child category.
-													*/
-													if(is_array($currentcat) && in_array($item->term_id, $currentcat) || str_replace("/./","/",get_category_link($item->term_id)) == $currentLink) {
-														$mrcurrent = 'mrwid-current';
-													} else if($currentcat != '' && $currentcat == $item->term_id) {
-														$mrcurrent = 'mrwid-current';
-													} else {
-														$mrcurrent = '';
+														$content .= '</ul>';
+
 													}
-													
-													/*
-													Add the content of the current child after the previous inserted parent category.
-													*/
-													
-													$content .= '<li class="catid-'.$item->term_id.' '.$item->slug.' mr-wid mrwid-subcat '.$mrcurrent.'" '.((is_array($catoptions) AND in_array("url", $catoptions))?'url='.get_category_link($item->term_id):"").' ><div class="mrwid-container">'.$showcattitle.'<div class="mrwid-content">'.$showcatdesc.$bottomlinktext.'</div></div></li>';
-												}
+
+													$itemcount = 0;
+
+													$pagecount = ($pagecount + 1);
+
 												}
 											}
-											}
 										}
-									}
-								
-
-								if($itemcount == $perpage) {
-									if(is_admin()) {
-										echo '</div><hr>';
-									} else {
-										if($pagecount > 1) {
-											$content .= '</noscript>';
-										}
-										$content .= '</ul>';
-									}
-
-									$itemcount = 0;
-									$pagecount = ($pagecount + 1);
 								}
+								
 						}
 
+						/*
+						Doublecheck if the last page was closed in case the last item was a hidden subcategory.
+						*/
 						if($itemcount != 0) {
 							if(is_admin()) {
 								echo '</div><hr>';
