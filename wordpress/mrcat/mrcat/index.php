@@ -20,7 +20,7 @@ class mr_categories extends WP_Widget {
 		 
 		__('MR Categories', 'mr_categories'), 
 		 
-		array( 'description' => __( 'Displays categories with descriptions, media and links, in a variety of layouts with many customizable options. Powered by Mr.Cat.', 'mr_categories' ), ) 
+		array( 'description' => __( 'Powered by Mr.Cat. | Displays categories in a variety of layouts and customizable options.', 'mr_categories' ), ) 
 		);
 	}
 	 
@@ -48,9 +48,9 @@ class mr_categories extends WP_Widget {
 		 
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v040.js', array('jquery'));
+			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v041.js', array('jquery'));
 			wp_enqueue_script( 'mrcat_scripts' );
-			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v040.css');
+			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v041.css');
 			
 			/* A heightfix for css 'vh' on mobile browsers address bar.
 			Detect IE because this fix breaks on that browser. */
@@ -89,10 +89,10 @@ class mr_categories extends WP_Widget {
 				*/
 				
 				if($theme == null || $theme == '') {
-					wp_enqueue_style( 'mrcat_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v040.css');
+					wp_enqueue_style( 'mrcat_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v041.css');
 				} else if($theme == "default") {
 					//Official Themes
-					wp_enqueue_style( 'mrcat_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v040.css');
+					wp_enqueue_style( 'mrcat_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v041.css');
 				} else {
 					//Custom Themes
 					wp_enqueue_style( 'mrcat_'.$theme.'_css', get_template_directory_uri(__FILE__ ).'/mrdev/themes/'.$theme.'/'.$theme.'.css');
@@ -105,7 +105,7 @@ class mr_categories extends WP_Widget {
 	 
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v040.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v041.css');
 		
 		?>
 		<div class="mrwid-admin">
@@ -378,12 +378,19 @@ class mr_categories extends WP_Widget {
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'catdisplay' ); ?>"><?php _e( 'Display options:' ); ?></label><br>
 						<select  class="widefat" id="<?php echo $this->get_field_id('maintitle'); ?>" name="<?php echo $this->get_field_name('maintitle'); ?>" title="Main title">
-									<?php
-										$options = array( 'Widget title','Main category title','Theme and layout title','Theme title','Layout title','No main title');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $maintitle == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
-									?>
+							<?php
+
+							echo '<option value="0" id="widgettitle"', $maintitle == 0 ? ' selected="selected"' : '', '>Widget title</option>';
+
+							echo '<option value="3" id="themeandlayouttitle"', $maintitle == 3 ? ' selected="selected"' : '', '>Theme and layout title</option>';
+
+							echo '<option value="4" id="themetitle"', $maintitle == 4 ? ' selected="selected"' : '', '>Theme title</option>';
+
+							echo '<option value="5" id="layouttitle"', $maintitle == 5 ? ' selected="selected"' : '', '>Layout title</option>';
+
+							echo '<option value="6" id="nomaintitle"', $maintitle == 6 ? ' selected="selected"' : '', '>No main title</option>';
+
+							?>
 						</select><br>
 						<select  class="widefat" id="<?php echo $this->get_field_id('cattitle'); ?>" name="<?php echo $this->get_field_name('cattitle'); ?>" title="Titles">
 									<?php
@@ -434,7 +441,7 @@ class mr_categories extends WP_Widget {
 						If you need more features then you need <strong>Mr.Dev.</strong><br>One plugin that combines all MR widgets, add-ons and utilities giving to "MR Categories" extras such as:</p>
 						<ol>
 						<li>Insert widgets inside the content on posts/pages/categories using <strong>blocks, classic editor button or shortcodes</strong>.</li>
-						<li>Choose a <strong>main category</strong> to only display the childs.</li>
+						<li>Choose <strong>main categories</strong> to only display their childs.</li>
 						<li>Manually <strong>reorder</strong>.</li>
 						<li><strong>Pin</strong> to choose the one starting active.</li>
 						<li><strong>Auto exclude</strong> Subcategories, Categories with no posts, same link, different link and more.</li>
