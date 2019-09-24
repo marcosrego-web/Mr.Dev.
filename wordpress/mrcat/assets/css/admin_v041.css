@@ -76,7 +76,13 @@ input.mrwid-radio {
     padding: 3px 0;
 }
 
-.mrwid-list-container {
+.mrwid-maincat {
+	height: 50px;
+    overflow: auto;
+	padding: 3px 0;
+}
+
+.mrwid-list-container, .mrwid-maincat {
 	display: grid;
 }
 
