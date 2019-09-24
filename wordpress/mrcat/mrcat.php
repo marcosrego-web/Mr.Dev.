@@ -7,7 +7,7 @@
 
 	Description: Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.
 	
-	Version:     0.4.0
+	Version:     0.4.1
 
 	Author:      Marcos Rego
 
@@ -78,7 +78,7 @@ if(is_admin()) {
 	/*---Correct the Visual Term Description Editor appearing above the categories list in some resolutions---*/
 	if (strpos($url,'taxonomy=category') !== false || strpos($url,'taxonomy=post_tag') !== false) {
 		function add_style() {
-			wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'mrdev/assets/css/admin_v040.css');
+			wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'mrdev/assets/css/admin_v041.css');
 		}
 		add_action('admin_footer', 'add_style');
 	}
