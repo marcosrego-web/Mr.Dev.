@@ -2,11 +2,11 @@
     "name" : "Mr.Cat.",
     "slug" : "mrcat",
     "homepage" : "https://marcosrego.com/en/web-en/mrcat-en/",
-    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.4.0/mrcat-wordpress.zip",
+    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.4.1/mrcat-wordpress.zip",
     
-    "version" : "0.4.0",
-    "tested" : "5.2.2",
-    "last_updated" : "2019-09-02 20:50:00",
+    "version" : "0.4.1",
+    "tested" : "5.2.3",
+    "last_updated" : "2019-09-24 21:04:00",
     "upgrade_notice" : "",
     
     "author" : "Marcos Rego",
@@ -14,6 +14,6 @@
     
     "sections" : {
         "description" : "<p>Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.</p>",
-        "changelog" : "<p><strong>0.4.0</strong> - First public release. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'><strong>Github</strong></a>.</em></p>"
+        "changelog" : "<p><strong>0.4.1</strong> - Improvements that also corrected a bug on the pagination. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'><strong>Github</strong></a>.</em></p>"
     }
 }
