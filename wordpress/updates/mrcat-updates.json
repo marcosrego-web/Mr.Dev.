@@ -14,8 +14,7 @@
     
     "icons" : {
         "1x" : "https://raw.githubusercontent.com/marcosrego-web/Mr.Dev./master/wordpress/updates/mrcat-icon-128x128.png",
-        "2x" : "https://raw.githubusercontent.com/marcosrego-web/Mr.Dev./master/wordpress/updates/mrcat-icon-256x256.png",
-        "svg": "https://raw.githubusercontent.com/marcosrego-web/Mr.Dev./master/wordpress/updates/mrcat-icon.svg"
+        "2x" : "https://raw.githubusercontent.com/marcosrego-web/Mr.Dev./master/wordpress/updates/mrcat-icon-256x256.png"
     },
     
     "sections" : {
