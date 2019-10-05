@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @copyright	Copyright (c) 2019 Marcos Rego. All rights reserved.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+-->
+<extension type="module" version="3.7" client="site" method="upgrade">
+	<name>MR Categories</name>
+	<version>0.4.2</version>
+	<author>Marcos Rego</author>
+	<creationDate>October 2019</creationDate>
+	<copyright>Copyright (c) 2019 Marcos Rego. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>web@marcosrego.com</authorEmail>
+	<authorUrl>https://marcosrego.com</authorUrl>
+	<description>
+	<![CDATA[
+<span class="readonly"><p> from <a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank" style="color: #000;">
+
+		<img style="height: 20px; margin-bottom: 5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1MTIgNTEyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjE2cHgiIGhlaWdodD0iMTZweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTM3MC4zODEsMzA3LjgzN2MtMTIuMDExLTQuOTY4LTE5Ljc3Mi0xNi41NzUtMTkuNzcyLTI5LjU3NmMwLTU0LjI5OS00My4zMjYtMTAwLjE3NC05NC42MDktMTAwLjE3NCAgICBzLTk0LjYwOSw0NS44NzUtOTQuNjA5LDEwMC4xNzRjMCwxMy03Ljc2MSwyNC42MTQtMTkuNzcyLDI5LjU4MWMtMzUuMzE1LDE0LjYxNC01OC4xNDEsNDguODc1LTU4LjE0MSw4Ny4yODggICAgYzAsNTIuMTY4LDQyLjQ0Niw5NC42MDksOTQuNjA5LDk0LjYwOWMxMy4xODUsMCwyNS45NTYtMi42NjgsMzcuOTc4LTcuOTM1YzI1LjM4MS0xMS4xMjUsNTQuNDc4LTExLjE0Miw3OS44ODEsMC4wMDYgICAgYzEyLjAxMSw1LjI2MSwyNC43ODIsNy45MjksMzcuOTY3LDcuOTI5YzUyLjE2MywwLDk0LjYwOS00Mi40NCw5NC42MDktOTQuNjA5QzQyOC41MjIsMzU2LjcxMSw0MDUuNjk1LDMyMi40NDUsMzcwLjM4MSwzMDcuODM3eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTE3OC4wODcsMjIuMjYxYy0zNi4xNTIsMC01NS42NTIsNjMuMjAxLTU1LjY1Miw4OS4wNDRjMCwzMC42ODQsMjQuOTY4LDU1LjY1Miw1NS42NTIsNTUuNjUyICAgIHM1NS42NTItMjQuOTY4LDU1LjY1Mi01NS42NTJDMjMzLjczOSw4NS40NjIsMjE0LjIzOSwyMi4yNjEsMTc4LjA4NywyMi4yNjF6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+Cgk8Zz4KCQk8cGF0aCBkPSJNMzMzLjkxMywyMi4yNjFjLTM2LjE1MiwwLTU1LjY1Miw2My4yMDEtNTUuNjUyLDg5LjA0NGMwLDMwLjY4NCwyNC45NjgsNTUuNjUyLDU1LjY1Miw1NS42NTIgICAgYzMwLjY4NCwwLDU1LjY1Mi0yNC45NjgsNTUuNjUyLTU1LjY1MkMzODkuNTY1LDg1LjQ2MiwzNzAuMDY1LDIyLjI2MSwzMzMuOTEzLDIyLjI2MXoiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik01NS42NTIsMTU1LjgyNkMxOS41MDEsMTU1LjgyNiwwLDIxOS4wMjcsMCwyNDQuODdjMCwzMC42ODQsMjQuOTY4LDU1LjY1Miw1NS42NTIsNTUuNjUyICAgIGMzMC42ODQsMCw1NS42NTItMjQuOTY4LDU1LjY1Mi01NS42NTJDMTExLjMwNCwyMTkuMDI3LDkxLjgwNCwxNTUuODI2LDU1LjY1MiwxNTUuODI2eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTQ1Ni4zNDgsMTU1LjgyNmMtMzYuMTUyLDAtNTUuNjUyLDYzLjIwMS01NS42NTIsODkuMDQzYzAsMzAuNjg0LDI0Ljk2OCw1NS42NTIsNTUuNjUyLDU1LjY1MiAgICBjMzAuNjg0LDAsNTUuNjUyLTI0Ljk2OCw1NS42NTItNTUuNjUyQzUxMiwyMTkuMDI3LDQ5Mi41LDE1NS44MjYsNDU2LjM0OCwxNTUuODI2eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" alt="Mr.Cat. Logo" title="Icon made by Freepik from flaticon.com"> <strong style="font-weight:700" title="Click to know Mr.Cat.">Mr.Cat.</strong></a> | Displays categories in a variety of layouts and customizable options.</p></span>
+	]]>
+	</description>
+	<files>
+		<filename module="mod_mrcat">mod_mrcat.php</filename>
+		<filename>helper.php</filename>
+		<filename>items.php</filename>
+		<filename>index.html</filename>
+		<folder>themes</folder>
+		<folder>assets</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+			<fieldset name="mrcat_categories" label="Categories">
+				<field
+					name="orderby"
+					type="list"
+					label="Sort by"
+					description="Automatically sort categories by a specific type of order."
+				>
+					<option value="0">Parent</option>
+					<option value="1">Title</option>
+					<option value="2">Creation</option>
+					<option value="4">Alias</option>
+					<option value="5">Ordering</option>
+					<option value="6">Level</option>
+				</field>
+				<field
+					name="order"
+					type="list"
+					label=""
+					description="Choose ascending or descending"
+				>
+					<option value="0">Ascending</option>
+					<option value="1">Descending</option>
+				</field>
+				<field
+					name="excludeinclude"
+					type="list"
+					label="Categories"
+					description="Choose if to exclude or to include the manually selected categories."
+					default="Exclude"
+				>
+					<option value="Exclude">Exclude</option>
+					<option value="Include">Include</option>
+				</field>
+				<field 
+					name="catexclude"
+					type="category"
+					extension="com_content"
+					label=""
+					description="Choose which categories to exclude/include."
+					multiple="true"
+					default="0"
+					show_root="true"
+					hint="Type or select categories"
+				/>
+			</fieldset>
+			<fieldset name="mrcat_appearance" label="Appearance">
+				<field 
+					name="appearance"
+					type="subform"
+					formsource="modules/mod_mrcat/themes/index.xml"
+					label="Appearance"
+					description=""
+				/>
+			</fieldset>
+			<fieldset name="mrcat_pagination" label="Pagination">
+				<field
+					name="perline"
+					type="list"
+					label="Items per line"
+					description="Choose number of items to show per line."
+					default="0"
+					filter="integer"
+				>
+				<option value="0">∞</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+				<option value="9">9</option>
+				<option value="10">10</option>
+				<option value="11">11</option>
+				<option value="12">12</option>
+				<option value="13">13</option>
+				<option value="14">14</option>
+				<option value="15">15</option>
+				<option value="16">16</option>
+				<option value="17">17</option>
+				<option value="18">18</option>
+				<option value="19">19</option>
+				<option value="20">20</option>
+				</field>
+				<field
+					name="perpage"
+					type="number"
+					label="Items per page"
+					description="Choose number of items to show per page."
+					default=""
+					hint="∞"
+				/>
+				<field name="pagetoggles" type="checkboxes" class="mrwid-checkbox" label="Toggles" default="arrows">
+					<option value="pageselect">Select</option>
+					<option value="arrows">Arrows</option>
+					<option value="radio">Radio</option>
+					<option value="below">Below</option>
+					<option value="scroll">Scroll</option>
+				</field>
+				<field
+					name="pagetransition"
+					type="list"
+					label="Transition"
+					default="Fade"
+				>
+					<option value="Fade">Fade</option>
+					<option value="Slide">Slide</option>
+				</field>
+			</fieldset>
+			<fieldset name="mrcat_options" label="Options">
+				<field
+					name="title"
+					type="list"
+					label="Display options"
+					description="Choose the module subtitle, items titles, descriptions, bottom links and the text to show on bottom links."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">No module subtitle</option>
+					<option value="3">Theme and layout title</option>
+					<option value="4">Theme title</option>
+					<option value="5">Layout title</option>
+				</field>
+				<field
+					name="cattitle"
+					type="list"
+					label=""
+					description=""
+					default="1"
+					filter="integer"
+				>
+					<option value="1">Linked category title</option>
+					<option value="2">Category title</option>
+					<option value="0">No title</option>
+				</field>
+				<field
+					name="catdesc"
+					type="list"
+					label=""
+					description=""
+					default="1"
+					filter="integer"
+				>
+					<option value="1">Category description</option>
+					<option value="0">No description</option>
+				</field>
+				<field
+					name="catlink"
+					type="list"
+					label=""
+					description=""
+					default="1"
+					filter="integer"
+				>
+					<option value="1">Category link</option>
+					<option value="0">No bottom link</option>
+				</field>
+				<field
+					name="bottomlink"
+					type="text"
+					label=""
+					description=""
+					default="Know more..."
+					hint="Bottom link text"
+					showon="catlink:1"
+				/>
+				<field name="catoptions" type="checkboxes" class="mrwid-checkbox" label="Other options">
+					<option value="artcount">Show number of articles</option>
+					<option value="hover">Active on mouseover</option>
+					<option value="autoscroll">Auto scroll to active</option>
+					<option value="url">Change URL on active</option>
+					<option value="remember">Remember last active (uses cookies)</option>
+				</field>
+				<field name="globallayoutoptions" type="checkboxes" class="mrwid-checkbox" label="">
+					<option value="keepopen">Keep other actives opened</option>
+					<option value="donotclose">Do not inactive on click</option>
+					<option value="subcatactive">Only show subcategories of active</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+				/>
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+				/>
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
