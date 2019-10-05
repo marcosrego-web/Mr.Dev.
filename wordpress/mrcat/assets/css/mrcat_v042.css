@@ -1,255 +1,128 @@
 .mrwid-theme .mrwid-layout .mrwid-pages {
-
     list-style-type: none;
-
     margin: 0;
-
 }
-
 .widget_mr_categories .widgettitle {
-
     text-transform: capitalize;
-
 }
-
 .mrwid-theme .mrwid-layout .mr-wid:not(.active):before {
-
     content: "";
-
     position: absolute;
-
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     height: 100%;
-
     z-index: 15;
-
     display: block;
-
     cursor: pointer;
-
 }
-
 .mrwid-theme .mrwid-layout .ios-scrolling {
-
     overflow-y: scroll !important;
-
     -webkit-overflow-scrolling: touch !important;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages {
-
     display: -webkit-box;
-
     display: -moz-box;
-
     display: -ms-flexbox;
-
     display: -webkit-flex;
-
 	display: flex;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner {
-
     flex-wrap: wrap;
-
 }
-
 .mrwid-theme .mrwid-layout .mr-wid {
-
     position: relative;
-
 }
-
 .mrwid-subcatactive .mrwid-subcat {
-
     display: none;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages:not(.mrwid-perliner) .mr-wid, .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid {
-
     width: 100%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid {
-
     width: 50%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-3perline .mr-wid {
-
     width: 33.33333333333333%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-4perline .mr-wid {
-
     width: 25%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-5perline .mr-wid {
-
     width: 20%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-6perline .mr-wid {
-
     width: 16.66666666666667%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-7perline .mr-wid {
-
     width: 14.28571428571429%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-8perline .mr-wid {
-
     width: 12.5%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-9perline .mr-wid {
-
     width: 11.11111111111111%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-10perline .mr-wid {
-
     width: 10%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-11perline .mr-wid {
-
     width: 9.090909090909091%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-12perline .mr-wid {
-
     width: 8.333333333333333%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-13perline .mr-wid {
-
     width: 7.692307692307692%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-14perline .mr-wid {
-
     width: 7.142857142857143%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-15perline .mr-wid {
-
     width: 6.666666666666667%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-16perline .mr-wid {
-
     width: 6.25%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-17perline .mr-wid {
-
     width: 5.882352941176471%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-18perline .mr-wid {
-
     width: 5.555555555555556%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-19perline .mr-wid {
-
     width: 5.263157894736842%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-20perline .mr-wid {
-
     width: 5%;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-pages:not(.mrwid-page1), .mrwid-theme .mrwid-layout .mrwid-scroll:not(.mrwid-below):not(.loading) {
-
     display: none;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-below.loading span, .mrwid-theme .mrwid-layout .mrwid-scroll.loading span {
-
     font-size: 0;
-
 }
-
 .mrwid-theme .mrwid-layout .mrwid-below.loading span:after, .mrwid-theme .mrwid-layout .mrwid-scroll.loading span:after {
-
     content: "...";
-
     font-size: initial;
-
 }
-
 @media only screen and (orientation: portrait) {
-
     .mrwid-theme .mrwid-layout .mrwid-pages:not(.mrwid-perliner) {
-
 		flex-direction: column;
-
 	}
-
 }
-
 @media only screen and (max-width: 59.94em) and (min-width: 47.94em) {
-
 	.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner:not(.mrwid-3perline):not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
-
 		width: 33.333333%;
-
 	}
-
 }
-
 @media only screen and (max-width: 47.94em) and (orientation: landscape) {
-
 	.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner:not(.mrwid-2perline):not(.mrwid-1perline) .mr-wid {
-
 		width: 50%;
-
 	}
-
 }
-
 @media only screen and (max-width: 47.94em) and (orientation: portrait) {
-
 	.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner:not(.mrwid-1perline) .mr-wid {
-
 		width: 100%;
-
 	}
-
 }
