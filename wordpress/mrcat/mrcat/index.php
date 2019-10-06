@@ -76,8 +76,8 @@ class mr_categories extends WP_Widget {
 				If it's official it has the version number.
 				*/
 				if(!$theme) {
-					require_once plugin_dir_path( __DIR__ ).'themes/Default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/Default/Default_v042.css');
+					require_once plugin_dir_path( __DIR__ ).'themes/default/index.php';
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v042.css');
 				} else if($theme == "Default") {
 					//Official Themes
 					require_once plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
