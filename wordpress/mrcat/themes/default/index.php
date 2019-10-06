@@ -42,15 +42,15 @@ foreach ( $options as $option ) {
 <label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="landscape" <?php checked( ( is_array( $layoutoptions ) AND in_array( "landscape", $layoutoptions ) ) ? "landscape" : '', "landscape" ); ?> /> <?php _e( 'Landscape on portrait window' ); ?></label><br>
 <label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="portrait" <?php checked( ( is_array( $layoutoptions ) AND  in_array( "portrait", $layoutoptions ) ) ? "portrait" : '', "portrait" ); ?> /> <?php _e( 'Portrait on landscape window' ); ?></label><br>
 </div>
-<div class="mrwid-notice perlineov" <?php if($theme == 'Default' && $layout == 'Collapsible' || $theme == 'Default' && $layout == 'Accordion' || $theme == 'Default' && $layout == 'Slider') { } else { echo 'style="display: none"'; } ?>><p>
+<div class="mrwid-notice perlineov" <?php if($theme == 'default' && $layout == 'Collapsible' || $theme == 'default' && $layout == 'Accordion' || $theme == 'default' && $layout == 'Slider') { } else { echo 'style="display: none"'; } ?>><p>
 	<strong>Items per line overriden</strong><br>
 	The current layout will be forcing the items per line number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect.</p>
 </div>
-<div class="mrwid-notice perpageov" <?php if($theme == 'Default' && $layout == 'Slider') { } else { echo 'style="display:none"'; } ?>>
+<div class="mrwid-notice perpageov" <?php if($theme == 'default' && $layout == 'Slider') { } else { echo 'style="display:none"'; } ?>>
 	<p><strong>Items per page overriden</strong><br>
 	The current layout will be forcing the items per page number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect.</p>
 </div>
-<div class="mrwid-notice optionov" <?php if($theme == 'Default' && $layout == 'Menu') { } else { echo 'style="display:none"'; } ?>>
+<div class="mrwid-notice optionov" <?php if($theme == 'default' && $layout == 'Menu') { } else { echo 'style="display:none"'; } ?>>
 	<p><strong>Option overriden</strong><br>
 	The current layout will be forcing to 'Only show subcategories of active' on the 'Options' section. Customize or change layout if you want your changes on that option to take effect.</p>
 </div>
