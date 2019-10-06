@@ -87,7 +87,7 @@ class mr_categories extends WP_Widget {
 					include '/wp-content/themes/mrdev/'.$theme.'/index.php';
 					wp_enqueue_style( 'mrdev_'.$theme.'_css', '/wp-content/themes/mrdev/'.$theme.'/'.$theme.'.css');
 				}
-				include trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
+				require trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
 			echo __( $content, 'mr_categories' );
 		echo $args['after_widget'];
 	}
