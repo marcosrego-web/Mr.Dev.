@@ -49,7 +49,7 @@ if(!$params['appearance']->theme || $params['appearance']->theme != 'Custom') {
 	//CUSTOM THEME
 	$theme = $params['appearance']->customthemeoptions->customtheme;
 	echo $theme;
-	require_once JPATH_ROOT.'/templates/mrdev/'.$theme.'/index.php';
+	include JPATH_ROOT.'/templates/mrdev/'.$theme.'/index.php';
 	$doc->addStyleSheet(JURI::base(true).'/templates/mrdev/'.$theme.'/'.$theme.'.css');
 }
 include  __DIR__ .'/items.php';
