@@ -84,7 +84,7 @@ class mr_categories extends WP_Widget {
 					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v042.css');
 				} else {
 					//Custom Themes
-					require_once '/wp-content/themes/mrdev/'.$theme.'/index.php';
+					include '/wp-content/themes/mrdev/'.$theme.'/index.php';
 					wp_enqueue_style( 'mrdev_'.$theme.'_css', '/wp-content/themes/mrdev/'.$theme.'/'.$theme.'.css');
 				}
 				include trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
