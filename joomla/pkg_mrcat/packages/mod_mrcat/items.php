@@ -109,6 +109,10 @@ defined('_JEXEC') or die;
 										*/
 										if($excludeinclude == 'Exclude' AND is_array( $catexclude ) AND !in_array($item->id, $catexclude) OR $excludeinclude == 'Include' AND is_array( $catexclude ) AND in_array($item->id, $catexclude) ) {
 											$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->title.'</'.$titletag.'>';
+											$model = JModelLegacy::getInstance('Articles', 'ContentModel');
+											$model->setState('filter.category_id', $item->id);
+											$articles = $model->getItems();
+											$num_articles = count($articles);
 											if($cattitle == 2) { //Category title
 												$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->title.((is_array( $catoptions ) AND  in_array("artcount", $catoptions))?' <small>('. $num_articles .')</small>':"").'</'.$titletag.'>';
 											} else if($cattitle == 0)  { //No title
