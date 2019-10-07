@@ -246,7 +246,7 @@
 				</field>
 			</fieldset>
 			<fieldset name="mrdev" label="DO YOU NEED MORE FEATURES?">
-				<field name="mrdevtxt" type="note" class="alert alert-info" label="If you need more features then you need Mr.Dev." description="Mr.Dev. is one plugin that combines all MR Modules, add-ons and utilities giving to 'MR Categories' extras such as: Choose main categories to only display their childs. Manually reorder. Pin to choose the one starting active. Auto exclude Subcategories, Categories with no posts, same link, different link and more. Hide module sections to specific user or groups. Other Advanced options such as choosing the titles tag (h2, h3, h4, p, etc), add custom classes to the bottom link. And more..." />
+				<field name="mrdevtxt" type="note" class="alert alert-info" label="If you need more features then you need Mr.Dev." description="Mr.Dev. is one plugin that combines all MR Modules, add-ons and utilities giving to 'MR Categories' extras such as: Choose main categories to only display their childs. Manually reorder. Pin to choose the one starting active. Auto exclude Subcategories, Categories with no articles, same link, different link and more. Hide module sections to specific user or groups. Other Advanced options such as choosing the titles tag (h2, h3, h4, p, etc), add custom classes to the bottom link. And more..." />
 			</fieldset>
 		</fields>
 	</config>
