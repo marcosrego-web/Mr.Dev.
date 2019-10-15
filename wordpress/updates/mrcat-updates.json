@@ -7,7 +7,7 @@
     "version" : "0.4.3",
     "tested" : "5.2.4",
     "last_updated" : "2019-10-15 21:57:00",
-    "upgrade_notice" : "This release has base changes to the code. Before updating do a backup of your site and annotate your selections on MR Categories. After the update you might need to re-select your widgets' options.",
+    "upgrade_notice" : "IMPORTANT: This release has base changes to the code. Before updating do a backup of your site and annotate your selections on MR Categories. After the update you might need to re-select your widgets' options.",
     
     "author" : "Marcos Rego",
     "author_homepage" : "https://marcosrego.com",
