@@ -38,12 +38,13 @@ class mr_categories extends WP_Widget {
 		$catdesc = $instance['catdesc'];
 		$catlink = $instance['catlink'];
 		$catoptions = $instance['catoptions'];
+		$globallayoutoptions = $instance['globallayoutoptions'];
 		$lastactivedetails = $instance['lastactivedetails'];
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v042.js', array('jquery'));
+			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v043.js', array('jquery'));
 			wp_enqueue_script( 'mrcat_scripts' );
-			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v042.css');
+			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v043.css');
 			/* A heightfix for css 'vh' on mobile browsers address bar.
 			Detect IE because this fix breaks on that browser. */
 			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) { } else { 
@@ -64,6 +65,11 @@ class mr_categories extends WP_Widget {
 				} else {
 					$catoptions = array();
 				}
+				if ( ! empty( $globallayoutoptions ) ) {
+					$globallayoutoptions = ! empty( $instance['globallayoutoptions'] ) ? $instance['globallayoutoptions'] : array();
+				} else {
+					$globallayoutoptions = array();
+				}
 				if ( ! empty( $pagetoggles ) ) {
 					$pagetoggles = ! empty( $instance['pagetoggles'] ) ? $instance['pagetoggles'] : array();
 				} else {
@@ -77,14 +83,14 @@ class mr_categories extends WP_Widget {
 				*/
 				if(!$theme) {
 					require_once plugin_dir_path( __DIR__ ).'themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v042.css');
-				} else if($theme == "Default") {
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v043.css');
+				} else if($theme == "default") {
 					//Official Themes
 					require_once plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v042.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v043.css');
 				} else {
 					//Custom Themes
-					include '/wp-content/themes/mrdev/'.$theme.'/index.php';
+					require_once '/wp-content/themes/mrdev/'.$theme.'/index.php';
 					wp_enqueue_style( 'mrdev_'.$theme.'_css', '/wp-content/themes/mrdev/'.$theme.'/'.$theme.'.css');
 				}
 				require trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
@@ -93,7 +99,7 @@ class mr_categories extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v042.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v043.css');
 		?>
 		<div class="mrwid-admin">
 		<p class="mrwid-section"><a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank">
@@ -208,6 +214,12 @@ class mr_categories extends WP_Widget {
 						else {
 							$catoptions = __( '', 'mr_categories' );
 						}
+						if ( isset( $instance[ 'globallayoutoptions' ] ) ) {
+							$globallayoutoptions = $instance[ 'globallayoutoptions' ];
+						}
+						else {
+							$globallayoutoptions = __( '', 'mr_categories' );
+						}
 						if ( isset( $instance[ 'lastactivedetails' ] ) ) {
 							$lastactivedetails = $instance[ 'lastactivedetails' ];
 						}
@@ -266,7 +278,7 @@ class mr_categories extends WP_Widget {
 						Theme:<br>
 								<select  class="widefat mrwid-themes" id="<?php echo $this->get_field_id('theme'); ?>" name="<?php echo $this->get_field_name('theme'); ?>">
 									<?php
-										$options = array('Default');
+										$options = array('default');
 										foreach ( $options as $option ) {
 											echo '<option value="' . $option . '" id="' . $option . '"', $theme == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 										}
@@ -279,9 +291,9 @@ class mr_categories extends WP_Widget {
 								<div class="mrwid-themeoptions">
 								<?php
 								if(!$theme) {
-									include trailingslashit( plugin_dir_path( __DIR__ )).'themes/Default/index.php';
+									include trailingslashit( plugin_dir_path( __DIR__ )).'themes/default/index.php';
 								} else {
-									if($theme == "Default") {
+									if($theme == "default") {
 										include trailingslashit( plugin_dir_path( __DIR__ )).'themes/'.$theme.'/index.php';
 									} else {
 										include trailingslashit( 'ABSPATH').'wp-content/themes/mrdev/themes/'.$theme.'/index.php';
@@ -373,9 +385,9 @@ class mr_categories extends WP_Widget {
 									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="artcount" <?php checked( ( is_array($catoptions) AND in_array( "artcount", $catoptions ) ) ? "artcount" : '', "artcount" ); ?> /> <?php _e( 'Show number of articles' ); ?></label><br>
 									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="hover" <?php checked( ( is_array( $catoptions ) AND in_array( "hover", $catoptions ) ) ? "hover" : '', "hover" ); ?> /> <?php _e( 'Active on mouseover' ); ?></label><br>
 									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="autoscroll" <?php checked( ( is_array( $catoptions ) AND in_array( "autoscroll", $catoptions ) ) ? "autoscroll" : '', "autoscroll" ); ?> /> <?php _e( 'Auto scroll to active' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="keepopen" <?php checked( ( is_array( $layoutoptions ) AND in_array( "keepopen", $layoutoptions ) ) ? "keepopen" : '', "keepopen" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="donotclose" <?php checked( ( is_array( $layoutoptions ) AND in_array( "donotclose", $layoutoptions ) ) ? "donotclose" : '', "donotclose" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($layoutoptions ) AND in_array( "subcatactive", $layoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
+									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepopen" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepopen", $globallayoutoptions ) ) ? "keepopen" : '', "keepopen" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
+									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotclose" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotclose", $globallayoutoptions ) ) ? "donotclose" : '', "donotclose" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
+									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
 									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="url" <?php checked( ( is_array( $catoptions ) AND in_array( "url", $catoptions ) ) ? "url" : '', "url" ); ?> /> <?php _e( 'Change URL on active' ); ?></label><br>
 									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="remember" <?php checked( ( is_array( $catoptions ) AND in_array( "remember", $catoptions ) ) ? "remember" : '', "remember" ); ?> /> <?php _e( 'Remember last active <small>(<i>uses cookies</i>)</small>' ); ?></label><br>
 						</p>
@@ -443,6 +455,8 @@ class mr_categories extends WP_Widget {
 		$instance['bottomlink'] = ( ! empty( $new_instance['bottomlink'] ) ) ? strip_tags( $new_instance['bottomlink'] ) : '';
 		$catoptions = ( ! empty ( $new_instance['catoptions'] ) ) ? (array) $new_instance['catoptions'] : array();
 		$instance['catoptions'] = array_map( 'sanitize_text_field', $catoptions );
+		$globallayoutoptions = ( ! empty ( $new_instance['globallayoutoptions'] ) ) ? (array) $new_instance['globallayoutoptions'] : array();
+		$instance['globallayoutoptions'] = array_map( 'sanitize_text_field', $globallayoutoptions );
 		$instance['lastactivedetails'] = ( ! empty( $new_instance['lastactivedetails'] ) ) ? strip_tags( $new_instance['lastactivedetails'] ) : '';
 		return $instance;
 	}
