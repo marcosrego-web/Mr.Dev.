@@ -92,7 +92,7 @@ defined('ABSPATH') or die;
 						*/
 						if(is_admin()) {
 						} else {
-							$content .= '<div class="mr-widget mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $catoptions).'">';
+							$content .= '<div class="mr-widget mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $catoptions).'">';
 						}
 						$itemcount = 0;
 						$pagecount = 1;
@@ -183,7 +183,7 @@ defined('ABSPATH') or die;
 											/*
 											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
 											*/
-											if(is_array($layoutoptions) && in_array( "subcatactive", $layoutoptions ) && $mrsubcat || !is_array($layoutoptions ) && $layoutoptions == "subcatactive" && $mrsubcat) {
+											if(is_array($globallayoutoptions) && in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat || !is_array($globallayoutoptions ) && $globallayoutoptions == "subcatactive" && $mrsubcat) {
 											} else {
 												if($itemcount == $perpage) {
 													if(is_admin()) {
