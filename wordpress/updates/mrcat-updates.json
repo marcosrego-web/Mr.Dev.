@@ -2,12 +2,12 @@
     "name" : "Mr.Cat.",
     "slug" : "mrcat",
     "homepage" : "https://marcosrego.com/en/web-en/mrcat-en/",
-    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.4.2/mrcat-wordpress.zip",
+    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.4.3/mrcat-wordpress.zip",
     
-    "version" : "0.4.2",
-    "tested" : "5.2.3",
-    "last_updated" : "2019-10-06 00:32:00",
-    "upgrade_notice" : "",
+    "version" : "0.4.3",
+    "tested" : "5.2.4",
+    "last_updated" : "2019-10-15 21:57:00",
+    "upgrade_notice" : "This release has base changes to the code. Before updating do a backup of your site and annotate your selections on MR Categories. After the update you might need to re-select your widgets' options.",
     
     "author" : "Marcos Rego",
     "author_homepage" : "https://marcosrego.com",
@@ -19,6 +19,6 @@
     
     "sections" : {
         "description" : "<p>Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.</p>",
-        "changelog" : "<p><strong>0.4.2</strong> - Changed some coding methods (specially when changing layout) to be more consistent with other CMS like Joomla. </p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'><strong>Github</strong></a>.</em></p>"
+        "changelog" : "<p><strong>0.4.3</strong> - Changed some layout options on 'Options > Other options' to global layout options, to avoid confusion and to be more consistent with other CMS like Joomla. (Mr.Cat. only).</p> <p><em>See the complete changelog on <a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'><strong>Github</strong></a>.</em></p>"
     }
 }
