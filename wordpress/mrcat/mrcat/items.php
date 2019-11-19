@@ -49,29 +49,24 @@ defined('ABSPATH') or die;
 				} else if(is_single()) {
 					$currentcat = wp_get_post_categories(get_the_ID());
 				}
-				$maincat = 0;
 				if(!$excludeinclude) {
-					$excludeinclude == 'Exclude';
+					$excludeinclude == 0;
 				}
 				/*
 				Get the selected automatic order.
 				*/
-				if(!$orderby || $orderby == 0) { //Parent
+				if(!$orderby  || $orderby == 0) { //Parent
 					$orderby = 'parent';
-				} else if($orderby == 1) { //Name/Title
+				} else if($orderby == 1) { //Title
 					$orderby = 'name';
-				} else if($orderby == 3) { //Article Count
+				} else if($orderby == 3) { //Article count
 					$orderby = 'count';
-				} else if($orderby == 4) { //Slug/Alias
+				} else if($orderby == 4) { //Slug
 					$orderby = 'slug';
 				} else if($orderby == 2) { //Creation
 					$orderby = 'term_id';
-				} else if($orderby == 5) { //Ordering
-					$orderby = 'rgt';
-				} else if($orderby == 6) { //Level
-					$orderby = 'level';
-				} else { //Parent
-					$orderby = 'parent'; 
+				}  else { //Parent
+					$orderby = 'parent';
 				}
 				if(!$order || $order == 0 ) { //Ascending
 					$order = 'ASC';
@@ -83,20 +78,33 @@ defined('ABSPATH') or die;
 				/*
 				Join all the previous options for the main array of categories.
 				*/
-				$catarray = array('orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang, 'hierarchical' => true);
-				$catlist = get_terms('category',$catarray);
-				if ( ! empty( $catlist ) ) {
+				$itemarray = array('orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang, 'hierarchical' => true);
+				$itemlist = get_terms('category',$itemarray);
+				if ( ! empty( $itemlist ) ) {
 						/*
 						Start the content with the container for the categories.
 						The theme name, the layout name and the global options are imploded in here has classes.
 						*/
 						if(is_admin()) {
 						} else {
-							$content .= '<div class="mr-widget mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $catoptions).'">';
+							$content .= '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).'">';
 						}
 						$itemcount = 0;
 						$pagecount = 1;
-						foreach ( $catlist as $key => $item) {
+						foreach ( $itemlist as $key => $item) {
+								/*
+								Get all needed item values
+								*/
+								$itemid = $item->term_id;
+								$itemslug = $item->slug;
+								$itemparent = $item->parent;
+								$itemtitle = $item->name;
+								if(in_array("artcount", $itemoptions)) {
+									$num_articles = $item->count;
+								}
+								if(!$itemdesc || $itemdesc == 0 || $itemimage && $itemimage == 8) {
+									$itemdescription = $item->description;
+								}
 								/*
 								Add the content of the current category in the container.
 								The layout options are imploded in here has classes.
@@ -110,53 +118,98 @@ defined('ABSPATH') or die;
 										}
 										echo '<div class="mrwid-childs">';
 										?>
-												<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catexclude' ) ); ?>[]" value="<?php echo $item->term_id; ?>" <?php checked( ( is_array( $catexclude ) AND in_array( $item->term_id, $catexclude ) ) ? $item->term_id : '', $item->term_id ); ?>/> <?php echo $item->name; ?></label>
+												<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemselect' ) ); ?>[]" value="<?php echo $itemid; ?>" <?php checked( (in_array( $itemid, $itemselect ) ) ? $itemid : '', $itemid ); ?>/> <?php echo $itemtitle; ?></label>
 										<?php
 										echo "</div>";
 										$itemcount = ($itemcount + 1);
+										/*
+										If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
+										*/
+										if(in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat != '' && $mrsubcat != null) {
+										} else {
+											if($itemcount == $perpage) {
+												echo '</div><hr>';
+												$itemcount = 0;
+												$pagecount = ($pagecount + 1);
+											}
+										}
 								} else {
 										/*
 										Check if current category was not manually excluded.
 										*/
-										if($excludeinclude == 'Exclude' AND is_array( $catexclude ) AND !in_array($item->term_id, $catexclude) OR $excludeinclude == 'Include' AND is_array( $catexclude ) AND in_array($item->term_id, $catexclude) ) {
+										if($excludeinclude == 0 AND !in_array($itemid, $itemselect) OR $excludeinclude == 1 AND in_array($itemid, $itemselect) ) {
+											/*
+											Image starts here
+											*/
+											if(!$itemimage || $itemimage == 0) {
+												$showimage = '';
+											} else {
+												$showimage = '';
+												if (!$itemimage || $itemimage == 8) { //Category images
+													$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $itemdescription, $matches);
+													$getimg = $matches[1][0]; //Description first image
+												} else if ($itemimage == 2 || $itemimage == 5) { //Post images
+													if($itemimage == 2) { //Latest sticky post
+														$sticky = get_option( 'sticky_posts' );
+														if ( !empty($sticky) ) {
+															$posts = get_posts(array('posts_per_page' => 1,'category__in' => $itemid,'post_status' => 'publish','post__in' => $sticky,'ignore_sticky_posts' => 1));
+														} else {
+															$posts = null;
+														}
+													} else if($itemimage == 5) { //Latest post
+														$posts = get_posts(array('posts_per_page' => 1,'category__in' => $itemid,'post_status' => 'publish'));
+													} else {
+														$posts = null;
+													}
+													if($posts) {
+														$post = $posts[0]->ID;
+														$getimg = get_the_post_thumbnail_url($post);
+													} else {
+														$getimg = null;
+													}
+												}
+												if($getimg) {
+													$showimage = "style='background-image: url(".$getimg.");'";
+												}
+											}
 											/*
 											Title starts here
 											*/
 											if(!$titletag) {
 												$titletag = 'h3';
 											}
-											if($cattitle == "Category title") {
-												$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->name.((is_array( $catoptions ) AND  in_array("artcount", $catoptions))?' <small>('.$item->count.')</small>':"").'</'.$titletag.'>';
-											} else if($cattitle == "No title")  {
-												$showcattitle = ''.((is_array($catoptions) AND in_array("artcount", $catoptions))?'<'.$titletag.' class="mrwid-title">('.$item->count.')</'.$titletag.'>':"");
-											} else  {
-												$showcattitle = '<'.$titletag.' class="mrwid-title">'.'<a href="'.get_category_link($item->term_id).'">'.$item->name.((is_array($catoptions) AND in_array("artcount", $catoptions))?' <small>('.$item->count.')</small>':"").'</a>'.'</'.$titletag.'>';
+											if($itemstitle == 2) { //Category title
+												$showitemtitle = '<'.$titletag.' class="mrwid-title">'.$itemtitle.((in_array("artcount", $itemoptions))?' <small>('.$num_articles.')</small>':"").'</'.$titletag.'>';
+											} else if($itemstitle == 1)  { //No title
+												$showitemtitle = ''.((in_array("artcount", $itemoptions))?'<'.$titletag.' class="mrwid-title">('.$num_articles.')</'.$titletag.'>':"");
+											} else  { //Linked category title
+												$showitemtitle = '<'.$titletag.' class="mrwid-title">'.'<a href="'.get_category_link($itemid).'">'.$itemtitle.((in_array("artcount", $itemoptions))?' <small>('.$num_articles.')</small>':"").'</a>'.'</'.$titletag.'>';
 											}
 											/*
 											Description starts here
 											*/
-											if($catdesc == "No description") {
-												$showcatdesc = '';
-											} else  {
-												$showcatdesc = '<div class="mrwid-desc">'.do_shortcode( $item->description).'</div>';
+											if($itemdesc == 1) { //No description
+												$showitemdesc = '';
+											} else  { //Category description
+												$showitemdesc = '<div class="mrwid-desc">'.do_shortcode( $itemdescription).'</div>';
 											}
 											/*
 											Bottom link starts here
 											*/
-											if($catlink == "No bottom link") {
+											if($itemlink == 1) { //No bottom link
 												$bottomlinktext="";
-											} else {
+											} else { //Category link
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.get_category_link($item->term_id).'" title="'. $item->name .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.get_category_link($itemid).'" title="'. $itemtitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
 											*/
-											if(is_array($currentcat) && in_array($item->term_id, $currentcat) || str_replace("/./","/",get_category_link($item->term_id)) == $currentLink) {
+											if(is_array($currentcat) && in_array($itemid, $currentcat) || str_replace("/./","/",get_category_link($itemid)) == $currentLink) {
 												$mrcurrent = 'mrwid-current';
-											} else if($currentcat != '' && $currentcat == $item->term_id) {
+											} else if($currentcat != '' && $currentcat == $itemid) {
 												$mrcurrent = 'mrwid-current';
 											} else {
 												$mrcurrent = '';
@@ -164,8 +217,8 @@ defined('ABSPATH') or die;
 											/*
 											Add classes for subcategories
 											*/
-											if($item->parent != 0) {
-												$mrsubcat = 'mrwid-subcat parentcatid-'.$item->parent;
+											if($itemparent != 0) {
+												$mrsubcat = 'mrwid-subcat parentitemid-'.$itemparent;
 											} else {
 												$mrsubcat = '';
 											}
@@ -178,22 +231,18 @@ defined('ABSPATH') or die;
 													$content .= '<noscript>';
 												}
 											}
-											$content .= '<li class="catid-'.$item->term_id.' '.$item->slug.' '.$mrsubcat.' mr-wid '.$mrcurrent.'" '.((is_array($catoptions) AND in_array("url", $catoptions))?'url='.get_category_link($item->term_id):"").' ><div class="mrwid-container">'.$showcattitle.'<div class="mrwid-content">'.$showcatdesc.$bottomlinktext.'</div></div></li>';
+											$content .= '<li class="itemid-'.$itemid.' '.$itemslug.' '.$mrsubcat.' mr-wid '.$mrcurrent.'" '.((in_array("url", $itemoptions))?'url='.get_category_link($itemid):"").' ><div class="mrwid-container"'.$showimage.'>'.$showitemtitle.'<div class="mrwid-content">'.$showitemdesc.$bottomlinktext.'</div></div></li>';
 											$itemcount = ($itemcount + 1);
 											/*
 											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
 											*/
-											if(is_array($globallayoutoptions) && in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat || !is_array($globallayoutoptions ) && $globallayoutoptions == "subcatactive" && $mrsubcat) {
+											if(in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat != '' && $mrsubcat != null) {
 											} else {
 												if($itemcount == $perpage) {
-													if(is_admin()) {
-														echo '</div><hr>';
-													} else {
-														if($pagecount > 1) {
-															$content .= '</noscript>';
-														}
-														$content .= '</ul>';
+													if($pagecount > 1) {
+														$content .= '</noscript>';
 													}
+													$content .= '</ul>';
 													$itemcount = 0;
 													$pagecount = ($pagecount + 1);
 												}
@@ -220,20 +269,18 @@ defined('ABSPATH') or die;
 						if(is_admin()) {
 						} else {
 							if($pagecount > 1) {
-								if( is_array( $pagetoggles ) && in_array( 'arrows', $pagetoggles )) {
-									$content .= '<button class="mrwid-arrows mrwid-prev" value="'.$pagecount.'"><span><</span></button>';
+								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+									$content .= '<button class="mrwid-arrows mrwid-prev mrwid-'.$pagetransition.'" value="'.$pagecount.'"><span><</span></button>';
 								}
-								if( is_array( $pagetoggles ) && in_array( 'below', $pagetoggles ) || is_array( $pagetoggles ) && in_array( 'scroll', $pagetoggles )) {
-									$content .= '<button class="'.((is_array($pagetoggles) AND in_array("below", $pagetoggles))?'mrwid-below':"").' '.((is_array($pagetoggles) AND in_array("scroll", $pagetoggles))?'mrwid-scroll':"").'"><span>+</span></button>';
+								if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
+									$content .= '<button class="'.((in_array(3, $pagetoggles))?'mrwid-below':"").' '.((in_array(4, $pagetoggles))?'mrwid-scroll':"").' mrwid-'.$pagetransition.'"><span>+</span></button>';
 								}
-								if( is_array( $pagetoggles ) && in_array( 'arrows', $pagetoggles )) {
-									$content .= '<button class="mrwid-arrows mrwid-next" value="2"><span>></span></button>';
+								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+									$content .= '<button class="mrwid-arrows mrwid-next mrwid-'.$pagetransition.'" value="2"><span>></span></button>';
 								}
 								$content .= '<div class="mrwid-pagination mrwid-'.$pagetransition.'">';
 									$hideelement = '';
-									if (is_array( $pagetoggles ) && !in_array( 'pageselect', $pagetoggles ) && !in_array( 'arrows', $pagetoggles ) && !in_array( 'radio', $pagetoggles ) && !in_array( 'loadmore', $pagetoggles ) && !in_array( 'scroll', $pagetoggles )) {
-										$hideelement = '';
-									} else if( is_array( $pagetoggles ) && !in_array( 'pageselect', $pagetoggles )) {
+									if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles )) {
 										$hideelement = 'style="display:none;"';
 									}
 									$content .= '<select class="mrwid-pageselect" title="/'.$pagecount.'" '.$hideelement.'>';
@@ -242,7 +289,7 @@ defined('ABSPATH') or die;
 										$content .= '<option value="'.$pagenumber.'">'.$pagenumber.'</option>';
 									}
 									$content .= '</select>';
-									if( is_array( $pagetoggles ) && in_array( 'radio', $pagetoggles )) {
+									if( in_array( 2, $pagetoggles )) {
 										$pagenumber = 0;
 										while ($pagenumber++ < $pagecount) {
 											$content .= '<input class="mrwid-radio" type="radio" name="mrwid-radio" value="'.$pagenumber.'" title="'.$pagenumber.'/'.$pagecount.'">';
