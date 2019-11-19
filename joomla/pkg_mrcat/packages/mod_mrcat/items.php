@@ -43,13 +43,13 @@ defined('_JEXEC') or die;
 				*/
 				$currentcat = '';
 				if(!$excludeinclude) {
-					$excludeinclude == 'Exclude';
+					$excludeinclude == 0;
 				}
 				/*
 				If no Category is selected with Exclude Option, auto select 'Root'
 				*/
-				if($excludeinclude == 'Exclude' && !$catexclude || $excludeinclude == 'Exclude' && empty($catexclude)) {
-					$catexclude = '';
+				if($excludeinclude == 0 && !$itemselect || $excludeinclude == 0 && empty($itemselect)) {
+					$itemselect = '';
 				}
 				/*
 				Get the selected automatic order.
@@ -85,17 +85,33 @@ defined('_JEXEC') or die;
 				$query->order($orderby.' '.$order);
 				$db->setQuery($query);
                 $categories = $db->loadObjectList();
-				 $catlist = $categories;
+				 $itemlist = $categories;
 				/* Get extra classes to give to the main container */
-				if ( ! empty( $catlist ) ) {
+				if ( ! empty( $itemlist ) ) {
 						/*
 						Start the content with the container for the categories.
 						The theme name, the layout name and the global options are imploded in here has classes.
 						*/
-						echo  '<div class="mr-widget mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $catoptions).'">';
+						echo  '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).'">';
 						$itemcount = 0;
 						$pagecount = 1;
-						foreach ( $catlist as $key => $item) {
+						foreach ( $itemlist as $key => $item) {
+								/*
+								Get all needed item values
+								*/
+								$itemid = $item->id;
+								$itemslug = $item->alias;
+								$itemparent = $item->parent_id;
+								if(in_array("artcount", $itemoptions)) {
+									$model = JModelLegacy::getInstance('Articles', 'ContentModel');
+									$model->setState('filter.category_id', $itemid);
+									$articles = $model->getItems();
+									$num_articles = count($articles);
+								}
+								$itemtitle = $item->title;
+								if(!$itemdesc || $itemdesc == 0 || $itemimage && $itemimage == 8) {
+									$itemdescription = $item->description;
+								}
 								/*
 								Add the content of the current category in the container.
 								The layout options are imploded in here has classes.
@@ -107,45 +123,89 @@ defined('_JEXEC') or die;
 										/*
 										Check if current category was not manually excluded.
 										*/
-										if($excludeinclude == 'Exclude' AND is_array( $catexclude ) AND !in_array($item->id, $catexclude) OR $excludeinclude == 'Include' AND is_array( $catexclude ) AND in_array($item->id, $catexclude) ) {
-											$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->title.'</'.$titletag.'>';
-											$model = JModelLegacy::getInstance('Articles', 'ContentModel');
-											$model->setState('filter.category_id', $item->id);
-											$articles = $model->getItems();
-											$num_articles = count($articles);
-											if($cattitle == 2) { //Category title
-												$showcattitle = '<'.$titletag.' class="mrwid-title">'.$item->title.((is_array( $catoptions ) AND  in_array("artcount", $catoptions))?' <small>('. $num_articles .')</small>':"").'</'.$titletag.'>';
-											} else if($cattitle == 0)  { //No title
-												$showcattitle = ''.((is_array($catoptions) AND in_array("artcount", $catoptions))?'<'.$titletag.' class="mrwid-title">('. $num_articles .')</'.$titletag.'>':"");
-											} else  {
-												$showcattitle = '<'.$titletag.' class="mrwid-title">'.'<a href="'.$itemLink.'">'.$item->title.((is_array($catoptions) AND in_array("artcount", $catoptions))?' <small>('. $num_articles .')</small>':"").'</a>'.'</'.$titletag.'>';
+										if($excludeinclude == 0 AND !in_array($itemid, $itemselect) OR $excludeinclude == 1 AND in_array($itemid, $itemselect) ) {
+											/*
+											Image starts here
+											*/
+											if($itemimage == 0) { //No image
+												$showimage = '';
+											} else {
+												$showimage = '';
+												if(!$itemimage || $itemimage == 1) { //Category image
+													$getimg = JCategories::getInstance('Content')->get($itemid)->getParams()->get('image');
+												} else if ($itemimage == 8) { //Category description first image
+													$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $itemdescription, $matches);
+													$getimg = $matches[1][0];
+												} else if ($itemimage == 2 || $itemimage == 3 || $itemimage == 4 || $itemimage == 5 || $itemimage == 6 || $itemimage == 7) { //Article images
+													$model = JModelLegacy::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
+													$model->getState();$app = JFactory::getApplication();
+													$appParams = $app->getParams();
+													$model->setState('params', $appParams);
+													$model->setState('list.start', 0);
+													$model->setState('list.limit', 1);
+													$model->setState('filter.category_id', $itemid);
+													$model->setState('filter.published', 1);
+													$model->setState('list.ordering', 'a.publish_up');
+													$model->setState('list.direction', 'DESC');
+													if ($itemimage == 2 || $itemimage == 3) { //Featured article?
+														$model->setState('filter.featured', 'only');
+													}
+													$items = $model->getItems();
+													$itemimages = json_decode($items[0]->images);
+													if ($itemimage == 2 || $itemimage == 5) { //Article image (if no intro get full)
+														$introimg = $itemimages->image_intro;
+														if($introimg) {
+															$getimg = $introimg;
+														} else {
+															$getimg = $itemimages->image_fulltext;
+														}
+													} else if ($itemimage == 3 || $itemimage == 6) { //Article intro image
+														$getimg = $itemimages->image_intro;
+													} else { //Article full image
+														$getimg = $itemimages->image_fulltext;
+													}
+												}
+												if($getimg) {
+													$showimage = "style='background-image: url(".$getimg.");'";
+												}
+											}
+											/*
+											Title starts here
+											*/
+											$showitemtitle = '<'.$titletag.' class="mrwid-title">'.$itemtitle.'</'.$titletag.'>';
+											if($itemstitle == 2) { //Category title
+												$showitemtitle = '<'.$titletag.' class="mrwid-title">'.$itemtitle.((in_array("artcount", $itemoptions))?' <small>('. $num_articles .')</small>':"").'</'.$titletag.'>';
+											} else if($itemstitle == 1)  { //No title
+												$showitemtitle = ''.((in_array("artcount", $itemoptions))?'<'.$titletag.' class="mrwid-title">('. $num_articles .')</'.$titletag.'>':"");
+											} else  { //Linked category title
+												$showitemtitle = '<'.$titletag.' class="mrwid-title">'.'<a href="'.$itemLink.'">'.$itemtitle.((in_array("artcount", $itemoptions))?' <small>('. $num_articles .')</small>':"").'</a>'.'</'.$titletag.'>';
 											}
 											/*
 											Description starts here
 											*/
-											if($catdesc == "No description") {
-												$showcatdesc = '';
-											} else  {
-												$showcatdesc = '<div class="mrwid-desc">'. $item->description.'</div>';
+											if($itemdesc == 1) { //No description
+												$showitemdesc = '';
+											} else  { //Category description
+												$showitemdesc = '<div class="mrwid-desc">'. $itemdescription.'</div>';
 											}
 											/*
 											Bottom link starts here
 											*/
 											$itemLink = JURI::root().$item->path;
-											if($catlink == "No bottom link") {
+											if($itemlink == 1) { //No bottom link
 												$bottomlinktext="";
-											} else {
+											} else { //Category link
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.$itemLink.'" title="'. $item->title .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.$itemLink.'" title="'. $itemtitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
 											*/
-											if(is_array($currentcat) && in_array($item->id, $currentcat) || str_replace("/./","/",$itemLink) == $currentLink) {
+											if(is_array($currentcat) && in_array($itemid, $currentcat) || str_replace("/./","/",$itemLink) == $currentLink) {
 												$mrcurrent = 'mrwid-current';
-											} else if($currentcat != '' && $currentcat == $item->id) {
+											} else if($currentcat != '' && $currentcat == $itemid) {
 												$mrcurrent = 'mrwid-current';
 											} else {
 												$mrcurrent = '';
@@ -153,8 +213,8 @@ defined('_JEXEC') or die;
 											/*
 											Add classes for subcategories
 											*/
-											if(is_array($maincat) && !in_array($item->parent_id,$maincat) && $item->parent_id != 1 && $item->parent_id != 0 || !is_array($maincat) && $item->parent_id != $maincat && $item->parent_id != 1 && $item->parent_id != 0) {
-												$mrsubcat = 'mrwid-subcat parentcatid-'.$item->parent_id;
+											if(!in_array($itemparent,$mainitem) && $itemparent != 1 && $itemparent != 0) {
+												$mrsubcat = 'mrwid-subcat parentitemid-'.$itemparent;
 											} else {
 												$mrsubcat = '';
 											}
@@ -167,12 +227,12 @@ defined('_JEXEC') or die;
 													echo  '<noscript>';
 												}
 											}
-											echo  '<li class="catid-'.$item->id.' '.$item->alias.' '.$mrsubcat.' mr-wid '.$mrcurrent.'" '.((is_array($catoptions) AND in_array("url", $catoptions))?'url='.$itemLink:"").'><div class="mrwid-container">'.$showcattitle.'<div class="mrwid-content">'.$showcatdesc.$bottomlinktext.'</div></div></li>';
+											echo  '<li class="itemid-'.$itemid.' '.$itemslug.' '.$mrsubcat.' mr-wid '.$mrcurrent.'" '.((in_array("url", $itemoptions))?'url='.$itemLink:"").'><div class="mrwid-container"'.$showimage.'>'.$showitemtitle.'<div class="mrwid-content">'.$showitemdesc.$bottomlinktext.'</div></div></li>';
 											$itemcount = ($itemcount + 1);
 											/*
 											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
 											*/
-											if(is_array($globallayoutoptions) && in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat != '' && $mrsubcat || !is_array($globallayoutoptions ) && $globallayoutoptions == "subcatactive" && $mrsubcat != '' && $mrsubcat) {
+											if(in_array( "subcatactive", $globallayoutoptions ) && $mrsubcat != '' && $mrsubcat) {
 											} else {
 												if($itemcount == $perpage) {
 														if($pagecount > 1) {
@@ -198,36 +258,35 @@ defined('_JEXEC') or die;
 							$pagecount = ($pagecount + 1);
 						}
 						$pagecount = ($pagecount - 1);
-							if($pagecount > 1) {
-								if( is_array( $pagetoggles ) && in_array( 'arrows', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles == 'arrows') {
-									echo  '<button class="mrwid-arrows mrwid-prev" value="'.$pagecount.'"><span><</span></button>';
+						if($pagecount > 1) {
+							if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+								echo  '<button class="mrwid-arrows mrwid-prev mrwid-'.$pagetransition.'" value="'.$pagecount.'"><span><</span></button>';
+							}
+							if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
+								echo  '<button class="'.((in_array(3, $pagetoggles))?'mrwid-below':"").' '.((in_array(4, $pagetoggles))?'mrwid-scroll':"").' mrwid-'.$pagetransition.'"><span>+</span></button>';
+							}
+							if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+								echo  '<button class="mrwid-arrows mrwid-next mrwid-'.$pagetransition.'" value="2"><span>></span></button>';
+							}
+							echo  '<div class="mrwid-pagination mrwid-'.$pagetransition.'">';
+								$hideelement = '';
+								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles )) {
+									$hideelement = 'style="display:none;"';
 								}
-								if( is_array( $pagetoggles ) && in_array( 'below', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles == 'below' || is_array( $pagetoggles ) && in_array( 'scroll', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles == 'scroll' ) {
-									echo  '<button class="'.((is_array($pagetoggles) AND in_array("below", $pagetoggles))?'mrwid-below':"").' '.((is_array($pagetoggles) AND in_array("scroll", $pagetoggles))?'mrwid-scroll':"").'"><span>+</span></button>';
+								echo  '<select class="mrwid-pageselect" title="/'.$pagecount.'" '.$hideelement.'>';
+								$pagenumber = 0;
+								while ($pagenumber++ < $pagecount) {
+									echo  '<option value="'.$pagenumber.'">'.$pagenumber.'</option>';
 								}
-								if( is_array( $pagetoggles ) && in_array( 'arrows', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles == 'arrows') {
-									echo  '<button class="mrwid-arrows mrwid-next" value="2"><span>></span></button>';
-								}
-								echo  '<div class="mrwid-pagination mrwid-'.$pagetransition.'">';
-									$hideelement = '';
-									if( is_array( $pagetoggles ) && !in_array( 'pageselect', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles != 'pageselect') {
-										$hideelement = 'style="display:none;"';
-									}
-									echo  '<select class="mrwid-pageselect" title="/'.$pagecount.'" '.$hideelement.'>';
+								echo  '</select>';
+								if( in_array( 2, $pagetoggles )) {
 									$pagenumber = 0;
 									while ($pagenumber++ < $pagecount) {
-										echo  '<option value="'.$pagenumber.'">'.$pagenumber.'</option>';
+										echo  '<input class="mrwid-radio" type="radio" name="mrwid-radio" value="'.$pagenumber.'" title="'.$pagenumber.'/'.$pagecount.'">';
 									}
-									echo  '</select>';
-									if( is_array( $pagetoggles ) && in_array( 'radio', $pagetoggles ) || !is_array( $pagetoggles ) && $pagetoggles == 'radio') {
-										$pagenumber = 0;
-										while ($pagenumber++ < $pagecount) {
-											echo  '<input class="mrwid-radio" type="radio" name="mrwid-radio" value="'.$pagenumber.'" title="'.$pagenumber.'/'.$pagecount.'">';
-										}
-									}
-								echo  '</div>';
-							}
-							echo  '</div></div>';
+								}
+							echo  '</div>';
+						}
+						echo  '</div></div>';
 				}
-		
 ?>
