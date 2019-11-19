@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 				<form>
-					<field name="theme" type="list" class="mrwid-layouts" label="Theme" default="Default">
+					<field name="theme" type="list" class="mrwid-layouts" label="Theme" default="Default" filter="safehtml">
 					<option value="Default" id="Default">Default</option>
 					<option value="Custom" id="Custom">Custom (Advanced)</option>
 				</field>
-				<field showon="theme:Default" name="layout" type="list" class="mrwid-layouts" label="Layout" default="List">
+				<field showon="theme:Default" name="layout" type="list" class="mrwid-layouts" label="Layout" default="List" filter="safehtml">
 					<option value="List" id="List">List</option>
 					<option value="Grid" id="Grid">Grid</option>
 					<option value="Collapsible" id="Collapsible">Collapsible</option>
@@ -32,9 +32,6 @@
 						<option value="opaqueactive">Opaque active</option>
 					</group>
 					<group label="Modes">
-						<option value="windowheight">Window height</option>
-						<option value="contentpagination">Pagination inside content</option>
-						<option value="hideinactives">When active hide inactives</option>
 						<option value="landscape">Landscape on portrait window</option>
 						<option value="portrait">Portrait on landscape window</option>
 					</group>
@@ -51,5 +48,7 @@
 				<field showon="theme:Default[AND]layout:Accordion" name="accordionperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout will be forcing the items per line number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect." />
 				<field showon="theme:Default[AND]layout:Slider" name="sliderperline" type="note" class="alert  alert-info" label="Items per line overriden" description="The current layout will be forcing the items per line number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect." />
 				<field showon="theme:Default[AND]layout:Slider" name="sliderperpage" type="note" class="alert  alert-info" label="Items per page overriden" description="The current layout will be forcing the items per page number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Menu" name="menusubcatactive" type="note" class="alert  alert-info" label="Option overriden" description="The current layout will be forcing to 'Only show subcategories of active' on the 'Options' section. Customize or change layout if you want your changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Slider" name="paginationinsidecontent" type="note" class="alert  alert-info" label="Option overriden" description="The current layout will be forcing the option 'Pagination inside content' on the 'Options' section. Customize or change layout if you want your changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Menu" name="menuperpage" type="note" class="alert  alert-info" label="Items per page overriden" description="The current layout will be forcing the items per page number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Menu" name="menusubcatactive" type="note" class="alert  alert-info" label="Options overriden" description="The current layout will be forcing the options 'Only show subcategories of active' and 'When active hide inactives' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
 				</form>
