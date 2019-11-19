@@ -13,68 +13,59 @@ class mr_categories extends WP_Widget {
 		parent::__construct(
 		'mr_categories', 
 		__('MR Categories', 'mr_categories'), 
-		array( 'description' => __( 'Powered by Mr.Cat. | Displays categories in a variety of layouts and customizable options.', 'mr_categories' ), ) 
+		array( 'description' => __( 'from Mr.Cat. | Displays categories in a variety of layouts and customizable options.', 'mr_categories' ), ) 
 		);
 	}
 	public function widget( $args, $instance ) {
 		/*--- Get all instances into variables ---*/
 		$title = apply_filters( 'widget_title', $instance['title'] );
-		$theme = $instance['theme'];
-		$layout = $instance['layout'];
-		$perline = $instance['perline'];
-		$perpage = $instance['perpage'];
-		$pagetransition = $instance['pagetransition'];
-		$pagetoggles = $instance['pagetoggles'];
-		if($instance['layoutoptions']) {
-			$layoutoptions = $instance['layoutoptions'];
-		}
-		$orderby = $instance['orderby'];
-		$order = $instance['order'];
-		$excludeinclude = $instance['excludeinclude'];
-		$catexclude = $instance['catexclude'];
-		$bottomlink = $instance['bottomlink'];
-		$maintitle = $instance['maintitle'];
-		$cattitle = $instance['cattitle'];
-		$catdesc = $instance['catdesc'];
-		$catlink = $instance['catlink'];
-		$catoptions = $instance['catoptions'];
-		$globallayoutoptions = $instance['globallayoutoptions'];
-		$lastactivedetails = $instance['lastactivedetails'];
+		$theme = htmlspecialchars($instance['theme']);
+		$layout = htmlspecialchars($instance['layout']);
+		$perline = intval($instance['perline']);
+		$perpage = intval($instance['perpage']);
+		$pagetransition = htmlspecialchars($instance['pagetransition']);
+		$pagetoggles = array_filter($instance['pagetoggles'], 'is_numeric');
+		$layoutoptions = array_map("htmlspecialchars", $instance['layoutoptions']);
+		$orderby = intval($instance['orderby']);
+		$order = intval($instance['order']);
+		$excludeinclude = intval($instance['excludeinclude']);
+		$itemselect = array_filter($instance['itemselect'], 'is_numeric');
+		$bottomlink = htmlspecialchars($instance['bottomlink']);
+		$maintitle = intval($instance['maintitle']);
+		$itemimage = intval($instance['itemimage']);
+		$itemstitle = intval($instance['itemstitle']);
+		$itemdesc = intval($instance['itemdesc']);
+		$itemlink = intval($instance['itemlink']);
+		$itemoptions = array_map("htmlspecialchars",$instance['itemoptions']);
+		$globallayoutoptions = array_map("htmlspecialchars", $instance['globallayoutoptions']);
+		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
-			/* Add the main global script and style */
-			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v043.js', array('jquery'));
-			wp_enqueue_script( 'mrcat_scripts' );
-			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v043.css');
-			/* A heightfix for css 'vh' on mobile browsers address bar.
-			Detect IE because this fix breaks on that browser. */
-			if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) { } else { 
-				wp_register_script( 'mrcat_heightfix', plugin_dir_url( __DIR__ ).'assets/js/heightfix.js', array('jquery')); wp_enqueue_script( 'mrcat_heightfix' ); 
-			}
-				if ( ! empty( $catexclude ) ) {
-					$catexclude = ! empty( $instance['catexclude'] ) ? $instance['catexclude'] : array();
-				} else {
-					$catexclude = array();
+				if ( empty( $itemselect ) ) {
+					$itemselect = array();
 				}
-				if ( ! empty( $layoutoptions ) ) {
-					$layoutoptions = ! empty( $instance['layoutoptions'] ) ? $instance['layoutoptions'] : array();
-				} else {
+				if ( empty( $layoutoptions ) ) {
 					$layoutoptions = array();
 				}
-				if ( ! empty( $catoptions ) ) {
-					$catoptions = ! empty( $instance['catoptions'] ) ? $instance['catoptions'] : array();
-				} else {
-					$catoptions = array();
+				if ( empty( $itemoptions ) ) {
+					$itemoptions = array();
 				}
-				if ( ! empty( $globallayoutoptions ) ) {
-					$globallayoutoptions = ! empty( $instance['globallayoutoptions'] ) ? $instance['globallayoutoptions'] : array();
-				} else {
+				if ( empty( $globallayoutoptions ) ) {
 					$globallayoutoptions = array();
 				}
-				if ( ! empty( $pagetoggles ) ) {
-					$pagetoggles = ! empty( $instance['pagetoggles'] ) ? $instance['pagetoggles'] : array();
-				} else {
-					$pagetoggles = array();
+				if ( empty( $pagetoggles ) ) {
+					$pagetoggles = array(0); //Defaults to 'Arrows'
 				}
+			/* Add the main global script and style */
+			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v050.js', array('jquery'));
+			wp_enqueue_script( 'mrcat_scripts' );
+			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v050.css');
+			/* A heightfix for css 'vh' on mobile browsers address bar.
+			Detect IE because this fix breaks on that browser. */
+			if(in_array('windowheight',$globallayoutoptions)) {
+				if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) { } else { 
+					wp_register_script( 'mrcat_heightfix', plugin_dir_url( __DIR__ ).'assets/js/heightfix.js', array('jquery')); wp_enqueue_script( 'mrcat_heightfix' ); 
+				}
+			}
 				$content = '';
 				/*
 				Check if it's an official theme or a custom one.
@@ -82,16 +73,16 @@ class mr_categories extends WP_Widget {
 				If it's official it has the version number.
 				*/
 				if(!$theme) {
-					require_once plugin_dir_path( __DIR__ ).'themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v043.css');
+					include plugin_dir_path( __DIR__ ).'themes/default/index.php';
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v050.css');
 				} else if($theme == "default") {
 					//Official Themes
-					require_once plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v043.css');
+					include plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v050.css');
 				} else {
 					//Custom Themes
-					require_once '/wp-content/themes/mrdev/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', '/wp-content/themes/mrdev/'.$theme.'/'.$theme.'.css');
+					include ABSPATH.'wp-content/themes/mrdev/'.$theme.'/index.php';
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', get_home_url().'/wp-content/themes/mrdev/'.$theme.'/'.$theme.'.css');
 				}
 				require trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
 			echo __( $content, 'mr_categories' );
@@ -99,7 +90,7 @@ class mr_categories extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v043.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v050.css');
 		?>
 		<div class="mrwid-admin">
 		<p class="mrwid-section"><a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank">
@@ -148,11 +139,11 @@ class mr_categories extends WP_Widget {
 						else {
 							$excludeinclude = __( '', 'mr_categories' );
 						}
-						if ( isset( $instance[ 'catexclude' ] ) ) {
-							$catexclude = $instance[ 'catexclude' ];
+						if ( isset( $instance[ 'itemselect' ] ) ) {
+							$itemselect = $instance[ 'itemselect' ];
 						}
 						else {
-							$catexclude = __( '', 'mr_categories' );
+							$itemselect = __( '', 'mr_categories' );
 						}
 						if ( isset( $instance[ 'maintitle' ] ) ) {
 							$maintitle = $instance[ 'maintitle' ];
@@ -160,23 +151,29 @@ class mr_categories extends WP_Widget {
 						else {
 							$maintitle = __( '', 'mr_categories' );
 						}
-						if ( isset( $instance[ 'cattitle' ] ) ) {
-							$cattitle = $instance[ 'cattitle' ];
+						if ( isset( $instance[ 'itemimage' ] ) ) {
+							$itemimage = $instance[ 'itemimage' ];
 						}
 						else {
-							$cattitle = __( '', 'mr_categories' );
+							$itemimage = __( '', 'mr_categories' );
 						}
-						if ( isset( $instance[ 'catdesc' ] ) ) {
-							$catdesc = $instance[ 'catdesc' ];
-						}
-						else {
-							$catdesc = __( '', 'mr_categories' );
-						}
-						if ( isset( $instance[ 'catlink' ] ) ) {
-							$catlink = $instance[ 'catlink' ];
+						if ( isset( $instance[ 'itemstitle' ] ) ) {
+							$itemstitle = $instance[ 'itemstitle' ];
 						}
 						else {
-							$catlink = __( '', 'mr_categories' );
+							$itemstitle = __( '', 'mr_categories' );
+						}
+						if ( isset( $instance[ 'itemdesc' ] ) ) {
+							$itemdesc = $instance[ 'itemdesc' ];
+						}
+						else {
+							$itemdesc = __( '', 'mr_categories' );
+						}
+						if ( isset( $instance[ 'itemlink' ] ) ) {
+							$itemlink = $instance[ 'itemlink' ];
+						}
+						else {
+							$itemlink = __( '', 'mr_categories' );
 						}
 						if ( isset( $instance[ 'bottomlink' ] ) ) {
 							$bottomlink = $instance[ 'bottomlink' ];
@@ -208,11 +205,11 @@ class mr_categories extends WP_Widget {
 						else {
 							$pagetoggles = __( '', 'mr_categories' );
 						}
-						if ( isset( $instance[ 'catoptions' ] ) ) {
-							$catoptions = $instance[ 'catoptions' ];
+						if ( isset( $instance[ 'itemoptions' ] ) ) {
+							$itemoptions = $instance[ 'itemoptions' ];
 						}
 						else {
-							$catoptions = __( '', 'mr_categories' );
+							$itemoptions = __( '', 'mr_categories' );
 						}
 						if ( isset( $instance[ 'globallayoutoptions' ] ) ) {
 							$globallayoutoptions = $instance[ 'globallayoutoptions' ];
@@ -237,13 +234,11 @@ class mr_categories extends WP_Widget {
 						<label  for="<?php echo $this->get_field_id( 'orderby' ); ?>"><?php _e( 'Sort by:' ); ?></label><br>
 								<select  class="widefat" id="<?php echo $this->get_field_id('orderby'); ?>" name="<?php echo $this->get_field_name('orderby'); ?>">
 									<?php
-										echo '
-										<option value="0" id="Parent"', $orderby == 0 ? ' selected="selected"' : '', '>Parent</option>
-										<option value="1" id="Title"', $orderby == 1 ? ' selected="selected"' : '', '>Title</option>
-										<option value="2" id="Creation"', $orderby == 2 ? ' selected="selected"' : '', '>Creation</option>
-										<option value="3" id="Article count"', $orderby == 2 ? ' selected="selected"' : '', '>Article count</option>
-										<option value="4" id="Slug"', $orderby == 2 ? ' selected="selected"' : '', '>Slug</option>
-										';
+										echo '<option value="0"', $orderby == 0 ? ' selected="selected"' : '', '>Parent</option>
+										<option value="1"', $orderby == 1 ? ' selected="selected"' : '', '>Title</option>
+										<option value="2"', $orderby == 2 ? ' selected="selected"' : '', '>Creation</option>
+										<option value="3"', $orderby == 3 ? ' selected="selected"' : '', '>Post count</option>
+										<option value="4"', $orderby == 4 ? ' selected="selected"' : '', '>Slug</option>';
 									?>
 								</select><br>
 								<select  class="widefat" id="<?php echo $this->get_field_id('order'); ?>" name="<?php echo $this->get_field_name('order'); ?>">
@@ -256,15 +251,13 @@ class mr_categories extends WP_Widget {
 						</select><br>
 						</p>
 						<p class="mrwid-heading">	
-						<select class="" id="<?php echo $this->get_field_id('excludeinclude'); ?>" name="<?php echo $this->get_field_name('excludeinclude'); ?>">
+						<select class="mrwid-excludeinclude" id="<?php echo $this->get_field_id('excludeinclude'); ?>" name="<?php echo $this->get_field_name('excludeinclude'); ?>">
 									<?php
-										$options = array( 'Exclude','Include');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $excludeinclude == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
+										echo '<option value="0"', $excludeinclude == 0 ? ' selected="selected"' : '', '>Exclude</option>
+										<option value="1"', $excludeinclude == 1 ? ' selected="selected"' : '', '>Include</option>';
 									?>
 						</select>:
-						<div class="mrwid-list <?php if($excludeinclude == 'Include') { echo 'including '; } ?>" >
+						<div class="mrwid-list <?php if($excludeinclude == 1) { echo 'including '; } ?>" >
 						<?php
 							  /*-----CAT SELECT-----*/
 								include trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
@@ -282,7 +275,7 @@ class mr_categories extends WP_Widget {
 										foreach ( $options as $option ) {
 											echo '<option value="' . $option . '" id="' . $option . '"', $theme == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 										}
-										$customOptions = array_map('basename', glob(get_template_directory().'/mrdev/themes/*' , GLOB_ONLYDIR));
+										$customOptions = array_map('basename', glob(ABSPATH.'wp-content/themes/mrdev/*' , GLOB_ONLYDIR));
 										foreach ( $customOptions as $option ) {
 											echo '<option value="' . $option . '" id="' . $option . '"', $theme == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 										}
@@ -296,7 +289,7 @@ class mr_categories extends WP_Widget {
 									if($theme == "default") {
 										include trailingslashit( plugin_dir_path( __DIR__ )).'themes/'.$theme.'/index.php';
 									} else {
-										include trailingslashit( 'ABSPATH').'wp-content/themes/mrdev/themes/'.$theme.'/index.php';
+										include ABSPATH.'wp-content/themes/mrdev/'.$theme.'/index.php';
 									}
 								}
 								?>
@@ -311,21 +304,30 @@ class mr_categories extends WP_Widget {
 						<p>
 						<select class="mrwid-pagination-input mrwid-perline-input" id="<?php echo $this->get_field_id('perline'); ?>" name="<?php echo $this->get_field_name('perline'); ?>" title="Choose the number of items per line">
 									<?php
-										$options = array( '∞',1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20);
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $perline == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
+										echo '<option value="0"', $perline == 0 ? ' selected="selected"' : '', '>∞</option>
+										<option value="1"', $perline == 1 ? ' selected="selected"' : '', '>1</option>
+										<option value="2"', $perline == 2 ? ' selected="selected"' : '', '>2</option>
+										<option value="3"', $perline == 3 ? ' selected="selected"' : '', '>3</option>
+										<option value="4"', $perline == 4 ? ' selected="selected"' : '', '>4</option>
+										<option value="5"', $perline == 5 ? ' selected="selected"' : '', '>5</option>
+										<option value="6"', $perline == 6 ? ' selected="selected"' : '', '>6</option>
+										<option value="7"', $perline == 7 ? ' selected="selected"' : '', '>7</option>
+										<option value="8"', $perline == 8 ? ' selected="selected"' : '', '>8</option>
+										<option value="9"', $perline == 9 ? ' selected="selected"' : '', '>9</option>
+										<option value="10"', $perline == 10 ? ' selected="selected"' : '', '>10</option>
+										<option value="11"', $perline == 11 ? ' selected="selected"' : '', '>11</option>
+										<option value="12"', $perline == 12 ? ' selected="selected"' : '', '>12</option>';
 									?>
 						</select> per line<br>
 						<input class="mrwid-pagination-input mrwid-pages-input" type="number" id="<?php echo $this->get_field_id( 'perpage' ); ?>" name="<?php echo $this->get_field_name( 'perpage' ); ?>" type="text" placeholder="∞" title="Choose the number of items per page" value="<?php if(esc_attr( $perpage ) == "" || esc_attr( $perpage ) <= 0) { } else { echo esc_attr( $perpage ); } ?>" /> per page
 						</p>
 						<p>
 									<label  for="<?php echo $this->get_field_id( 'pagetoggles' ); ?>"><?php _e( 'Toggles:' ); ?></label> <br>
-									<label ><input <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="pageselect" <?php checked( ( is_array($pagetoggles) AND in_array( "pageselect", $pagetoggles ) ) ? "pageselect" : '', "pageselect" ); ?>  /> <?php _e( 'Select' ); ?></label><br>
-									<label ><input <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="arrows" <?php if( is_array( $pagetoggles ) && in_array( 'arrows', $pagetoggles ) || !is_array( $pagetoggles ) || is_array( $pagetoggles ) && !in_array( 'arrows', $pagetoggles ) && !in_array( 'pageselect', $pagetoggles ) && !in_array( 'radio', $pagetoggles ) && !in_array( 'below', $pagetoggles) && !in_array( 'scroll', $pagetoggles) ) { echo 'checked="checked"'; } ?> /> <?php _e( 'Arrows' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="radio" <?php checked( ( is_array($pagetoggles) AND in_array( "radio", $pagetoggles ) ) ? "radio" : '', "radio" ); ?> /> <?php _e( 'Radio' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="below" <?php checked( ( is_array($pagetoggles) AND in_array( "below", $pagetoggles ) ) ? "below" : '', "below" ); ?> /> <?php _e( 'Below' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="scroll" <?php checked( ( is_array($pagetoggles) AND in_array( "scroll", $pagetoggles ) ) ? "scroll" : '', "scroll" ); ?> /> <?php _e( 'Scroll' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="0" <?php if( is_array( $pagetoggles ) && in_array( 0, $pagetoggles ) || !is_array( $pagetoggles ) || is_array( $pagetoggles ) && !in_array( 0, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles) && !in_array( 4, $pagetoggles) ) { echo 'checked="checked"'; } ?> /> <?php _e( 'Arrows' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="1" <?php checked( ( is_array($pagetoggles) AND in_array( 1, $pagetoggles ) ) ? 1 : '', 1 ); ?> /> <?php _e( 'Select' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="2" <?php checked( ( is_array($pagetoggles) AND in_array( 2, $pagetoggles ) ) ? 2 : '', 2 ); ?> /> <?php _e( 'Radio' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="3" <?php checked( ( is_array($pagetoggles) AND in_array( 3, $pagetoggles ) ) ? 3 : '', 3 ); ?> /> <?php _e( 'Below' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="4" <?php checked( ( is_array($pagetoggles) AND in_array( 4, $pagetoggles ) ) ? 4 : '', 4 ); ?> /> <?php _e( 'Scroll' ); ?></label><br>
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'pagetransition' ); ?>"><?php _e( 'Transition:' ); ?></label><br>
@@ -339,57 +341,79 @@ class mr_categories extends WP_Widget {
 								</select><br>
 						</p>
 						</details>
+						<details class="displayDetails" <?php if(esc_attr( $lastactivedetails ) == 'displayDetails') { echo 'open="open"'; } ?>>
+						<summary class="mrwid-section">Display</summary>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'maintitle' ); ?>"><?php _e( 'Main title:' ); ?></label><br>
+						<select  class="widefat" id="<?php echo $this->get_field_id('maintitle'); ?>" name="<?php echo $this->get_field_name('maintitle'); ?>">
+							<?php
+							echo '<option value="0" id="widgettitle"', $maintitle == 0 ? ' selected="selected"' : '', '>Widget title</option>
+							<option value="3" id="themeandlayouttitle"', $maintitle == 3 ? ' selected="selected"' : '', '>Theme and layout title</option>
+							<option value="4" id="themetitle"', $maintitle == 4 ? ' selected="selected"' : '', '>Theme title</option>
+							<option value="5" id="layouttitle"', $maintitle == 5 ? ' selected="selected"' : '', '>Layout title</option>
+							<option value="6" id="nomaintitle"', $maintitle == 6 ? ' selected="selected"' : '', '>No main title</option>';
+							?>
+						</select><br>
+						</p>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'itemimage' ); ?>"><?php _e( 'Images:' ); ?></label><br>
+						<select <?php if($display_access == 'Denied') { echo 'disabled'; } ?> class="widefat mrwid-itemimage" id="<?php echo $this->get_field_id('itemimage'); ?>" name="<?php echo $this->get_field_name('itemimage'); ?>">
+										<?php
+											echo '<option value="0"', $itemimage == 0 ? ' selected="selected"' : '', '>No image</option>
+											<option value="8"', $itemimage == 8 ? ' selected="selected"' : '', '>Description first image</option>
+											<option value="2"', $itemimage == 2 ? ' selected="selected"' : '', '>Latest sticky post image</option>
+											<option value="5"', $itemimage == 5 ? ' selected="selected"' : '', '>Latest post image</option>';
+										?>
+						</select><br>
+						</p>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'itemstitle' ); ?>"><?php _e( 'Titles:' ); ?></label><br>
+						<select  class="widefat" id="<?php echo $this->get_field_id('itemstitle'); ?>" name="<?php echo $this->get_field_name('itemstitle'); ?>">
+									<?php
+										echo '<option value="0"', $itemstitle == 0 ? ' selected="selected"' : '', '>Linked category title</option>
+										<option value="2"', $itemstitle == 2 ? ' selected="selected"' : '', '>Category title</option>
+										<option value="1"', $itemstitle == 1 ? ' selected="selected"' : '', '>No title</option>';
+									?>
+								</select><br>
+						</p>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'itemdesc' ); ?>"><?php _e( 'Descriptions:' ); ?></label><br>
+						<select  class="widefat" id="<?php echo $this->get_field_id('itemdesc'); ?>" name="<?php echo $this->get_field_name('itemdesc'); ?>">
+									<?php
+										echo '<option value="0"', $itemdesc == 0 ? ' selected="selected"' : '', '>Category description</option>
+										<option value="1"', $itemdesc == 1 ? ' selected="selected"' : '', '>No description</option>';
+									?>
+								</select><br>
+						</p>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'itemlink' ); ?>"><?php _e( 'Links:' ); ?></label><br>
+						<select  class="widefat mrwid-bottomlinkinput" id="<?php echo $this->get_field_id('itemlink'); ?>" name="<?php echo $this->get_field_name('itemlink'); ?>">
+									<?php
+										echo '<option value="0"', $itemlink == 0 ? ' selected="selected"' : '', '>Category link</option>
+										<option value="1"', $itemlink == 1 ? ' selected="selected"' : '', '>No bottom link</option>';
+									?>
+						</select><br>
+						<input  class="widefat  mrwid-bottomlinktext" id="<?php echo $this->get_field_id( 'bottomlink' ); ?>"  <?php if(isset($itemlink) && $itemlink == 1) { echo 'style="display: none;"'; } ?>  name="<?php echo $this->get_field_name( 'bottomlink' ); ?>" type="text" placeholder="Bottom link text" title="Bottom link text" value="<?php if(esc_attr( $bottomlink ) == "") { echo "Know more..."; } else { echo esc_attr( $bottomlink ); } ?>" />
+						</p>
+						</details>
 						<details class="optionsDetails" <?php if(esc_attr( $lastactivedetails ) == 'optionsDetails') { echo 'open="open"'; }  ?>>
 						<summary class="mrwid-section">Options</summary>
 						<p>
-						<label  for="<?php echo $this->get_field_id( 'catdisplay' ); ?>"><?php _e( 'Display options:' ); ?></label><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('maintitle'); ?>" name="<?php echo $this->get_field_name('maintitle'); ?>" title="Main title">
-							<?php
-							echo '<option value="0" id="widgettitle"', $maintitle == 0 ? ' selected="selected"' : '', '>Widget title</option>';
-							echo '<option value="3" id="themeandlayouttitle"', $maintitle == 3 ? ' selected="selected"' : '', '>Theme and layout title</option>';
-							echo '<option value="4" id="themetitle"', $maintitle == 4 ? ' selected="selected"' : '', '>Theme title</option>';
-							echo '<option value="5" id="layouttitle"', $maintitle == 5 ? ' selected="selected"' : '', '>Layout title</option>';
-							echo '<option value="6" id="nomaintitle"', $maintitle == 6 ? ' selected="selected"' : '', '>No main title</option>';
-							?>
-						</select><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('cattitle'); ?>" name="<?php echo $this->get_field_name('cattitle'); ?>" title="Titles">
-									<?php
-										$options = array( 'Linked category title','Category title','No title');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $cattitle == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
-									?>
-								</select><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('catdesc'); ?>" name="<?php echo $this->get_field_name('catdesc'); ?>" title="Descriptions">
-									<?php
-										$options = array( 'Category description','No description');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $catdesc == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
-									?>
-								</select><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('catlink'); ?>" name="<?php echo $this->get_field_name('catlink'); ?>" title="Bottom links">
-									<?php
-										$options = array( 'Category link','No bottom link');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $catlink == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
-									?>
-						</select><br>
-						<?php if($catlink && $catlink != "No bottom link") { ?>
-						<input  class="widefat" id="<?php echo $this->get_field_id( 'bottomlink' ); ?>" name="<?php echo $this->get_field_name( 'bottomlink' ); ?>" type="text" placeholder="Bottom link text" title="Bottom link text" value="<?php if(esc_attr( $bottomlink ) == "") { echo "Know more..."; } else { echo esc_attr( $bottomlink ); } ?>" />
-						<?php } ?>
+						<label  for="<?php echo $this->get_field_id( 'globallayoutoptions' ); ?>"><?php _e( 'Global layout options:' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="windowheight" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "windowheight", $globallayoutoptions ) ) ? "windowheight" : '', "windowheight" ); ?> /> <?php _e( 'Window height' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="contentpagination" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "contentpagination", $globallayoutoptions ) ) ? "contentpagination" : '', "contentpagination" ); ?> /> <?php _e( 'Pagination inside content' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotclose" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotclose", $globallayoutoptions ) ) ? "donotclose" : '', "donotclose" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepopen" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepopen", $globallayoutoptions ) ) ? "keepopen" : '', "keepopen" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="hideinactives" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "hideinactives", $globallayoutoptions ) ) ? "hideinactives" : '', "hideinactives" ); ?> /> <?php _e( 'When active hide inactives' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
 						</p>
 						<p>
-						<label  for="<?php echo $this->get_field_id( 'catoptions' ); ?>"><?php _e( 'Other options:' ); ?></label> <br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="artcount" <?php checked( ( is_array($catoptions) AND in_array( "artcount", $catoptions ) ) ? "artcount" : '', "artcount" ); ?> /> <?php _e( 'Show number of articles' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="hover" <?php checked( ( is_array( $catoptions ) AND in_array( "hover", $catoptions ) ) ? "hover" : '', "hover" ); ?> /> <?php _e( 'Active on mouseover' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="autoscroll" <?php checked( ( is_array( $catoptions ) AND in_array( "autoscroll", $catoptions ) ) ? "autoscroll" : '', "autoscroll" ); ?> /> <?php _e( 'Auto scroll to active' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepopen" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepopen", $globallayoutoptions ) ) ? "keepopen" : '', "keepopen" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotclose" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotclose", $globallayoutoptions ) ) ? "donotclose" : '', "donotclose" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="url" <?php checked( ( is_array( $catoptions ) AND in_array( "url", $catoptions ) ) ? "url" : '', "url" ); ?> /> <?php _e( 'Change URL on active' ); ?></label><br>
-									<label ><input type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'catoptions' ) ); ?>[]" value="remember" <?php checked( ( is_array( $catoptions ) AND in_array( "remember", $catoptions ) ) ? "remember" : '', "remember" ); ?> /> <?php _e( 'Remember last active <small>(<i>uses cookies</i>)</small>' ); ?></label><br>
+						<label  for="<?php echo $this->get_field_id( 'itemoptions' ); ?>"><?php _e( 'Other options:' ); ?></label> <br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemoptions' ) ); ?>[]" value="artcount" <?php checked( ( is_array($itemoptions) AND in_array( "artcount", $itemoptions ) ) ? "artcount" : '', "artcount" ); ?> /> <?php _e( 'Show number of articles' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemoptions' ) ); ?>[]" value="hover" <?php checked( ( is_array( $itemoptions ) AND in_array( "hover", $itemoptions ) ) ? "hover" : '', "hover" ); ?> /> <?php _e( 'Active on mouseover' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemoptions' ) ); ?>[]" value="autoscroll" <?php checked( ( is_array( $itemoptions ) AND in_array( "autoscroll", $itemoptions ) ) ? "autoscroll" : '', "autoscroll" ); ?> /> <?php _e( 'Auto scroll to active' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemoptions' ) ); ?>[]" value="url" <?php checked( ( is_array( $itemoptions ) AND in_array( "url", $itemoptions ) ) ? "url" : '', "url" ); ?> /> <?php _e( 'Change URL on active' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'itemoptions' ) ); ?>[]" value="remember" <?php checked( ( is_array( $itemoptions ) AND in_array( "remember", $itemoptions ) ) ? "remember" : '', "remember" ); ?> /> <?php _e( 'Remember last active <small>(<i>uses cookies</i>)</small>' ); ?></label><br>
 						</p>
 						</details>
 						<input class="widefat lastactivedetails" id="<?php echo $this->get_field_id( 'lastactivedetails' ); ?>" name="<?php echo $this->get_field_name( 'lastactivedetails' ); ?>" type="text" placeholder="Last Active Admin Details/Option" title="Last Active Admin Details/Option" value="<?php if(esc_attr( $lastactivedetails ) != "") { echo esc_attr( $lastactivedetails ); } ?>" readonly hidden />
@@ -403,10 +427,12 @@ class mr_categories extends WP_Widget {
 						<li>Manually <strong>reorder</strong>.</li>
 						<li><strong>Pin</strong> to choose the one starting active.</li>
 						<li><strong>Auto exclude</strong> Subcategories, Categories with no posts, same link, different link and more.</li>
+						<li>More image options such as <strong>thumbnails</strong>.</li>
+						<li>Choose a <strong>fallback image</strong>.</li>
 						<li><strong>Hide widget sections</strong> to specific users or roles.</li>
 						<li>Other <strong>Advanced</strong> options such as choosing the titles tag (h2, h3, h4, p, etc), add custom classes to the bottom link.</li>
-						<li>And more...</li>
 						</ol>
+						<p>And more...</p>
 						<p><a class="button button-primary" href="https://marcosrego.com/en/web-en/mrdev-en/" target="_blank">Get Mr.Dev.</a></p>
 					</details>
 						<?php
@@ -420,6 +446,20 @@ class mr_categories extends WP_Widget {
 							jQuery('.mrwid-themes').change(function() {
 								jQuery(this).parent().parent().find('.mrwid-themeoptions').slideUp();
 								jQuery(this).parent().parent().find('.mrwid-savetheme').slideDown();
+							});
+							jQuery('.mrwid-excludeinclude').change(function() {
+								if(jQuery(this).val() != 0) {
+									jQuery(this).parent().parent().find('.mrwid-list').addClass('including');
+								} else {
+									jQuery(this).parent().parent().find('.mrwid-list').removeClass('including');
+								}
+							});
+							jQuery('.mrwid-bottomlinkinput').change(function() {
+								if(jQuery(this).val() != 1) {
+									jQuery(this).parent().find('.mrwid-bottomlinktext').slideDown();
+								} else {
+									jQuery(this).parent().find('.mrwid-bottomlinktext').slideUp();
+								}
 							});
 						});
 						</script>
@@ -439,22 +479,24 @@ class mr_categories extends WP_Widget {
 			$layoutoptions = "";
 		}
 		$instance['perline'] = ( ! empty( $new_instance['perline'] ) ) ? strip_tags( $new_instance['perline'] ) : '';
-		$instance['perpage'] = ( ! empty( $new_instance['perpage'] ) ) ? strip_tags( $new_instance['perpage'] ) : '';
+		$instance['perpage'] = ( ! empty( $new_instance['perpage'] ) ) ? strip_tags( absint( $new_instance['perpage'] ) ) : '';
 		$instance['pagetransition'] = ( ! empty( $new_instance['pagetransition'] ) ) ? strip_tags( $new_instance['pagetransition'] ) : '';
 		$pagetoggles = ( ! empty ( $new_instance['pagetoggles'] ) ) ? (array) $new_instance['pagetoggles'] : array();
 		$instance['pagetoggles'] = array_map( 'sanitize_text_field', $pagetoggles );
-			$instance['excludeinclude'] = ( !empty( $new_instance['excludeinclude'] ) ) ? strip_tags( $new_instance['excludeinclude'] ) : '';
-			$instance['orderby'] = ( !empty( $new_instance['orderby'] ) ) ? strip_tags( $new_instance['orderby'] ) : '';
-			$instance['order'] = ( !empty( $new_instance['order'] ) ) ? strip_tags( $new_instance['order'] ) : '';
-			$catexclude = ( ! empty ( $new_instance['catexclude'] ) ) ? (array) $new_instance['catexclude'] : array();
-			$instance['catexclude'] = array_map( 'sanitize_text_field', $catexclude );
+		$instance['pagetoggles'] = array_map( 'intval', $instance['pagetoggles'] );
+			$instance['excludeinclude'] = ( !empty( $new_instance['excludeinclude'] ) ) ? strip_tags( absint( $new_instance['excludeinclude'] ) ) : '';
+			$instance['orderby'] = ( !empty( $new_instance['orderby'] ) ) ? strip_tags( absint( $new_instance['orderby'] ) ) : '';
+			$instance['order'] = ( !empty( $new_instance['order'] ) ) ? strip_tags( absint( $new_instance['order'] ) ) : '';
+			$itemselect = ( ! empty ( $new_instance['itemselect'] ) ) ? (array) $new_instance['itemselect'] : array();
+			$instance['itemselect'] = array_map( 'sanitize_text_field', $itemselect );
 		$instance['maintitle'] = ( !empty( $new_instance['maintitle'] ) ) ? strip_tags( $new_instance['maintitle'] ) : '';
-		$instance['cattitle'] = ( !empty( $new_instance['cattitle'] ) ) ? strip_tags( $new_instance['cattitle'] ) : '';
-		$instance['catdesc'] = ( !empty( $new_instance['catdesc'] ) ) ? strip_tags( $new_instance['catdesc'] ) : '';
-		$instance['catlink'] = ( !empty( $new_instance['catlink'] ) ) ? strip_tags( $new_instance['catlink'] ) : '';
+		$instance['itemimage'] = ( !empty( $new_instance['itemimage'] ) ) ? strip_tags( absint( $new_instance['itemimage'] ) ) : '';
+		$instance['itemstitle'] = ( !empty( $new_instance['itemstitle'] ) ) ? strip_tags( absint( $new_instance['itemstitle'] ) ) : '';
+		$instance['itemdesc'] = ( !empty( $new_instance['itemdesc'] ) ) ? strip_tags( absint( $new_instance['itemdesc'] ) ) : '';
+		$instance['itemlink'] = ( !empty( $new_instance['itemlink'] ) ) ? strip_tags( absint( $new_instance['itemlink'] ) ) : '';
 		$instance['bottomlink'] = ( ! empty( $new_instance['bottomlink'] ) ) ? strip_tags( $new_instance['bottomlink'] ) : '';
-		$catoptions = ( ! empty ( $new_instance['catoptions'] ) ) ? (array) $new_instance['catoptions'] : array();
-		$instance['catoptions'] = array_map( 'sanitize_text_field', $catoptions );
+		$itemoptions = ( ! empty ( $new_instance['itemoptions'] ) ) ? (array) $new_instance['itemoptions'] : array();
+		$instance['itemoptions'] = array_map( 'sanitize_text_field', $itemoptions );
 		$globallayoutoptions = ( ! empty ( $new_instance['globallayoutoptions'] ) ) ? (array) $new_instance['globallayoutoptions'] : array();
 		$instance['globallayoutoptions'] = array_map( 'sanitize_text_field', $globallayoutoptions );
 		$instance['lastactivedetails'] = ( ! empty( $new_instance['lastactivedetails'] ) ) ? strip_tags( $new_instance['lastactivedetails'] ) : '';
