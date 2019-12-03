@@ -126,6 +126,7 @@
 					<option value="0">Arrows</option>
 					<option value="1">Select</option>
 					<option value="2">Radio</option>
+					<option value="5">Keyboard</option>
 					<option value="3">Below</option>
 					<option value="4">Scroll</option>
 				</field>
