@@ -269,16 +269,16 @@ defined('ABSPATH') or die;
 						if(is_admin()) {
 						} else {
 							if($pagecount > 1) {
-								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
-									$content .= '<button class="mrwid-arrows mrwid-prev mrwid-'.$pagetransition.'" value="'.$pagecount.'"><span><</span></button>';
+								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) && !in_array( 5, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+									$content .= '<button class="mrwid-arrows mrwid-prev mrwid-'.$pagetransition.'"><span><</span></button>';
 								}
 								if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
 									$content .= '<button class="'.((in_array(3, $pagetoggles))?'mrwid-below':"").' '.((in_array(4, $pagetoggles))?'mrwid-scroll':"").' mrwid-'.$pagetransition.'"><span>+</span></button>';
 								}
-								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) || in_array( 0, $pagetoggles )) {
-									$content .= '<button class="mrwid-arrows mrwid-next mrwid-'.$pagetransition.'" value="2"><span>></span></button>';
+								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) && !in_array( 5, $pagetoggles ) || in_array( 0, $pagetoggles )) {
+									$content .= '<button class="mrwid-arrows mrwid-next mrwid-'.$pagetransition.'"><span>></span></button>';
 								}
-								$content .= '<div class="mrwid-pagination mrwid-'.$pagetransition.'">';
+								$content .= '<div class="mrwid-pagination '.((in_array(5, $pagetoggles))?'mrwid-keyboard':"").' mrwid-'.$pagetransition.'">';
 									$hideelement = '';
 									if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles )) {
 										$hideelement = 'style="display:none;"';
