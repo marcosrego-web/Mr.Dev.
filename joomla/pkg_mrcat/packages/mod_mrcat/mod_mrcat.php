@@ -24,7 +24,9 @@ $bottomlink = htmlspecialchars($params->get('bottomlink'));
 $maintitle = intval($params->get('title'));
 $itemimage = intval($params->get('itemimage'));
 $itemstitle = intval($params->get('itemstitle'));
+$itemstitlemax = intval($params->get('itemstitlemax'));
 $itemdesc = intval($params->get('itemdesc'));
+$itemdescmax = intval($params->get('itemdescmax'));
 $itemlink = intval($params->get('itemlink'));
 $itemoptions = array_map("htmlspecialchars", $params->get('itemoptions'));
 $titletag = 'h3';
@@ -41,15 +43,12 @@ if ( empty( $pagetoggles ) ) {
 	$pagetoggles = array(0); //Defaults to 'Arrows'
 }
 // global scripts and styles
-JHtml::_('jquery.framework');
-$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v050.js');
-$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/assets/css/mrcat_v050.css');
-/* A heightfix for css 'vh' on mobile browsers address bar.
-Detect IE because this fix breaks on that browser. */
-if(in_array('windowheight',$globallayoutoptions)) {
-	if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) { } else {
-		$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/heightfix.js');
-	}
+$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v051.js');
+$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/assets/css/mrcat_v051.css');
+$browsercheck = $_SERVER['HTTP_USER_AGENT'];
+if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
+	/*Polyfill for Vanilla Javascript on Internet Explorer*/
+	JHtml::_('script', '//polyfill.io/v3/polyfill.min.js', array('crossorigin' => 'anonymous'));
 }
 // Check if it's an official theme or a custom theme
 if(!$params['appearance']->theme || $params['appearance']->theme != 'Custom') {
@@ -59,7 +58,7 @@ if(!$params['appearance']->theme || $params['appearance']->theme != 'Custom') {
 		$theme = htmlspecialchars($params['appearance']->theme);
 	}
 	include JPATH_ROOT.'/modules/mod_mrcat/themes/'.$theme.'/index.php';
-	$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/themes/'.$theme.'/'.$theme.'_v050.css');
+	$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/themes/'.$theme.'/'.$theme.'_v051.css');
 } else {
 	//CUSTOM THEME
 	$theme = htmlspecialchars($params['appearance']->customthemeoptions->customtheme);
