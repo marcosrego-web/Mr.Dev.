@@ -145,8 +145,12 @@ function mrwidMain(mrwidThis) {
 }
 function mrwidChangePage(currentElement,mrwidLayout,mrwidPage) {
 	if(!!mrwidLayout.querySelector('.mrwid-pageselect option[value="'+mrwidPage+'"]')) {
-		mrwidLayout.querySelector('.mrwid-pageselect').value = mrwidPage;
+		var mrwidPageSelect = mrwidLayout.querySelector('.mrwid-pageselect');
 		var mrwidRadios = mrwidLayout.querySelectorAll('.mrwid-radio');
+		var mrwidCurrentRadio = mrwidLayout.querySelector('.mrwid-radio[value="'+mrwidPage+'"]');
+		if(mrwidPageSelect) {
+			mrwidPageSelect.value = mrwidPage;
+		}
 		//ES6:
 		//for (var mrwidRadio of mrwidRadios)
 		if(mrwidRadios) {
@@ -154,7 +158,9 @@ function mrwidChangePage(currentElement,mrwidLayout,mrwidPage) {
 				mrwidRadios[id].removeAttribute('checked');
 			}
 		}
-		mrwidLayout.querySelector('.mrwid-radio[value="'+mrwidPage+'"]').setAttribute('checked','checked');
+		if(mrwidCurrentRadio) {
+			mrwidCurrentRadio.setAttribute('checked','checked');
+		}
 		mrwidLayout.classList.remove('mrwid-transitionright','mrwid-transitionleft');
 		if(currentElement.classList.contains('mrwid-next')) {
 			mrwidLayout.classList.add('mrwid-transitionright');
