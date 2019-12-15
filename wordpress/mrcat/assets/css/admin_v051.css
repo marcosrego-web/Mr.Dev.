@@ -1,8 +1,10 @@
 .mrwid-section {
 	text-align: left;
-	font-weight: 500;
+	font-weight: 600;
 	margin: 20px 0;
 	cursor: pointer;
+	width: 100%;
+	display: block;
 }
 .mrwid-section a {
 	color: #000;
@@ -80,6 +82,7 @@ input.mrwid-radio {
 .mrwid-childs {
 	display: inline-flex;
 	align-items: center;
+	width: 100%;
 }
 .mrwid-childs .mrwid-input {
 	margin-right: 8px;
@@ -143,6 +146,9 @@ input.mrwid-radio {
 }
 .mrwid-mediabtn:hover img, .mrwid-mediabtn:focus img {
 	display: block;
+}
+.mrwid-imagessize, .mrwid-bottomlinktext {
+	width: 100%;
 }
 @media screen and (max-width: 782px) {
 	input.mrwid-input {
