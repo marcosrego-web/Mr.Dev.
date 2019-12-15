@@ -57,35 +57,37 @@ if(is_admin()) {
 	</div>
 	</p>
 	<script>
-	jQuery(document).ready(function( $ ) {
-		jQuery('.mrwid-layouts').change(function() {
-			if(jQuery(this).val() != 'Custom') {
-				jQuery(this).parent().parent().find('.mrwid-customoptions').slideUp();
-			}
-			if(jQuery(this).val() == 'Custom') {
-				jQuery(this).parent().parent().find('.mrwid-customoptions').slideDown();
-			}
-			if(jQuery(this).val() != 'Collapsible' && jQuery(this).val() != 'Accordion' && jQuery(this).val() != 'Slider' ) {
-				jQuery(this).closest('.mrwid-admin').find('.perlineov').slideUp();
-			} else {
-				jQuery(this).closest('.mrwid-admin').find('.perlineov').slideDown();
-			}
-			if(jQuery(this).val() != 'Slider' && jQuery(this).val() != 'Menu' ) {
-				jQuery(this).closest('.mrwid-admin').find('.perpageov').slideUp();
-			} else {
-				jQuery(this).closest('.mrwid-admin').find('.perpageov').slideDown();
-			}
-			if(jQuery(this).val() == 'Slider') {
-				jQuery(this).closest('.mrwid-admin').find('.slider-optionov').slideDown();
-			} else {
-				jQuery(this).closest('.mrwid-admin').find('.slider-optionov').slideUp();
-			}
-			if(jQuery(this).val() != 'Menu' ) {
-				jQuery(this).closest('.mrwid-admin').find('.menu-optionov').slideUp();
-			} else {
-				jQuery(this).closest('.mrwid-admin').find('.menu-optionov').slideDown();
-			}
-		});
+	document.addEventListener('click',function(event) {
+		if (event.target.matches('.mrwid-layouts')) {
+			event.target.addEventListener('change',function(event) {
+				if(event.target.value != 'Custom') {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".mrwid-customoptions"));
+				}
+				if(event.target.value == 'Custom') {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".mrwid-customoptions"));
+				}
+				if(event.target.value != 'Collapsible' && event.target.value != 'Accordion' && event.target.value != 'Slider') {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".perlineov"));
+				} else {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".perlineov"));
+				}
+				if(event.target.value != 'Slider' && event.target.value != 'Menu') {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".perpageov"));
+				} else {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".perpageov"));
+				}
+				if(event.target.value == 'Slider') {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".slider-optionov"));
+				} else {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".slider-optionov"));
+				}
+				if(event.target.value != 'Menu') {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".menu-optionov"));
+				} else {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".menu-optionov"));
+				}
+			});
+		}
 	});
 	</script>
 	<?php
