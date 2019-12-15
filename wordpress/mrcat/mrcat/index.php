@@ -34,37 +34,24 @@ class mr_categories extends WP_Widget {
 		$maintitle = intval($instance['maintitle']);
 		$itemimage = intval($instance['itemimage']);
 		$itemstitle = intval($instance['itemstitle']);
+		$itemstitlemax = intval($instance['itemstitlemax']);
 		$itemdesc = intval($instance['itemdesc']);
+		$itemdescmax = intval($instance['itemdescmax']);
 		$itemlink = intval($instance['itemlink']);
 		$itemoptions = array_map("htmlspecialchars",$instance['itemoptions']);
 		$globallayoutoptions = array_map("htmlspecialchars", $instance['globallayoutoptions']);
 		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
-				if ( empty( $itemselect ) ) {
-					$itemselect = array();
-				}
-				if ( empty( $layoutoptions ) ) {
-					$layoutoptions = array();
-				}
-				if ( empty( $itemoptions ) ) {
-					$itemoptions = array();
-				}
-				if ( empty( $globallayoutoptions ) ) {
-					$globallayoutoptions = array();
-				}
-				if ( empty( $pagetoggles ) ) {
-					$pagetoggles = array(0); //Defaults to 'Arrows'
-				}
 			/* Add the main global script and style */
-			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v050.js', array('jquery'));
+			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v051.js');
 			wp_enqueue_script( 'mrcat_scripts' );
-			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v050.css');
-			/* A heightfix for css 'vh' on mobile browsers address bar.
-			Detect IE because this fix breaks on that browser. */
-			if(in_array('windowheight',$globallayoutoptions)) {
-				if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE') !== false)) { } else { 
-					wp_register_script( 'mrcat_heightfix', plugin_dir_url( __DIR__ ).'assets/js/heightfix.js', array('jquery')); wp_enqueue_script( 'mrcat_heightfix' ); 
-				}
+			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v051.css');
+			$browsercheck = $_SERVER['HTTP_USER_AGENT'];
+			if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
+				/*Polyfill for Vanilla Javascript on Internet Explorer*/
+				wp_register_script( 'mrcat_polyfill', '//polyfill.io/v3/polyfill.min.js');
+				wp_enqueue_script( 'mrcat_polyfill' );
+				wp_script_add_data( 'mrcat_polyfill', 'crossorigin' , 'anonymous' );
 			}
 				$content = '';
 				/*
@@ -74,11 +61,11 @@ class mr_categories extends WP_Widget {
 				*/
 				if(!$theme) {
 					include plugin_dir_path( __DIR__ ).'themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v050.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v051.css');
 				} else if($theme == "default") {
 					//Official Themes
 					include plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v050.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v051.css');
 				} else {
 					//Custom Themes
 					include ABSPATH.'wp-content/themes/mrdev/'.$theme.'/index.php';
@@ -90,7 +77,7 @@ class mr_categories extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v050.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v051.css');
 		?>
 		<div class="mrwid-admin">
 		<p class="mrwid-section"><a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank">
@@ -163,11 +150,23 @@ class mr_categories extends WP_Widget {
 						else {
 							$itemstitle = __( '', 'mr_categories' );
 						}
+						if ( isset( $instance[ 'itemstitlemax' ] ) ) {
+							$itemstitlemax = $instance[ 'itemstitlemax' ];
+						}
+						else {
+							$itemstitlemax = __( '', 'mr_categories' );
+						}
 						if ( isset( $instance[ 'itemdesc' ] ) ) {
 							$itemdesc = $instance[ 'itemdesc' ];
 						}
 						else {
 							$itemdesc = __( '', 'mr_categories' );
+						}
+						if ( isset( $instance[ 'itemdescmax' ] ) ) {
+							$itemdescmax = $instance[ 'itemdescmax' ];
+						}
+						else {
+							$itemdescmax = __( '', 'mr_categories' );
 						}
 						if ( isset( $instance[ 'itemlink' ] ) ) {
 							$itemlink = $instance[ 'itemlink' ];
@@ -222,6 +221,21 @@ class mr_categories extends WP_Widget {
 						}
 						else {
 							$lastactivedetails = __( '', 'mr_categories' );
+						}
+						if ( !is_array($itemselect) || empty($itemselect) ) {
+							$itemselect = array();
+						}
+						if ( !is_array($layoutoptions) || empty($layoutoptions) ) {
+							$layoutoptions = array();
+						}
+						if ( !is_array($itemoptions) || empty($itemoptions) ) {
+							$itemoptions = array();
+						}
+						if ( !is_array($globallayoutoptions) || empty($globallayoutoptions) ) {
+							$globallayoutoptions = array();
+						}
+						if ( !is_array($pagetoggles) || empty($pagetoggles) ) {
+							$pagetoggles = array(0); //Defaults to 'Arrows'
 						}
 						?>
 						<p>
@@ -328,15 +342,17 @@ class mr_categories extends WP_Widget {
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="2" <?php checked( ( is_array($pagetoggles) AND in_array( 2, $pagetoggles ) ) ? 2 : '', 2 ); ?> /> <?php _e( 'Radio' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="5" <?php checked( ( is_array($pagetoggles) AND in_array( 5, $pagetoggles ) ) ? 5 : '', 5 ); ?> /> <?php _e( 'Keyboard' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="3" <?php checked( ( is_array($pagetoggles) AND in_array( 3, $pagetoggles ) ) ? 3 : '', 3 ); ?> /> <?php _e( 'Below' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="4" <?php checked( ( is_array($pagetoggles) AND in_array( 4, $pagetoggles ) ) ? 4 : '', 4 ); ?> /> <?php _e( 'Scroll' ); ?></label><br>						</p>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="4" <?php checked( ( is_array($pagetoggles) AND in_array( 4, $pagetoggles ) ) ? 4 : '', 4 ); ?> /> <?php _e( 'Scroll' ); ?></label><br>
+						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'pagetransition' ); ?>"><?php _e( 'Transition:' ); ?></label><br>
 						<select  class="widefat" id="<?php echo $this->get_field_id('pagetransition'); ?>" name="<?php echo $this->get_field_name('pagetransition'); ?>">
 									<?php
-										$options = array( 'Fade','Slide');
-										foreach ( $options as $option ) {
-											echo '<option value="' . $option . '" id="' . $option . '"', $pagetransition == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
-										}
+										echo '<option value="fade" id="fade"', $pagetransition == 'fade' ? ' selected="selected"' : '', '>Fade</option>
+										<option value="slide" id="slide"', $pagetransition == 'slide' ? ' selected="selected"' : '', '>Slide</option>
+										<option value="scale" id="scale"', $pagetransition == 'scale' ? ' selected="selected"' : '', '>Scale</option>
+										<option value="zoom" id="zoom"', $pagetransition == 'zoom' ? ' selected="selected"' : '', '>Zoom</option>
+										<option value="none" id="none"', $pagetransition == 'none' ? ' selected="selected"' : '', '>None</option>';
 									?>
 								</select><br>
 						</p>
@@ -368,22 +384,30 @@ class mr_categories extends WP_Widget {
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'itemstitle' ); ?>"><?php _e( 'Titles:' ); ?></label><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('itemstitle'); ?>" name="<?php echo $this->get_field_name('itemstitle'); ?>">
+						<select  class="widefat mrwid-itemstitleinput" id="<?php echo $this->get_field_id('itemstitle'); ?>" name="<?php echo $this->get_field_name('itemstitle'); ?>">
 									<?php
 										echo '<option value="0"', $itemstitle == 0 ? ' selected="selected"' : '', '>Linked category title</option>
 										<option value="2"', $itemstitle == 2 ? ' selected="selected"' : '', '>Category title</option>
 										<option value="1"', $itemstitle == 1 ? ' selected="selected"' : '', '>No title</option>';
 									?>
 								</select><br>
+								<span class="mrwid-itemstitlemax">
+								<input <?php if($display_access == 'Denied') { echo 'disabled'; } ?> <?php if($itemstitle && $itemstitle == 1) { echo 'style="display: none;"'; } ?> class="widefat mrwid-pagination-input" id="<?php echo $this->get_field_id( 'itemstitlemax' ); ?>" name="<?php echo $this->get_field_name( 'itemstitlemax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemstitlemax )) {  } else { echo esc_attr( $itemstitlemax ); } ?>" /> max. characters
+								</span>
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'itemdesc' ); ?>"><?php _e( 'Descriptions:' ); ?></label><br>
-						<select  class="widefat" id="<?php echo $this->get_field_id('itemdesc'); ?>" name="<?php echo $this->get_field_name('itemdesc'); ?>">
+						<select  class="widefat mrwid-itemdescinput" id="<?php echo $this->get_field_id('itemdesc'); ?>" name="<?php echo $this->get_field_name('itemdesc'); ?>">
 									<?php
 										echo '<option value="0"', $itemdesc == 0 ? ' selected="selected"' : '', '>Category description</option>
+										<option value="2"', $itemdesc == 2 ? ' selected="selected"' : '', '>Category intro text</option>
+										<option value="3"', $itemdesc == 3 ? ' selected="selected"' : '', '>Category full text</option>
 										<option value="1"', $itemdesc == 1 ? ' selected="selected"' : '', '>No description</option>';
 									?>
 								</select><br>
+								<span class="mrwid-itemdescmax">
+								<input <?php if($display_access == 'Denied') { echo 'disabled'; } ?> <?php if($itemdesc && $itemdesc == 1) { echo 'style="display: none;"'; } ?> class="widefat mrwid-pagination-input" id="<?php echo $this->get_field_id( 'itemdescmax' ); ?>" name="<?php echo $this->get_field_name( 'itemdescmax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemdescmax )) {  } else { echo esc_attr( $itemdescmax ); } ?>" /> max. characters
+								</span>
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'itemlink' ); ?>"><?php _e( 'Links:' ); ?></label><br>
@@ -402,8 +426,8 @@ class mr_categories extends WP_Widget {
 						<label  for="<?php echo $this->get_field_id( 'globallayoutoptions' ); ?>"><?php _e( 'Global layout options:' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="windowheight" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "windowheight", $globallayoutoptions ) ) ? "windowheight" : '', "windowheight" ); ?> /> <?php _e( 'Window height' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="contentpagination" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "contentpagination", $globallayoutoptions ) ) ? "contentpagination" : '', "contentpagination" ); ?> /> <?php _e( 'Pagination inside content' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotclose" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotclose", $globallayoutoptions ) ) ? "donotclose" : '', "donotclose" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepopen" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepopen", $globallayoutoptions ) ) ? "keepopen" : '', "keepopen" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotinactive" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotinactive", $globallayoutoptions ) ) ? "donotinactive" : '', "donotinactive" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepactive" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepactive", $globallayoutoptions ) ) ? "keepactive" : '', "keepactive" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="hideinactives" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "hideinactives", $globallayoutoptions ) ) ? "hideinactives" : '', "hideinactives" ); ?> /> <?php _e( 'When active hide inactives' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
 						</p>
@@ -427,44 +451,135 @@ class mr_categories extends WP_Widget {
 						<li>Manually <strong>reorder</strong>.</li>
 						<li><strong>Pin</strong> to choose the one starting active.</li>
 						<li><strong>Auto exclude</strong> Subcategories, Categories with no posts, same link, different link and more.</li>
-						<li>More image options such as <strong>thumbnails</strong>.</li>
+						<li>More image options such as <strong>thumbnails and parallax</strong>.</li>
 						<li>Choose a <strong>fallback image</strong>.</li>
 						<li><strong>Hide widget sections</strong> to specific users or roles.</li>
-						<li>Other <strong>Advanced</strong> options such as choosing the titles tag (h2, h3, h4, p, etc), add custom classes to the bottom link.</li>
+						<li>Other <strong>Advanced</strong> options such as preload pages, choose the titles tag (h2, h3, h4, p, etc), do not load polyfill on IE and add custom classes to the bottom link.</li>
 						</ol>
 						<p>And more...</p>
 						<p><a class="button button-primary" href="https://marcosrego.com/en/web-en/mrdev-en/" target="_blank">Get Mr.Dev.</a></p>
 					</details>
 						<?php
-						/* The following script is inline to avoid problems running after saving the widget */
+						/* The following script is inline to run even after saving the widget */
 						?>
 						<script>
-						jQuery(document).ready(function( $ ) {
-							jQuery('.mrwid-admin details').on('click',function() {
-								jQuery(this).parent().find('input.lastactivedetails').val(jQuery(this).attr('class'));
-							});
-							jQuery('.mrwid-themes').change(function() {
-								jQuery(this).parent().parent().find('.mrwid-themeoptions').slideUp();
-								jQuery(this).parent().parent().find('.mrwid-savetheme').slideDown();
-							});
-							jQuery('.mrwid-excludeinclude').change(function() {
-								if(jQuery(this).val() != 0) {
-									jQuery(this).parent().parent().find('.mrwid-list').addClass('including');
-								} else {
-									jQuery(this).parent().parent().find('.mrwid-list').removeClass('including');
+						function mrSlideUp(target) {
+							let duration = 500;
+							target.style.transitionProperty = 'height, margin, padding';
+							target.style.transitionDuration = duration + 'ms';
+							target.style.boxSizing = 'border-box';
+							target.style.height = target.offsetHeight + 'px';
+							target.offsetHeight;
+							target.style.overflow = 'hidden';
+							target.style.height = 0;
+							target.style.paddingTop = 0;
+							target.style.paddingBottom = 0;
+							target.style.marginTop = 0;
+							target.style.marginBottom = 0;
+							window.setTimeout( function() {
+								target.style.display = 'none';
+								target.style.removeProperty('height');
+								target.style.removeProperty('padding-top');
+								target.style.removeProperty('padding-bottom');
+								target.style.removeProperty('margin-top');
+								target.style.removeProperty('margin-bottom');
+								target.style.removeProperty('overflow');
+								target.style.removeProperty('transition-duration');
+								target.style.removeProperty('transition-property');
+							}, duration);
+						}
+						function mrSlideDown(target) {
+							let duration = 500;
+							let display = window.getComputedStyle(target).display;
+							if (display === 'none' && display != 'block') {
+								target.style.removeProperty('display');
+								display = 'block';
+								target.style.display = display;
+								let height = target.offsetHeight;
+								target.style.overflow = 'hidden';
+								target.style.height = 0;
+								target.style.paddingTop = 0;
+								target.style.paddingBottom = 0;
+								target.style.marginTop = 0;
+								target.style.marginBottom = 0;
+								target.offsetHeight;
+								target.style.boxSizing = 'border-box';
+								target.style.transitionProperty = "height, margin, padding";
+								target.style.transitionDuration = duration + 'ms';
+								target.style.height = height + 'px';
+								target.style.removeProperty('padding-top');
+								target.style.removeProperty('padding-bottom');
+								target.style.removeProperty('margin-top');
+								target.style.removeProperty('margin-bottom');
+								window.setTimeout( function() {
+									target.style.removeProperty('height');
+									target.style.removeProperty('overflow');
+									target.style.removeProperty('transition-duration');
+									target.style.removeProperty('transition-property');
+								}, duration);
+							}
+						}
+						document.addEventListener('click',function(event) {
+							if(event.target.matches('.mrwid-admin details:not([open]) .mrwid-section')) {
+								event.target.closest('.mrwid-admin').querySelector("input.lastactivedetails").value = event.target.parentElement.getAttribute('class');
+								var mrwidDetails = document.querySelectorAll(".mrwid-admin details");
+								for (var id = 0; id < mrwidDetails.length; id++) {
+									var mrwidDetail = mrwidDetails[id];
+									if (!mrwidDetail.classList.contains('mrwid-mainitemcontainer') && mrwidDetail !== event.target) {
+										mrwidDetail.removeAttribute("open");
+									}
 								}
-							});
-							jQuery('.mrwid-bottomlinkinput').change(function() {
-								if(jQuery(this).val() != 1) {
-									jQuery(this).parent().find('.mrwid-bottomlinktext').slideDown();
-								} else {
-									jQuery(this).parent().find('.mrwid-bottomlinktext').slideUp();
-								}
-							});
+							} else if (event.target.matches('.mrwid-themes')) {
+								event.target.addEventListener('change',function(event) {
+									mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".mrwid-themeoptions"));
+									mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".mrwid-savetheme"));
+								});
+							} else if (event.target.matches('.mrwid-excludeinclude')) {
+								event.target.addEventListener('change',function(event) {
+									if(event.target.value != 0) {
+										event.target.closest('.mrwid-admin').querySelector(".mrwid-list").classList.add('including');
+									} else {
+										if(event.target.closest('.mrwid-admin').querySelector(".mrwid-list").classList.contains('including')) {
+											event.target.closest('.mrwid-admin').querySelector(".mrwid-list").classList.remove('including');
+										}
+									}
+								});
+							} else if (event.target.matches('.mrwid-itemstitleinput')) {
+								event.target.addEventListener('change',function(event) {
+									if(event.target.value != 1) {
+										mrSlideDown(event.target.closest('.mrwid-admin').querySelector('.mrwid-itemstitlemax'));
+									} else {
+										mrSlideUp(event.target.closest('.mrwid-admin').querySelector('.mrwid-itemstitlemax'));
+									}
+								});
+							} else if (event.target.matches('.mrwid-itemdescinput')) {
+								event.target.addEventListener('change',function(event) {
+									if(event.target.value != 1) {
+										mrSlideDown(event.target.closest('.mrwid-admin').querySelector('.mrwid-itemdescmax'));
+									} else {
+										mrSlideUp(event.target.closest('.mrwid-admin').querySelector('.mrwid-itemdescmax'));
+									}
+								});
+							} else if (event.target.matches('.mrwid-bottomlinkinput')) {
+								event.target.addEventListener('change',function(event) {
+									if(event.target.value != 1) {
+										mrSlideDown(event.target.closest('.mrwid-admin').querySelector('.mrwid-bottomlinktext'));
+									} else {
+										mrSlideUp(event.target.closest('.mrwid-admin').querySelector('.mrwid-bottomlinktext'));
+									}
+								});
+							}
 						});
 						</script>
 						</div>
 			<?php
+						$browsercheck = $_SERVER['HTTP_USER_AGENT'];
+						if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
+							/*Polyfill for Vanilla Javascript on Internet Explorer*/
+							wp_register_script( 'mrdev_polyfill', '//polyfill.io/v3/polyfill.min.js');
+							wp_enqueue_script( 'mrdev_polyfill' );
+							wp_script_add_data( 'mrdev_polyfill', 'crossorigin' , 'anonymous' );
+						}
 	}
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
@@ -492,7 +607,9 @@ class mr_categories extends WP_Widget {
 		$instance['maintitle'] = ( !empty( $new_instance['maintitle'] ) ) ? strip_tags( $new_instance['maintitle'] ) : '';
 		$instance['itemimage'] = ( !empty( $new_instance['itemimage'] ) ) ? strip_tags( absint( $new_instance['itemimage'] ) ) : '';
 		$instance['itemstitle'] = ( !empty( $new_instance['itemstitle'] ) ) ? strip_tags( absint( $new_instance['itemstitle'] ) ) : '';
+		$instance['itemstitlemax'] = ( ! empty( $new_instance['itemstitlemax'] ) ) ? strip_tags( absint( $new_instance['itemstitlemax'] ) ) : '';
 		$instance['itemdesc'] = ( !empty( $new_instance['itemdesc'] ) ) ? strip_tags( absint( $new_instance['itemdesc'] ) ) : '';
+		$instance['itemdescmax'] = ( ! empty( $new_instance['itemdescmax'] ) ) ? strip_tags( absint( $new_instance['itemdescmax'] ) ) : '';
 		$instance['itemlink'] = ( !empty( $new_instance['itemlink'] ) ) ? strip_tags( absint( $new_instance['itemlink'] ) ) : '';
 		$instance['bottomlink'] = ( ! empty( $new_instance['bottomlink'] ) ) ? strip_tags( $new_instance['bottomlink'] ) : '';
 		$itemoptions = ( ! empty ( $new_instance['itemoptions'] ) ) ? (array) $new_instance['itemoptions'] : array();
