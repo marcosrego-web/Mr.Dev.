@@ -2,11 +2,11 @@
 <extension type="package" version="1.6">
 	<name>Mr.Cat.</name>
 	<packagename>mrcat</packagename>
-	<version>0.5.0</version>
+	<version>0.5.1</version>
 	<url>https://marcosrego.com/en/web-en/mrcat-en/</url>
 	<author>Marcos Rego</author>
 	<packager>Marcos Rego</packager>
-	<creationDate>November 2019</creationDate>
+	<creationDate>December 2019</creationDate>
 	<packagerurl>https://marcosrego.com/en/web-en/mrcat-en/</packagerurl>
 	<description><![CDATA[
 <span class="readonly"><p> from <a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank" style="color: #000;">
