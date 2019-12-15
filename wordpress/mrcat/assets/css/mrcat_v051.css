@@ -31,6 +31,9 @@
 .mrwid-theme .mrwid-layout:not(.mrwid-donotinactive) .mr-wid.active {
     cursor: pointer;
 }
+.mrwid-layout:not(.mrwid-hover) .mr-wid.active .mrwid-content, .mrwid-layout:not(.mrwid-hover) .mr-wid.active .mrwid-content * {
+    cursor: initial;
+}
 .mrwid-theme .mrwid-layout .ios-scrolling {
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
