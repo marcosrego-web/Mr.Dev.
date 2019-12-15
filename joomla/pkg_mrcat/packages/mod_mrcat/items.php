@@ -108,9 +108,14 @@ defined('_JEXEC') or die;
 									$articles = $model->getItems();
 									$num_articles = count($articles);
 								}
-								$itemtitle = $item->title;
-								if(!$itemdesc || $itemdesc == 0 || $itemimage && $itemimage == 8) {
-									$itemdescription = $item->description;
+								$cattitle = $item->title;
+								if($itemstitlemax != 0) {
+									$itemtitle = (strlen($cattitle) > $itemstitlemax) ? mb_substr($cattitle,0,$itemstitlemax, 'utf-8').'<span class="mrwid-ellipsis">...</span>' : $cattitle;
+								} else {
+									$itemtitle = $cattitle;
+								}
+								if(!$itemdesc || $itemdesc != 1 || $itemimage && $itemimage == 8) {
+									$catdescription = $item->description;
 								}
 								/*
 								Add the content of the current category in the container.
@@ -134,7 +139,7 @@ defined('_JEXEC') or die;
 												if(!$itemimage || $itemimage == 1) { //Category image
 													$getimg = JCategories::getInstance('Content')->get($itemid)->getParams()->get('image');
 												} else if ($itemimage == 8) { //Category description first image
-													$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $itemdescription, $matches);
+													$output = preg_match_all('/<img.+src=[\'"]([^\'"]+)[\'"].*>/i', $catdescription, $matches);
 													$getimg = $matches[1][0];
 												} else if ($itemimage == 2 || $itemimage == 3 || $itemimage == 4 || $itemimage == 5 || $itemimage == 6 || $itemimage == 7) { //Article images
 													$model = JModelLegacy::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
@@ -185,8 +190,24 @@ defined('_JEXEC') or die;
 											*/
 											if($itemdesc == 1) { //No description
 												$showitemdesc = '';
-											} else  { //Category description
-												$showitemdesc = '<div class="mrwid-desc">'. $itemdescription.'</div>';
+											} else { //With description
+												if($itemdesc == 2) { //Category intro text
+													$catdescription = strstr($catdescription, '<hr id="system-readmore" />', true);
+													$itemdescription = $catdescription;
+												} else if($itemdesc == 3) { //Category full text
+													if (strpos($catdescription, '<hr id="system-readmore" />') !== false) {
+														$catdescription = explode('<hr id="system-readmore" />', $catdescription)[1];
+													}
+													$itemdescription = $catdescription;
+												} else { //Category description
+													$catdescription = explode('<hr id="system-readmore" />', $catdescription)[0];
+													$itemdescription = $catdescription;
+												}
+												if($itemdescmax != 0) { //Max. characters
+													$itemdescription = strip_tags($itemdescription);
+													$itemdescription = (strlen($itemdescription) > $itemdescmax) ? mb_substr($itemdescription,0,$itemdescmax, 'utf-8').'<span class="mrwid-ellipsis">...</span>' : $itemdescription;
+												}
+												$showitemdesc = '<div class="mrwid-desc">'.$itemdescription.'</div>';
 											}
 											/*
 											Bottom link starts here
@@ -198,7 +219,7 @@ defined('_JEXEC') or die;
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.$itemLink.'" title="'. $itemtitle .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mrwid-link"><a class="'.$bottomlinkclasses.'" href="'.$itemLink.'" title="'. $cattitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
@@ -222,7 +243,7 @@ defined('_JEXEC') or die;
 											Check if this item should be on a new page.
 											*/
 											if($itemcount == 0) {
-												echo  '<ul class="'.$perpageclass.' mrwid-page'.$pagecount.' '.$perlineclass.'">';
+												echo  '<ul class="'.$perpageclass.' mrwid-page'.$pagecount.' '.$perlineclass.' mrwid-'.$pagetransition.''.($pagecount == 1 ? " active" : " inactive").'">';
 												if($pagecount > 1) {
 													echo  '<noscript>';
 												}
@@ -260,15 +281,15 @@ defined('_JEXEC') or die;
 						$pagecount = ($pagecount - 1);
 						if($pagecount > 1) {
 							if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) && !in_array( 5, $pagetoggles ) || in_array( 0, $pagetoggles )) {
-								echo  '<button class="mrwid-arrows mrwid-prev mrwid-'.$pagetransition.'"><span><</span></button>';
-							}
-							if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
-								echo  '<button class="'.((in_array(3, $pagetoggles))?'mrwid-below':"").' '.((in_array(4, $pagetoggles))?'mrwid-scroll':"").' mrwid-'.$pagetransition.'"><span>+</span></button>';
+								echo  '<button class="mrwid-arrows mrwid-prev" value="'.$pagecount.'"><span><</span></button>';
 							}
 							if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles ) && !in_array( 1, $pagetoggles ) && !in_array( 2, $pagetoggles ) && !in_array( 3, $pagetoggles ) && !in_array( 4, $pagetoggles ) && !in_array( 5, $pagetoggles ) || in_array( 0, $pagetoggles )) {
-								echo  '<button class="mrwid-arrows mrwid-next mrwid-'.$pagetransition.'"><span>></span></button>';
+								echo  '<button class="mrwid-arrows mrwid-next" value="2"><span>></span></button>';
 							}
-							echo  '<div class="mrwid-pagination '.((in_array(5, $pagetoggles))?'mrwid-keyboard':"").' mrwid-'.$pagetransition.'">';
+							if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
+								echo  '<button class="'.((in_array(3, $pagetoggles))?'mrwid-below':"").' '.((in_array(4, $pagetoggles))?'mrwid-scroll':"").'"><span>+</span></button>';
+							}
+							echo  '<div class="mrwid-pagination '.((in_array(5, $pagetoggles))?'mrwid-keyboard':"").'">';
 								$hideelement = '';
 								if( empty( $pagetoggles ) || !in_array( 1, $pagetoggles )) {
 									$hideelement = 'style="display:none;"';
@@ -282,7 +303,7 @@ defined('_JEXEC') or die;
 								if( in_array( 2, $pagetoggles )) {
 									$pagenumber = 0;
 									while ($pagenumber++ < $pagecount) {
-										echo  '<input class="mrwid-radio" type="radio" name="mrwid-radio" value="'.$pagenumber.'" title="'.$pagenumber.'/'.$pagecount.'">';
+										echo '<input name="mrwid-radio" title="'.$pagenumber.'/'.$pagecount.'" class="mrwid-radio" type="radio" value="'.$pagenumber.'"'.(($pagenumber==1)?' checked="checked" ':'').'>';
 									}
 								}
 							echo  '</div>';
