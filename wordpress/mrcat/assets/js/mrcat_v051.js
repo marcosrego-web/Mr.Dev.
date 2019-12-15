@@ -343,7 +343,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 //ON CLICK/TOUCH
 document.addEventListener('click',function(event) {
-	if (event.target.matches('.mrwid-layout:not(.mrwid-hover) .mr-wid') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-container') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-image') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-title')) {
+	if (event.target.matches('.mrwid-layout:not(.mrwid-hover) .mr-wid') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-container') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-image') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mrwid-title') || event.target.matches('.mrwid-layout:not(.mrwid-hover) .mr-wid:not(.active) .mrwid-content, .mrwid-layout:not(.mrwid-hover) .mr-wid:not(.active) .mrwid-content *')) {
 		var mrwidThis = event.target;
 		mrwidMain(mrwidThis);
 		event.stopPropagation();
