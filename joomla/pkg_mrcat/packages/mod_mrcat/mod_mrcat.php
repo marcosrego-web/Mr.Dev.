@@ -43,7 +43,7 @@ if ( empty( $pagetoggles ) ) {
 	$pagetoggles = array(0); //Defaults to 'Arrows'
 }
 // global scripts and styles
-$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v051.js');
+$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v051.js', true, false); 
 $doc->addStyleSheet(JURI::base().'modules/mod_mrcat/assets/css/mrcat_v051.css');
 $browsercheck = $_SERVER['HTTP_USER_AGENT'];
 if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
