@@ -359,12 +359,14 @@ document.addEventListener('click',function(event) {
 			currentElement.classList.add('loading');
 			mrwidNext(currentElement);
 		}
+		event.stopPropagation();
 	} else if (event.target.matches('.mrwid-prev')) {
 		var currentElement = event.target;
 		if(!currentElement.classList.contains('loading')) {
 			currentElement.classList.add('loading');
 			mrwidPrev(currentElement);
 		}
+		event.stopPropagation();
 	} else if (event.target.matches('.mrwid-radio')) {
 		var currentElement = event.target;
 		if(!currentElement.classList.contains('loading')) {
@@ -373,6 +375,7 @@ document.addEventListener('click',function(event) {
 			var mrwidPage = currentElement.value;
 			mrwidChangePage(currentElement,mrwidLayout,mrwidPage);
 		}
+		event.stopPropagation();
 	} else if (event.target.matches('.mrwid-pageselect')) {
 		event.target.addEventListener('change',function(event) {
 			var currentElement = event.target;
@@ -383,12 +386,14 @@ document.addEventListener('click',function(event) {
 				mrwidChangePage(currentElement,mrwidLayout,mrwidPage);
 			}
 		});
+		event.stopPropagation();
 	} else if (event.target.matches('.mrwid-below') || event.target.matches('.mrwid-scroll')) {
 		var currentElement = event.target;
 		if(!currentElement.classList.contains('loading')) {
 			currentElement.classList.add('loading');
 			mrwidBelow(currentElement);
 		}
+		event.stopPropagation();
 	}
 });
 document.addEventListener('keydown',function(event) {
@@ -444,6 +449,7 @@ if (mrwidsHover) {
 							mrwidSubcats[id].style.display = 'none';
 						}
 					}
+					event.stopPropagation();
 				}
 			}
 		});
