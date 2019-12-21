@@ -462,7 +462,7 @@ var initst = window.pageYOffset;
 var wh = window.innerHeight;
 var bgtoplimit = (wh*mrparSize/100);
 var bgtop = 0;
-document.addEventListener('scroll',function(event) {
+window.addEventListener('scroll',function(event) {
 	//SCROLL PAGE TOGGLE
 	var mrwidsScroll = document.querySelectorAll('.mrwid-scroll');
 	if (mrwidsScroll) {
