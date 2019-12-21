@@ -456,9 +456,9 @@ if (mrwidsHover) {
 	}
 }
 var scrollTimer;
+var initst;
 var mrparIntensity = 3; //Change intensity/speed of the background image scroll
 var mrparSize = 15; //Change size of the parallax
-var initst = window.pageYOffset;
 var wh = window.innerHeight;
 var bgtoplimit = (wh*mrparSize/100);
 var bgtop = 0;
@@ -485,7 +485,7 @@ window.addEventListener('scroll',function(event) {
 	//BACKGROUND PARALLAX
 	var mrparElements = document.querySelectorAll(/*'.mrwid-theme .mrwid-layout.mrwid-parallax:not(.mrwid-thumbnail),*/'.mrwid-theme .mrwid-layout.mrwid-parallax:not(.mrwid-thumbnail) .mr-wid .mrwid-container, .mrwid-theme .mrwid-layout.mrwid-parallax:not(.mrwid-thumbnail) .mr-wid .mrwid-container .mrwid-image, .mrwid-theme .mrwid-layout.mrwid-parallax.mrwid-thumbnail.mrwid-background, .mrwid-theme .mrwid-layout.mrwid-parallax.mrwid-thumbnail.mrwid-background .mr-wid .mrwid-container, .mrwid-theme .mrwid-layout.mrwid-parallax.mrwid-thumbnail.mrwid-background .mr-wid .mrwid-container .mrwid-image');
 	var st = window.pageYOffset;
-	if(st > initst) {
+	if(!initst || initst == 0 || st > initst) {
 		bgtop = bgtop + mrparIntensity;
 	} else if(st < initst) {
 		if(bgtop > 0) {
