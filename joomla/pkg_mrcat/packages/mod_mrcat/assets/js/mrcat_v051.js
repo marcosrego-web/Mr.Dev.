@@ -50,23 +50,6 @@ function mrScrollTo(to, duration) {
     };
     animateScroll();
 }
-//AUTOPLAY PAGES
-function mrAutoPlay() {
-	var mrwidsAutoPlay = document.querySelectorAll('.mrwid-layout[class*=mrwid-autoplay]');
-	if (mrwidsAutoPlay) {
-		for (var id = 0; id < mrwidsAutoPlay.length; id++)  {
-			var currentElement = mrwidsAutoPlay[id];
-			var mrwidLastClass = currentElement.classList.item(currentElement.classList.length-1);
-			var mrwidHovering = currentElement.querySelector('.mrwid-hovering');
-			//if (mrIsInView(currentElement)) {
-				if(!mrwidHovering) {
-					mrwidNext(currentElement);
-				}
-			//}
-			setTimeout(mrAutoPlay,parseInt(mrwidLastClass)*1000);
-		}
-	}
-}
 function mrwidMain(mrwidThis) {
 	if (!mrwidThis.matches('.mr-wid')) {
 		var mrwidThis = event.target.closest('.mr-wid');
@@ -288,6 +271,25 @@ function mrwidBelow(currentElement) {
 		currentElement.classList.remove('loading');
 	}, 600);
 }
+//AUTOPLAY PAGES
+function mrAutoPlay() {
+	var mrwidsAutoPlay = document.querySelectorAll('.mrwid-layout[class*=mrwid-autoplay]');
+	if (mrwidsAutoPlay) {
+		for (var id = 0; id < mrwidsAutoPlay.length; id++)  {
+			var currentElement = mrwidsAutoPlay[id];
+			//var mrwidAutoPlayClass = currentElement.classList.item(currentElement.classList.length-1);
+			var mrwidAutoPlayClasses = [].slice.call(currentElement.classList).toString();
+			var mrwidAutoPlayClass = mrwidAutoPlayClasses.substring(mrwidAutoPlayClasses.lastIndexOf("mrwid-autoplay") + 14, mrwidAutoPlayClasses.lastIndexOf("s"));
+			//if (mrIsInView(currentElement)) {
+				if(!currentElement.classList.contains('mrwid-hovering')) {
+					mrwidNext(currentElement);
+				}
+			//}
+			setTimeout(mrAutoPlay,parseInt(mrwidAutoPlayClass)*1000);
+			//console.log(parseInt(mrwidAutoPlayClass));
+		}
+	}
+}
 document.addEventListener('DOMContentLoaded', function() {
 	/*var mrwidPages1 = document.querySelectorAll('.mrwid-page1');
 	for (var id = 0; id < mrwidPages1.length; id++) {
@@ -360,29 +362,33 @@ document.addEventListener('DOMContentLoaded', function() {
 	//CHECK IF THERE IS THE NEED TO AUTOPLAY
 	var mrwidAutoPlay = document.querySelector('.mrwid-layout[class*=mrwid-autoplay]');
 	if (mrwidAutoPlay) {
-		var mrwidLastClass = mrwidAutoPlay.classList.item(mrwidAutoPlay.classList.length-1);
-		setTimeout(mrAutoPlay,parseInt(mrwidLastClass)*1000);
+		var mrwidAutoPlayClasses = [].slice.call(mrwidAutoPlay.classList).toString();
+		var mrwidAutoPlayClass = mrwidAutoPlayClasses.substring(mrwidAutoPlayClasses.lastIndexOf("mrwid-autoplay") + 14, mrwidAutoPlayClasses.lastIndexOf("s"));
+		setTimeout(mrAutoPlay,parseInt(mrwidAutoPlayClass)*1000);
 	}
 	//ON MOUSEOVER/MOUSELEAVE
-	var mrwidsHover = document.querySelectorAll('.mrwid-layout.mrwid-hover');
+	var mrwidsHover = document.querySelectorAll('.mrwid-layout.mrwid-hover,.mrwid-layout[class*=mrwid-autoplay]');
 	if (mrwidsHover) {
 		//ES6:
 		//for (var mrwidHover of mrwidsHover) 
 		for (var id = 0; id < mrwidsHover.length; id++)  {
 			mrwidsHover[id].addEventListener('mouseover',function(event) {
-				if (event.target.matches('.mr-wid')) {
-					event.target.classList.add('mrwid-hovering');
-				}
 				if (event.target.matches('.mrwid-layout.mrwid-hover .mr-wid')) {
 					mrwidMain(event.target);
 					event.stopPropagation();
 				}
+				if (event.target.matches('.mrwid-layout[class*=mrwid-autoplay] .mr-wid') || event.target.matches('.mrwid-layout[class*=mrwid-autoplay] .mrwid-pagination') || event.target.matches('.mrwid-layout[class*=mrwid-autoplay] .mrwid-arrows') || event.target.matches('.mrwid-layout[class*=mrwid-autoplay] .mrwid-below')) {
+					event.target.closest('.mrwid-layout').classList.add('mrwid-hovering');
+				}
 			});
 			mrwidsHover[id].addEventListener('mouseleave', function(event) {
-				var mrwid = event.target.querySelectorAll('.mrwid-pages.active .mr-wid');
+				if(event.target.classList.contains('mrwid-hovering')) {
+					event.target.classList.remove('mrwid-hovering');
+				}
+				var mrwid = event.target.querySelectorAll('.mrwid-layout.mrwid-hover .mrwid-pages.active .mr-wid');
 				if (mrwid) {
 					for (var id = 0; id < mrwid.length; id++)  {
-						mrwid[id].classList.remove('active','inactive','mrwid-hovering');
+						mrwid[id].classList.remove('active','inactive');
 					}
 					if(event.target.classList.contains('mrwid-subcatactive')) {
 						var mrwidSubcats = event.target.querySelectorAll('.mrwid-pages.active .mrwid-subcat');
