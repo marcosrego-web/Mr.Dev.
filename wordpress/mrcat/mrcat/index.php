@@ -23,7 +23,9 @@ class mr_categories extends WP_Widget {
 		$layout = htmlspecialchars($instance['layout']);
 		$perline = intval($instance['perline']);
 		$perpage = intval($instance['perpage']);
+		$autoplay = intval($instance['autoplay']);
 		$pagetransition = htmlspecialchars($instance['pagetransition']);
+		$tabs = intval($instance['tabs']);
 		$pagetoggles = array_filter($instance['pagetoggles'], 'is_numeric');
 		$layoutoptions = array_map("htmlspecialchars", $instance['layoutoptions']);
 		$orderby = intval($instance['orderby']);
@@ -43,9 +45,9 @@ class mr_categories extends WP_Widget {
 		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v051.js');
+			wp_register_script( 'mrcat_scripts', plugin_dir_url( __DIR__ ).'assets/js/mrcat_v060.js');
 			wp_enqueue_script( 'mrcat_scripts' );
-			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v051.css');
+			wp_enqueue_style( 'mrcat_css', plugin_dir_url( __DIR__ ).'assets/css/mrcat_v060.css');
 			$browsercheck = $_SERVER['HTTP_USER_AGENT'];
 			if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
 				/*Polyfill for Vanilla Javascript on Internet Explorer*/
@@ -61,11 +63,11 @@ class mr_categories extends WP_Widget {
 				*/
 				if(!$theme) {
 					include plugin_dir_path( __DIR__ ).'themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v051.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/default/default_v060.css');
 				} else if($theme == "default") {
 					//Official Themes
 					include plugin_dir_path( __DIR__ ).'themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v051.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'themes/'.$theme.'/'.$theme.'_v060.css');
 				} else {
 					//Custom Themes
 					include ABSPATH.'wp-content/themes/mrdev/'.$theme.'/index.php';
@@ -77,7 +79,7 @@ class mr_categories extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v051.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v060.css');
 		?>
 		<div class="mrwid-admin">
 		<p class="mrwid-section"><a href="https://marcosrego.com/en/web-en/mrcat-en/" target="_blank">
@@ -192,6 +194,12 @@ class mr_categories extends WP_Widget {
 						else {
 							$perpage = __( '', 'mr_categories' );
 						}
+						if ( isset( $instance[ 'autoplay' ] ) ) {
+							$autoplay = $instance[ 'autoplay' ];
+						}
+						else {
+							$autoplay = __( '', 'mr_categories' );
+						}
 						if ( isset( $instance[ 'pagetransition' ] ) ) {
 							$pagetransition = $instance[ 'pagetransition' ];
 						}
@@ -203,6 +211,12 @@ class mr_categories extends WP_Widget {
 						}
 						else {
 							$pagetoggles = __( '', 'mr_categories' );
+						}
+						if ( isset( $instance[ 'tabs' ] ) ) {
+							$tabs = $instance[ 'tabs' ];
+						}
+						else {
+							$tabs = __( '', 'mr_categories' );
 						}
 						if ( isset( $instance[ 'itemoptions' ] ) ) {
 							$itemoptions = $instance[ 'itemoptions' ];
@@ -345,6 +359,16 @@ class mr_categories extends WP_Widget {
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'pagetoggles' ) ); ?>[]" value="4" <?php checked( ( is_array($pagetoggles) AND in_array( 4, $pagetoggles ) ) ? 4 : '', 4 ); ?> /> <?php _e( 'Scroll' ); ?></label><br>
 						</p>
 						<p>
+						<label  for="<?php echo $this->get_field_id( 'tabs' ); ?>"><?php _e( 'Tabs:' ); ?></label><br>
+						<select <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> class="widefat" id="<?php echo $this->get_field_id('tabs'); ?>" name="<?php echo $this->get_field_name('tabs'); ?>">
+									<?php
+										echo '<option value="0" id="notabs"', $tabs == 0 ? ' selected="selected"' : '', '>None</option>
+										<option value="1" id="itemstabs"', $tabs == 1 ? ' selected="selected"' : '', '>Categories</option>
+										<option value="2" id="parenttabs"', $tabs == 2 ? ' selected="selected"' : '', '>Parent categories</option>';
+									?>
+								</select><br>
+						</p>
+						<p>
 						<label  for="<?php echo $this->get_field_id( 'pagetransition' ); ?>"><?php _e( 'Transition:' ); ?></label><br>
 						<select  class="widefat" id="<?php echo $this->get_field_id('pagetransition'); ?>" name="<?php echo $this->get_field_name('pagetransition'); ?>">
 									<?php
@@ -355,6 +379,10 @@ class mr_categories extends WP_Widget {
 										<option value="none" id="none"', $pagetransition == 'none' ? ' selected="selected"' : '', '>None</option>';
 									?>
 								</select><br>
+						</p>
+						<p>
+						<label  for="<?php echo $this->get_field_id( 'autoplay' ); ?>"><?php _e( 'Autoplay:' ); ?></label><br>
+						<input <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> class="mrwid-pagination-input mrwid-autoplay-input" type="number" id="<?php echo $this->get_field_id( 'autoplay' ); ?>" name="<?php echo $this->get_field_name( 'autoplay' ); ?>" type="text" placeholder="∞" title="Choose how many seconds the autoplay should take to change page. Leave empty or choose '0' to turn off autoplay." value="<?php if(esc_attr( $autoplay ) == "" || esc_attr( $autoplay ) <= 0) { } else { echo esc_attr( $autoplay ); } ?>" /> seconds
 						</p>
 						</details>
 						<details class="displayDetails" <?php if(esc_attr( $lastactivedetails ) == 'displayDetails') { echo 'open="open"'; } ?>>
@@ -425,11 +453,12 @@ class mr_categories extends WP_Widget {
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'globallayoutoptions' ); ?>"><?php _e( 'Global layout options:' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="windowheight" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "windowheight", $globallayoutoptions ) ) ? "windowheight" : '', "windowheight" ); ?> /> <?php _e( 'Window height' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="onlyactives" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "onlyactives", $globallayoutoptions ) ) ? "onlyactives" : '', "onlyactives" ); ?> /> <?php _e( 'Only show actives' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="hideinactives" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "hideinactives", $globallayoutoptions ) ) ? "hideinactives" : '', "hideinactives" ); ?> /> <?php _e( 'On active hide inactives' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepactive" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepactive", $globallayoutoptions ) ) ? "keepactive" : '', "keepactive" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
+									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="contentpagination" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "contentpagination", $globallayoutoptions ) ) ? "contentpagination" : '', "contentpagination" ); ?> /> <?php _e( 'Pagination inside content' ); ?></label><br>
 									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="donotinactive" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "donotinactive", $globallayoutoptions ) ) ? "donotinactive" : '', "donotinactive" ); ?> /> <?php _e( 'Do not inactive on click' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="keepactive" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "keepactive", $globallayoutoptions ) ) ? "keepactive" : '', "keepactive" ); ?> /> <?php _e( 'Keep other actives opened' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="hideinactives" <?php checked( ( is_array( $globallayoutoptions ) AND in_array( "hideinactives", $globallayoutoptions ) ) ? "hideinactives" : '', "hideinactives" ); ?> /> <?php _e( 'When active hide inactives' ); ?></label><br>
-									<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'globallayoutoptions' ) ); ?>[]" value="subcatactive" <?php checked( ( is_array($globallayoutoptions ) AND in_array( "subcatactive", $globallayoutoptions ) ) ? "subcatactive" : '', "subcatactive" ); ?> /> <?php _e( 'Only show subcategories of active' ); ?></label><br>
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'itemoptions' ); ?>"><?php _e( 'Other options:' ); ?></label> <br>
@@ -595,6 +624,8 @@ class mr_categories extends WP_Widget {
 		}
 		$instance['perline'] = ( ! empty( $new_instance['perline'] ) ) ? strip_tags( $new_instance['perline'] ) : '';
 		$instance['perpage'] = ( ! empty( $new_instance['perpage'] ) ) ? strip_tags( absint( $new_instance['perpage'] ) ) : '';
+		$instance['autoplay'] = ( ! empty( $new_instance['autoplay'] ) ) ? strip_tags( absint( $new_instance['autoplay'] ) ) : '';
+		$instance['tabs'] = ( ! empty( $new_instance['tabs'] ) ) ? strip_tags( $new_instance['tabs'] ) : '';
 		$instance['pagetransition'] = ( ! empty( $new_instance['pagetransition'] ) ) ? strip_tags( $new_instance['pagetransition'] ) : '';
 		$pagetoggles = ( ! empty ( $new_instance['pagetoggles'] ) ) ? (array) $new_instance['pagetoggles'] : array();
 		$instance['pagetoggles'] = array_map( 'sanitize_text_field', $pagetoggles );
