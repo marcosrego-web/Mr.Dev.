@@ -1,7 +1,7 @@
 .mrwid-theme.mrwid-default .mrwid-layout .mrwid-container {
 	position: relative;
 }
-.mrwid-theme.mrwid-default .mrwid-layout .mr-wid, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-content, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container .mrwid-image figcaption, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container .mrwid-image figcaption small {
+.mrwid-theme.mrwid-default .mrwid-layout .mr-wid, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-content, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout .mr-wid .mrwid-container .mrwid-image, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container .mrwid-image figcaption, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid .mrwid-container .mrwid-image figcaption small, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab:after {
 	-o-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -webkit-transition: all 0.5s ease-in-out;
@@ -51,14 +51,14 @@
 /*.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle:not(.mrwid-windowheight) .mr-wid .mrwid-container, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-windowheight .mrwid-1perpage .mr-wid {
   height: 100%;
 }*/
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid:after {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab:after {
     content: '';
     position: absolute;
     z-index: 1;
     border: 0.0625rem solid;
     opacity: 0.25;
 }
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-expandactive .mrwid-pages:not(.mrwid-1perline) .mr-wid:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pages.mrwid-1perline .mr-wid:after {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-expandactive .mrwid-pages:not(.mrwid-1perline) .mr-wid:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-pages.mrwid-1perline .mr-wid:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab:after {
 	top: 0;
     right: 0;
     bottom: 0;
@@ -72,8 +72,11 @@
     left: 0.75rem;
 	box-shadow: 0 0 0.3125rem 0;
 }
-.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) .mr-wid {
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) .mr-wid, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab {
 	padding: 0.75rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive).mrwid-onlyactives .mrwid-pages:not(.mrwid-1perline) .mr-wid:not(.active) {
+	padding: 0;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-wid.active:before {
   display: none;
@@ -219,7 +222,7 @@
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-contentpagination .mrwid-below, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-contentpagination .mrwid-pagination {
 	bottom: 0.75rem;
 }
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-contentpagination .mrwid-below:not([style="display: none;"]) + .mrwid-pagination {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-contentpagination .mrwid-below:not(.mrwid-hidden) + .mrwid-pagination {
 	bottom: 2rem;
 }
 @media only screen and (max-width: 59.94em) {
@@ -249,7 +252,6 @@
 	}
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle:not(.mrwid-contentpagination) .mrwid-next + .mrwid-below {
 		margin-left: calc(50% - 2rem);
-
 	}
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mrwid-below:not(.loading):after {
 		border-width: 1rem 1rem 0 1rem;
@@ -273,8 +275,11 @@
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive:not(.mrwid-expandactive) .mr-wid .mrwid-container .mrwid-image {
 	float: left;
-	width: 20%;
+	max-width: 20%;
 	height: auto;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive:not(.mrwid-expandactive) .mr-wid .mrwid-container .mrwid-image + .mrwid-title {
+	padding-left: 0;
 }
 .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-themestyle).mrwid-revealactive .mr-wid .mrwid-container .mrwid-image {
 	margin-right: 0.75rem;
@@ -285,11 +290,14 @@
 	display: block;
 	text-align: center;
 }
-/*--CURRENT CATEGORIES---*/
+/*--CURRENT CATEGORIES AND ACTIVE TABS---*/
 .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-themestyle).mrwid-checkcurrent .mr-wid.mrwid-current .mrwid-container {
 	border-bottom: 1px solid;
 }
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-checkcurrent .mr-wid.mrwid-current:after {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab:after {
+	border-bottom: 0;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-checkcurrent .mr-wid.mrwid-current:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab.active:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle .mr-tab:hover:after {
 	opacity: 0.5;
 }
 /*----PER LINE----*/
@@ -306,8 +314,11 @@
 	}
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait .mr-wid .mrwid-container .mrwid-image {
 		float: left;
-		width: 20%;
+		max-width: 20%;
 		height: auto;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-portrait .mr-wid .mrwid-container .mrwid-image + .mrwid-title {
+		padding-left: 0;
 	}
 	/*.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-expandactive:not(.mrwid-portrait) .mr-wid .mrwid-container .mrwid-image {
 		max-height: 20%;
@@ -349,8 +360,11 @@
 	}
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-landscape) .mr-wid .mrwid-container .mrwid-image {
 		float: left;
-		width: 20%;
+		max-width: 20%;
 		height: auto;
+	}
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive:not(.mrwid-landscape) .mr-wid .mrwid-container .mrwid-image + .mrwid-title {
+		padding-left: 0;
 	}
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-verticaltitle.mrwid-landscape .mrwid-pages:not(.mrwid-perliner) .mr-wid {
 		height: 100%;
@@ -380,9 +394,12 @@
 		max-width: calc(100vw - 0.75rem - 0.75rem - 1.75rem - 1.75rem);
 	}
 }
-.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline) {
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-pages:not(.mrwid-1perline), .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mrwid-tabs {
 	margin: 0 -0.75rem;
     width: calc(100% + 0.75rem + 0.75rem);
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-expandactive) .mr-tab {
+	margin: 0.75rem;
 }
 /*--REVEAL ACTIVE--*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-revealactive .mr-wid:not(.active) .mrwid-content {
@@ -451,7 +468,7 @@
 	display: inherit;
 	height: 0%;
   }
-  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait .mrwid-pages:not(.mrwid-perliner) .mr-wid:not(.active), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-verticaltitle:not(.mrwid-portrait) .mrwid-pages:not(.mrwid-perliner) .mr-wid {
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait:not(.mrwid-onlyactives) .mrwid-pages:not(.mrwid-perliner) .mr-wid:not(.active), .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-verticaltitle:not(.mrwid-portrait) .mrwid-pages:not(.mrwid-perliner) .mr-wid {
 	  height: 100%;
   }
   .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight.mrwid-portrait.mrwid-hideinactives:not(.mrwid-subcatactive) .mrwid-pages:not(.mrwid-perliner) .mr-wid.inactive {
@@ -602,7 +619,7 @@
 		width: 100%;
 		margin: 0 0;
 	}
-  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape) .mrwid-pages .mr-wid:not(.active) {
+  .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape):not(.mrwid-onlyactives) .mrwid-pages .mr-wid:not(.active) {
 	height: 100%;
   }
   .mrwid-theme.mrwid-default .mrwid-layout.mrwid-expandactive.mrwid-windowheight:not(.mrwid-landscape) .mrwid-pages .mr-wid.active {
@@ -660,6 +677,9 @@
 	transform: scale(1.05);
 	transform-origin: center;
 }
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-scaleactive, .mrwid-theme .mrwid-layout:not(.mrwid-list).mrwid-windowheight.mrwid-scaleactive .mrwid-pages:not(.mrwid-perliner) {
+	overflow: initial;
+}
 /*--OPAQUE ACTIVE---*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-opaqueactive .mr-wid.inactive {
 	opacity: 0.5;
@@ -668,19 +688,21 @@
 	opacity: 1;
 }
 /*--TOGGLES--*/
-.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination).mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination).mrwid-toggle02 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination).mrwid-toggle03 .mrwid-container:after {
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination):not(.mrwid-verticaltitle).mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination):not(.mrwid-verticaltitle).mrwid-toggle02 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination):not(.mrwid-verticaltitle).mrwid-toggle03 .mrwid-container:after {
 	right: 0.85rem;
 }
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-toggle02 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-toggle03 .mrwid-container:after {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination:not(.mrwid-verticaltitle).mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination:not(.mrwid-verticaltitle).mrwid-toggle02 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination:not(.mrwid-verticaltitle).mrwid-toggle03 .mrwid-container:after {
 	right: 2.60rem;
 }
 /*----Plus/Minus Toggle------*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02) .mr-wid .mrwid-container:after {
     position: absolute;
-    top: 0;
     font-size: 1.5rem;
     cursor: pointer;
     opacity: 0.25;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02):not(.mrwid-verticaltitle) .mr-wid .mrwid-container:after {
+    top: 0;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02) .mr-wid:not(.active) .mrwid-container:after {
 	content: "+";
@@ -692,12 +714,14 @@
 /*----Direction Toggle------*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid .mrwid-container:after {
     position: absolute;
-    top: 0.85rem;
     width: 0;
     height: 0;
     border-style: solid;
     cursor: pointer;
     opacity: 0.25;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01):not(.mrwid-verticaltitle) .mr-wid .mrwid-container:after {
+    top: 0.85rem;
 }
 @media only screen and (orientation: landscape) {
 	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after {
@@ -710,12 +734,12 @@
 		border-width: 0 0.75rem 0.75rem 0.75rem;
 		border-color: transparent transparent currentColor transparent;
 	}
-	.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-expandactive.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-hideinactives.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-subcatactive.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after  {
+	.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-expandactive.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-verticaltitle.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-hideinactives.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-portrait).mrwid-subcatactive.mrwid-toggle02:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after  {
 		content: "";
 		border-width: 0.75rem 0 0.75rem 0.75rem;
 		border-color: transparent transparent transparent currentColor;
 	}
-	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-portrait).mrwid-expandactive.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-portrait).mrwid-hideinactives.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-portrait).mrwid-subcatactive.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-portrait).mrwid-expandactive.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-portrait).mrwid-verticaltitle.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-portrait).mrwid-hideinactives.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-portrait).mrwid-subcatactive.mrwid-toggle02:not(.mrwid-hover):not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after {
 		content: "";
 		border-width: 0.75rem 0.75rem 0.75rem 0rem;
 		border-color: transparent currentColor transparent transparent;
@@ -732,12 +756,12 @@
 		border-width: 0 0.75rem 0.75rem 0.75rem;
 		border-color: transparent transparent currentColor transparent;
 	}
-	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-expandactive:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-hideinactives:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-subcatactive:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-expandactive:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after,.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-verticaltitle:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-hideinactives:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02.mrwid-landscape.mrwid-subcatactive:not(.mrwid-toggle01) .mr-wid:not(.active) .mrwid-container:after {
 		content: "";
 		border-width: 0.75rem 0 0.75rem 0.75rem;
 		border-color: transparent transparent transparent currentColor;
 	}
-	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-expandactive:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-hideinactives:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-subcatactive:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after {
+	.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-expandactive:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-verticaltitle:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-hideinactives:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-hover).mrwid-landscape.mrwid-subcatactive:not(.mrwid-toggle01):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after {
 		content: "";
 		border-width: 0.75rem 0.75rem 0.75rem 0rem;
 		border-color: transparent currentColor transparent transparent;
@@ -746,13 +770,15 @@
 /*----Close Toggle------*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-hover) .mr-wid.active .mrwid-container:after {
     position: absolute;
-    top: 0;
     font-size: 1.5rem;
     cursor: pointer;
     opacity: 0.25;
 	border: 0;
 	width: auto;
 	height: auto;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-hover):not(.mrwid-verticaltitle) .mr-wid.active .mrwid-container:after {
+    top: 0;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-hover):not(.mrwid-donotinactive) .mr-wid.active .mrwid-container:after {
     content: "+" !important;
@@ -765,10 +791,12 @@
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-verticaltitle .mrwid-title {
 	-webkit-writing-mode: tb-rl;
     writing-mode: tb-rl;
-    writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	padding-bottom: 3rem;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-verticaltitle .mr-wid .mrwid-container .mrwid-content {
 	height: 100%;
+	padding-bottom: 3rem;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-verticaltitle .mrwid-pages {
 	align-items: start;
@@ -781,13 +809,43 @@
 	display: flex;
 	align-items: start;
 }
-.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-verticaltitle .mrwid-container {
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-verticaltitle:not(.mrwid-windowheight) .mrwid-container {
 	height: auto;
 }
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-themestyle.mrwid-expandactive.mrwid-verticaltitle .mr-wid:not(.active) .mrwid-image {
 	width: 0%;
 	height: 0%;
 	opacity: 0;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02).mrwid-verticaltitle:not(.mrwid-contentpagination) .mr-wid .mrwid-container:after {
+	bottom: 0rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01).mrwid-verticaltitle:not(.mrwid-contentpagination) .mr-wid .mrwid-container:after {
+    bottom: 0.85rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-hover).mrwid-verticaltitle:not(.mrwid-contentpagination) .mr-wid.active .mrwid-container:after {
+    bottom: 3rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle01:not(.mrwid-toggle02).mrwid-verticaltitle.mrwid-contentpagination .mr-wid .mrwid-container:after {
+	bottom: 4rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle02:not(.mrwid-toggle01).mrwid-verticaltitle.mrwid-contentpagination .mr-wid .mrwid-container:after {
+    bottom: 4.85rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-toggle03:not(.mrwid-hover).mrwid-verticaltitle.mrwid-contentpagination .mr-wid.active .mrwid-container:after {
+    bottom: 6.75rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination).mrwid-verticaltitle.mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout:not(.mrwid-contentpagination).mrwid-verticaltitle.mrwid-toggle02 .mrwid-container:after {
+	left: 1.25rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-verticaltitle.mrwid-toggle03 .mrwid-container:after {
+	left: 2.25rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-verticaltitle.mrwid-toggle01 .mrwid-container:after, .mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-verticaltitle.mrwid-toggle02 .mrwid-container:after {
+	left: 3rem;
+}
+.mrwid-theme.mrwid-default .mrwid-layout.mrwid-contentpagination.mrwid-verticaltitle.mrwid-toggle03 .mr-wid.active .mrwid-container:after {
+	left: 4rem;
 }
 /*----ONLY SHOW SUBCAT OF ACTIVE----*/
 .mrwid-theme.mrwid-default .mrwid-layout.mrwid-subcatactive.mrwid-opaqueactive .mr-wid.mrwid-subcat {
