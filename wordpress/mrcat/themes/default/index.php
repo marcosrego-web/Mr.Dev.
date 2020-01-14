@@ -11,7 +11,7 @@ if(is_admin()) {
 	Layout:<br>
 	<select  class="widefat mrwid-layouts" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
 	<?php
-	$options = array( 'List','Grid','Collapsible','Accordion','Slider','Menu','Custom');
+	$options = array( 'List','Grid','Collapsible','Accordion','Slider','Menu','Tabs','Mosaic','Custom');
 	foreach ( $options as $option ) {
 		echo '<option value="' . $option . '" id="' . $option . '"', $layout == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 	}
@@ -39,13 +39,17 @@ if(is_admin()) {
 	<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="landscape" <?php checked( ( is_array( $layoutoptions ) AND in_array( "landscape", $layoutoptions ) ) ? "landscape" : '', "landscape" ); ?> /> <?php _e( 'Landscape on portrait window' ); ?></label><br>
 	<label ><input  type="checkbox" class="mrwid-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="portrait" <?php checked( ( is_array( $layoutoptions ) AND  in_array( "portrait", $layoutoptions ) ) ? "portrait" : '', "portrait" ); ?> /> <?php _e( 'Portrait on landscape window' ); ?></label><br>
 	</div>
-	<div class="mrwid-notice perlineov" <?php if($theme == 'default' && $layout == 'Collapsible' || $theme == 'default' && $layout == 'Accordion' || $theme == 'default' && $layout == 'Slider') { } else { echo 'style="display: none"'; } ?>><p>
+	<div class="mrwid-notice perlineov" <?php if($theme == 'default' && $layout == 'Collapsible' || $theme == 'default' && $layout == 'Accordion' || $theme == 'default' && $layout == 'Slider' || $theme == 'default' && $layout == 'Tabs' || $theme == 'default' && $layout == 'Mosaic') { } else { echo 'style="display: none"'; } ?>><p>
 		<strong>Items per line overriden</strong><br>
-		The current layout will be forcing the items per line number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect.</p>
+		The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect.</p>
 	</div>
 	<div class="mrwid-notice perpageov" <?php if($theme == 'default' && $layout == 'Slider' || $theme == 'default' && $layout == 'Menu') { } else { echo 'style="display:none"'; } ?>>
 		<p><strong>Items per page overriden</strong><br>
-		The current layout will be forcing the items per page number on the 'Pagination' section. Customize or change layout if you want your changes on that option to take effect.</p>
+		The current layout might force the items per page number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect.</p>
+	</div>
+	<div class="mrwid-notice tabs-paginationov" <?php if($theme == 'default' && $layout == 'Tabs' || $theme == 'default' && $layout == 'Mosaic') { } else { echo 'style="display:none"'; } ?>>
+		<p><strong>Tabs overriden</strong><br>
+		The current layout will be forcing the 'Tabs' option on the 'Pagination' section to not be 'None'. You can still change the type of tabs but can't select 'None' while using the current layout.</p>
 	</div>
 	<div class="mrwid-notice slider-optionov" <?php if($theme == 'default' && $layout == 'Slider') { } else { echo 'style="display:none"'; } ?>>
 		<p><strong>Option overriden</strong><br>
@@ -53,7 +57,15 @@ if(is_admin()) {
 	</div>
 	<div class="mrwid-notice menu-optionov" <?php if($theme == 'default' && $layout == 'Menu') { } else { echo 'style="display:none"'; } ?>>
 		<p><strong>Options overriden</strong><br>
-		The current layout will be forcing the options 'Only show subcategories of active' and 'When active hide inactives' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect.</p>
+		The current layout will be forcing the options 'Only show subcategories of active' and 'On active hide inactives' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect.</p>
+	</div>
+	<div class="mrwid-notice tabs-optionov" <?php if($theme == 'default' && $layout == 'Tabs') { } else { echo 'style="display:none"'; } ?>>
+		<p><strong>Options overriden</strong><br>
+		The current layout will be forcing the options 'Only show actives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect.</p>
+	</div>
+	<div class="mrwid-notice mosaic-optionov" <?php if($theme == 'default' && $layout == 'Mosaic') { } else { echo 'style="display:none"'; } ?>>
+		<p><strong>Options overriden</strong><br>
+		The current layout will be forcing the options 'On active hide inactives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect.</p>
 	</div>
 	</p>
 	<script>
@@ -66,7 +78,7 @@ if(is_admin()) {
 				if(event.target.value == 'Custom') {
 					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".mrwid-customoptions"));
 				}
-				if(event.target.value != 'Collapsible' && event.target.value != 'Accordion' && event.target.value != 'Slider') {
+				if(event.target.value != 'Collapsible' && event.target.value != 'Accordion' && event.target.value != 'Slider' && event.target.value != 'Tabs' && event.target.value != 'Mosaic') {
 					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".perlineov"));
 				} else {
 					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".perlineov"));
@@ -75,6 +87,11 @@ if(is_admin()) {
 					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".perpageov"));
 				} else {
 					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".perpageov"));
+				}
+				if(event.target.value == 'Tabs' || event.target.value == 'Mosaic') {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".tabs-paginationov"));
+				} else {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".tabs-paginationov"));
 				}
 				if(event.target.value == 'Slider') {
 					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".slider-optionov"));
@@ -85,6 +102,16 @@ if(is_admin()) {
 					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".menu-optionov"));
 				} else {
 					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".menu-optionov"));
+				}
+				if(event.target.value == 'Tabs') {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".tabs-optionov"));
+				} else {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".tabs-optionov"));
+				}
+				if(event.target.value == 'Mosaic') {
+					mrSlideDown(event.target.closest('.mrwid-admin').querySelector(".mosaic-optionov"));
+				} else {
+					mrSlideUp(event.target.closest('.mrwid-admin').querySelector(".mosaic-optionov"));
 				}
 			});
 		}
@@ -109,6 +136,20 @@ if(is_admin()) {
 		} else if($layout == 'Menu' ) {
 			$layoutoptions = array('checkcurrent','toggle02','toggle03','hambmob','revealactive','hideinactives','subcatactive');
 			$perpage = 0;
+		} else if($layout == 'Tabs' ) {
+			$layoutoptions = array('themestyle','expandactive','portrait','onlyactives','donotinactive');
+			if($tabs == 0) {
+				$tabs = 1;
+			}
+			$perline = 0;
+		} else if($layout == 'Mosaic' ) {
+			$layoutoptions = array('themestyle','landscape','hideinactives','donotinactive');
+			if($tabs == 0) {
+				$tabs = 2;
+			}
+			if($perline == 0 || $perline == '∞') {
+				$perline = 3;
+			}
 		}
 	}
 ?>
