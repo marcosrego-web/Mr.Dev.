@@ -1,3 +1,6 @@
+.mrwid-hidden {
+    display: none !important;
+}
 .mrwid-theme {
 	box-sizing: border-box;
 }
@@ -7,7 +10,7 @@
 .mrwid-theme .mrwid-layout {
     overflow: hidden;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages {
+.mrwid-theme .mrwid-layout .mrwid-pages, .mrwid-theme .mrwid-layout .mrwid-tabs {
     list-style-type: none;
     margin: 0;
 }
@@ -25,6 +28,14 @@
     display: block;
     cursor: pointer;
 }
+.mrwid-layout:not(.mrwid-hover) .mr-wid:not(.active), .mrwid-layout:not(.mrwid-hover):not(.mrwid-donotinactive) .mr-wid.active {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+.mrwid-layout:not(.mrwid-hover):not(.mrwid-donotinactive) .mr-wid.active *.mrwid-content {
+    cursor: initial;
+}
+/*
 .mrwid-theme .mrwid-layout .mr-wid:not(.active) {
     cursor: pointer;
 }
@@ -33,12 +44,12 @@
 }
 .mrwid-layout:not(.mrwid-hover) .mr-wid.active .mrwid-content {
     cursor: initial;
-}
+}*/
 .mrwid-theme .mrwid-layout .ios-scrolling {
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch !important;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages {
+.mrwid-theme .mrwid-layout .mrwid-pages, .mrwid-theme .mrwid-layout .mrwid-tabs {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
@@ -51,8 +62,18 @@
 .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner {
     flex-wrap: wrap;
 }
-.mrwid-theme .mrwid-layout .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-tabs {
+    overflow: auto;
+}
+.mrwid-theme .mrwid-layout .mr-wid, .mrwid-theme .mrwid-layout .mr-tab {
     position: relative;
+}
+.mrwid-theme .mrwid-layout .mr-tab {
+    text-align: center;
+    cursor: pointer;
+}
+.mrwid-theme .mrwid-layout .mr-tab.active {
+    font-weight: 700;
 }
 .mrwid-theme .mrwid-layout:not(.mrwid-windowheight) .mr-wid, .mrwid-theme .mrwid-layout:not(.mrwid-windowheight) .mrwid-container {
     min-height: 100%;
@@ -60,40 +81,40 @@
 .mrwid-subcatactive .mrwid-subcat {
     display: none;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages:not(.mrwid-perliner) .mr-wid, .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages:not(.mrwid-perliner) .mr-wid, .mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-1perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs:not(.mrwid-perliner) .mr-tab, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-1perline .mr-tab {
     width: 100%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-2perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-2perline .mr-tab {
     width: 50%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-3perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-3perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-3perline .mr-tab {
     width: 33.33333333333333%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-4perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-4perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-4perline .mr-tab {
     width: 25%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-5perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-5perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-5perline .mr-tab {
     width: 20%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-6perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-6perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-6perline .mr-tab {
     width: 16.66666666666667%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-7perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-7perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-7perline .mr-tab {
     width: 14.28571428571429%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-8perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-8perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-8perline .mr-tab {
     width: 12.5%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-9perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-9perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-9perline .mr-tab {
     width: 11.11111111111111%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-10perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-10perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-10perline .mr-tab {
     width: 10%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-11perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-11perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-11perline .mr-tab {
     width: 9.090909090909091%;
 }
-.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-12perline .mr-wid {
+.mrwid-theme .mrwid-layout .mrwid-pages.mrwid-perliner.mrwid-12perline .mr-wid, .mrwid-theme .mrwid-layout .mrwid-tabs.mrwid-perliner.mrwid-12perline .mr-tab {
     width: 8.333333333333333%;
 }
 .mrwid-theme .mrwid-layout .mrwid-scroll:not(.mrwid-below):not(.loading) {
@@ -170,7 +191,7 @@
     width: 100%;
     bottom: 0rem;
 }
-.mrwid-theme .mrwid-layout.mrwid-contentpagination .mrwid-below:not([style="display: none;"]) + .mrwid-pagination {
+.mrwid-theme .mrwid-layout.mrwid-contentpagination .mrwid-below:not(.mrwid-hidden) + .mrwid-pagination {
     bottom: 1rem;
 }
 .mrwid-theme .mrwid-layout.mrwid-contentpagination .mrwid-next, .mrwid-theme .mrwid-layout.mrwid-contentpagination .mrwid-prev {
@@ -189,8 +210,15 @@
     padding: 0 1.75rem 4rem 1.75rem;
 }
 /*---WHEN ACTIVE HIDE INACTIVE---*/
-.mrwid-theme .mrwid-layout.mrwid-hideinactives .mr-wid.inactive {
+.mrwid-theme .mrwid-layout.mrwid-hideinactives:not(.mrwid-onlyactives) .mr-wid.inactive {
 	display: none;
+}
+/*---ONLY SHOW ACTIVES---*/
+.mrwid-theme .mrwid-layout.mrwid-onlyactives .mrwid-pages .mr-wid:not(.active) {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    padding: 0;
 }
 /*PAGE TRANSITIONS*/
 @keyframes fadeOut {
