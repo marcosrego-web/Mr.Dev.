@@ -3,13 +3,13 @@
 	Plugin Name: Mr.Cat.
 	Plugin URI:  https://marcosrego.com/en/web-en/mrcat-en/
 	Description: Mr.Cat. brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.
-	Version:     0.5.1
+	Version:     0.6.0
 	Author:      Marcos Rego
 	Author URI:  https://marcosrego.com
 	License:     GNU Public License version 2 or later
 	License URI: http://www.gnu.org/licenseses/gpl-2.0.html
 */
-/* Copyright 2019 Mr.Cat. by Marcos Rego (email : web@marcosrego.com)
+/* Copyright 2020 Mr.Cat. by Marcos Rego (email : web@marcosrego.com)
 Mr.Cat. is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 2 of the License, or
@@ -49,7 +49,7 @@ if(is_admin()) {
 	/*---Correct the Visual Term Description Editor appearing above the categories list in some resolutions---*/
 	if (strpos($url,'taxonomy=category') !== false || strpos($url,'taxonomy=post_tag') !== false) {
 		function add_style() {
-			wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'mrcat/assets/css/admin_v051.css');
+			wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'mrcat/assets/css/admin_v060.css');
 		}
 		add_action('admin_footer', 'add_style');
 	}
