@@ -39,6 +39,14 @@ defined('ABSPATH') or die;
 					} else {
 						$perpageclass = "mrwid-pages";
 					}
+					/*
+					Get the autoplay seconds
+					*/
+					if($autoplay && $autoplay != "∞" && $autoplay > 0) {
+						$autoplay = ' mrwid-autoplay'.$autoplay."s mrwid-transitionright";
+					} else {
+						$autoplay = "";
+					}
 				}
 				/*
 				Get current active categories.
@@ -87,7 +95,46 @@ defined('ABSPATH') or die;
 						*/
 						if(is_admin()) {
 						} else {
-							$content .= '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).'">';
+							$content .= '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).$autoplay.'">';
+							if($tabs == 1) { //Items Tabs
+								$content .= '<ul class="mrwid-tabs mrwid-items">';
+								foreach ( $itemlist as $key => $tab) {
+									$tabid = $tab->term_id;
+									/*
+									If there is a pinned item, pin also the tab.
+									*/
+									if(!$pin) {
+										$pinned = '';
+									} else if($pin == $tabid) {
+										$pinned = ' active';
+									} else if($pin != $tabid) {
+										$pinned = ' inactive';
+									}
+									/*
+									Get the manual order also for the tabs
+									*/
+									if ($manualordering[$tabid]) {
+										$manualorder = '-ms-flex-order: '.$manualordering[$tabid].'; -webkit-order: '.$manualordering[$tabid].'; order: '.$manualordering[$tabid].';';
+									} else {
+										$manualorder = '-ms-flex-order: 0; -webkit-order: 0; order: 0;';
+									}
+									$content .= '<li class="itemid-'.$tabid.' '.$tab->slug.' mr-tab'.$pinned.'" style="'.$manualorder.'">'.$tab->name.'</li>';
+								}
+								$content .= '</ul>';
+							}
+							if($tabs == 2) { //Parent Items Tabs
+								$content .= '<ul class="mrwid-tabs mrwid-parentitems">';
+								foreach ( $itemlist as $key => $tab) {
+									$tabid = $tab->term_id;
+									if ($manualordering[$tabid]) {
+										$manualorder = '-ms-flex-order: '.$manualordering[$tabid].'; -webkit-order: '.$manualordering[$tabid].'; order: '.$manualordering[$tabid].';';
+									} else {
+										$manualorder = '-ms-flex-order: 0; -webkit-order: 0; order: 0;';
+									}
+									$content .= '<li class="parentitemid-'.$tabid.' '.$tab->slug.' mr-tab" style="'.$manualorder.'">'.$tab->name.'</li>';
+								}
+								$content .= '</ul>';
+							}
 						}
 						$itemcount = 0;
 						$pagecount = 1;
