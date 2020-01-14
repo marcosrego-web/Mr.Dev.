@@ -28,5 +28,19 @@ defined('_JEXEC') or die;
 	} else if($layout == 'Menu' ) {
 		$layoutoptions = array('checkcurrent','toggle02','toggle03','hambmob','revealactive','hideinactives','subcatactive');
 		$perpage = 0;
+	} else if($layout == 'Tabs' ) {
+		$layoutoptions = array('themestyle','expandactive','portrait','onlyactives','donotinactive');
+		if($tabs == 0) {
+			$tabs = 1;
+		}
+		$perline = 0;
+	} else if($layout == 'Mosaic' ) {
+		$layoutoptions = array('themestyle','landscape','hideinactives','donotinactive');
+		if($tabs == 0) {
+			$tabs = 2;
+		}
+		if($perline == 0 || $perline == '∞') {
+			$perline = 3;
+		}
 	}
 ?>
