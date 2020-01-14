@@ -7,10 +7,10 @@
 -->
 <extension type="module" version="3.7" client="site" method="upgrade">
 	<name>MR Categories</name>
-	<version>0.5.1</version>
+	<version>0.6.0</version>
 	<author>Marcos Rego</author>
-	<creationDate>December 2019</creationDate>
-	<copyright>Copyright (c) 2019 Marcos Rego. All rights reserved.</copyright>
+	<creationDate>January 2020</creationDate>
+	<copyright>Copyright (c) 2020 Marcos Rego. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>web@marcosrego.com</authorEmail>
 	<authorUrl>https://marcosrego.com</authorUrl>
@@ -99,19 +99,19 @@
 					default="0"
 					filter="integer"
 				>
-				<option value="0">∞</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-				<option value="9">9</option>
-				<option value="10">10</option>
-				<option value="11">11</option>
-				<option value="12">12</option>
+					<option value="0">∞</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
 				</field>
 				<field
 					name="perpage"
@@ -131,6 +131,18 @@
 					<option value="4">Scroll</option>
 				</field>
 				<field
+					name="tabs"
+					type="list"
+					label="Tabs"
+					description=""
+					default="0"
+					filter="integer"
+				>
+					<option value="0">None</option>
+					<option value="1">Categories</option>
+					<option value="2">Parent categories</option>
+				</field>
+				<field
 					name="pagetransition"
 					type="list"
 					label="Transition"
@@ -143,6 +155,15 @@
 					<option value="zoom">Zoom</option>
 					<option value="none">None</option>
 				</field>
+				<field
+					name="autoplay"
+					type="number"
+					label="Autoplay"
+					description="Choose how many seconds the autoplay should take to change page. Leave empty or choose '0' to turn off autoplay."
+					default=""
+					hint="∞"
+					filter="integer"
+				/>
 			</fieldset>
 			<fieldset name="mrcat_display" label="Display">
 				<field
@@ -246,11 +267,12 @@
 				<fieldset name="mrcat_options" label="Options">
 				<field name="globallayoutoptions" type="checkboxes" class="mrwid-checkbox" label="Global layout options">
 					<option value="windowheight">Window height</option>
+					<option value="onlyactives">Only show actives</option>
+					<option value="hideinactives">On active hide inactives</option>
+					<option value="keepactive">Keep other actives opened</option>
+					<option value="subcatactive">Only show subcategories of active</option>
 					<option value="contentpagination">Pagination inside content</option>
 					<option value="donotinactive">Do not inactive on click</option>
-					<option value="keepactive">Keep other actives opened</option>
-					<option value="hideinactives">When active hide inactives</option>
-					<option value="subcatactive">Only show subcategories of active</option>
 				</field>
 				<field name="itemoptions" type="checkboxes" class="mrwid-checkbox" label="Other options">
 					<option value="artcount">Show number of articles</option>
