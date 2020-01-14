@@ -38,6 +38,14 @@ defined('_JEXEC') or die;
 					} else {
 						$perpageclass = "mrwid-pages";
 					}
+					/*
+					Get the autoplay seconds
+					*/
+					if($autoplay && $autoplay != "∞" && $autoplay > 0) {
+						$autoplay = ' mrwid-autoplay'.$autoplay."s mrwid-transitionright";
+					} else {
+						$autoplay = "";
+					}
 				/*
 				Get current active categories.
 				*/
@@ -85,14 +93,30 @@ defined('_JEXEC') or die;
 				$query->order($orderby.' '.$order);
 				$db->setQuery($query);
                 $categories = $db->loadObjectList();
-				 $itemlist = $categories;
+				$itemlist = $categories;
 				/* Get extra classes to give to the main container */
 				if ( ! empty( $itemlist ) ) {
 						/*
 						Start the content with the container for the categories.
 						The theme name, the layout name and the global options are imploded in here has classes.
 						*/
-						echo  '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).'">';
+						echo  '<div class="mr-widget mr-categories mrwid-theme mrwid-'.strtolower($theme).'"><div class="mrwid-layout mrwid-'.strtolower($layout).' mrwid-'.implode(" mrwid-", $layoutoptions).' mrwid-'.implode(" mrwid-", $globallayoutoptions).' mrwid-'.implode(" mrwid-", $itemoptions).$autoplay.'">';
+						if($tabs == 1) { //Items Tabs
+							echo '<ul class="mrwid-tabs mrwid-items">';
+							foreach ( $itemlist as $key => $tab) {
+								$tabid = $tab->id;
+								echo '<li class="itemid-'.$tabid.' '.$tab->alias.' mr-tab">'.$tab->title.'</li>';
+							}
+							echo '</ul>';
+						}
+						if($tabs == 2) { //Parent Items Tabs
+							echo '<ul class="mrwid-tabs mrwid-parentitems">';
+							foreach ( $itemlist as $key => $tab) {
+								$tabid = $tab->id;
+								echo '<li class="parentitemid-'.$tabid.' '.$tab->alias.' mr-tab">'.$tab->title.'</li>';
+							}
+							echo '</ul>';
+						}
 						$itemcount = 0;
 						$pagecount = 1;
 						foreach ( $itemlist as $key => $item) {
