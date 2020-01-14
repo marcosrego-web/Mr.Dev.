@@ -2,11 +2,11 @@
     "name" : "Mr.Cat.",
     "slug" : "mrcat",
     "homepage" : "https://marcosrego.com/en/web-en/mrcat-en/",
-    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.5.1/mrcat-wordpress.zip",
+    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.6.0/mrcat-wordpress.zip",
     
-    "version" : "0.5.1",
-    "tested" : "5.3.1",
-    "last_updated" : "2019-12-15 20:00:00",
+    "version" : "0.6.0",
+    "tested" : "5.3.2",
+    "last_updated" : "2020-01-14 20:00:00",
     "upgrade_notice" : "",
     
     "author" : "Marcos Rego",
@@ -19,6 +19,6 @@
     
     "sections" : {
         "description" : "<p><strong>Mr.Cat.</strong> brings you the widget 'MR Categories'. Display categories with descriptions, media and links, in a variety of layouts with many customizable options.</p><p><strong>MR Categories</strong><br>Some content display plugins and CMS do not highlight categories as much as posts. But that could be practicle for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.</p><p>'MR Categories' makes it easier and faster to display categories and have your websites structured in ways such as:</p><p>Page with categories > Category page with posts > Post</p>",
-        "changelog" : "<p><strong>New features:</strong></p><ul><li>Select 'Intro text' or 'Full text' as items' descriptions, besides 'Item Description' ('Item Description' will get the intro, if the intro is not defined it will get the full text.)</li><li>Choose the maximum number of characters (cleaning html) for Titles and Descriptions.</li><li>New pagination transitions: 'Scale', 'Zoom', 'None'.</li><li>'Keyboard' pagination toggle.</li></ul><p><strong>Corrected bugs:</strong></p><ul><li>The 'expand active' option (used in layouts such as 'Accordion') was shrinking the content of inactive items on Safari versions prior to 11. Apple still supports version 10.13 so 'intrinsic' and other prefixes were added to 'width: max-content' to correct this problem.</li><li>In some situations the detection of Internet Explorer using PHP was not working for IE10 &amp; 11 and was improved.</li></ul><p><strong>Improvements</strong></p><ul><li>Around 13 improvements were made, including changing all jQuery to Vanilla Javascript to not have dependencies and sliding to left or right when using the pagination toggle 'arrows'. <a href='https://github.com/marcosrego-web/Mr.Dev./projects/1#card-30092403' title='Mr.Dev - Improvements' target='_blank'>More details here</a>.</li></ul><p></p><p><em>See the full changelog on <strong><a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'>Github</a></strong>.</em></p>"
+        "changelog" : "<p><em>See the changelog on <strong><a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'>Github</a></strong>.</em></p>"
     }
 }
