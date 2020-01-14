@@ -14,7 +14,9 @@ $module_id = intval($module->id);
 $globallayoutoptions = array_map("htmlspecialchars", $params->get('globallayoutoptions'));
 $perline = intval($params->get('perline'));
 $perpage = intval($params->get('perpage'));
+$autoplay = intval($params->get('autoplay'));
 $pagetransition = htmlspecialchars($params->get('pagetransition'));
+$tabs = intval($params->get('tabs'));
 $pagetoggles = array_filter($params->get('pagetoggles'), 'is_numeric');
 $orderby = intval($params->get('orderby'));
 $order = intval($params->get('order'));
@@ -43,8 +45,8 @@ if ( empty( $pagetoggles ) ) {
 	$pagetoggles = array(0); //Defaults to 'Arrows'
 }
 // global scripts and styles
-$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v051.js', true, false); 
-$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/assets/css/mrcat_v051.css');
+$doc->addScript(JURI::base().'modules/mod_mrcat/assets/js/mrcat_v060.js');
+$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/assets/css/mrcat_v060.css');
 $browsercheck = $_SERVER['HTTP_USER_AGENT'];
 if ( strpos($browsercheck, 'rv:11.0') !== false && strpos($browsercheck, 'Trident/7.0;')!== false || isset($browsercheck) && (strpos($browsercheck, 'MSIE') !== false)) {
 	/*Polyfill for Vanilla Javascript on Internet Explorer*/
@@ -58,7 +60,7 @@ if(!$params['appearance']->theme || $params['appearance']->theme != 'Custom') {
 		$theme = htmlspecialchars($params['appearance']->theme);
 	}
 	include JPATH_ROOT.'/modules/mod_mrcat/themes/'.$theme.'/index.php';
-	$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/themes/'.$theme.'/'.$theme.'_v051.css');
+	$doc->addStyleSheet(JURI::base().'modules/mod_mrcat/themes/'.$theme.'/'.$theme.'_v060.css');
 } else {
 	//CUSTOM THEME
 	$theme = htmlspecialchars($params['appearance']->customthemeoptions->customtheme);
