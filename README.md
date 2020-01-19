@@ -6,7 +6,7 @@ The widget/module initially comes with one simple theme with many layouts to cho
 
 Mr.Dev. starts with categories because some *content display plugins* and *CMS* do not highlight categories as much as posts/articles. But that could be practicle for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.
 
-This widget makes it easier and faster to have websites structured in ways such as:\
+This widget/module makes it easier and faster to have websites structured in ways such as:\
 *Page/Menu with categories > Category page with posts/articles > Post/Article*
 
 
