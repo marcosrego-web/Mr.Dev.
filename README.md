@@ -1,5 +1,4 @@
 # Mr.Dev.
-### Description
 A pack of developing tools for Wordpress and Joomla. Display content with many customizable layouts and options.
 
 The widget/module initially comes with one simple theme with many layouts to choose from. It also includes a custom layout to choose each option and it's possible to develop new custom themes. This is perfect if you already have a website and want to display your content in a new way, while keeping the look & feel of your current template.
