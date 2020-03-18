@@ -1,0 +1,220 @@
+.mr-section {
+	text-align: left;
+	font-weight: 600;
+	margin: 20px 0;
+	cursor: pointer;
+	width: 100%;
+	display: block;
+}
+.mr-section a {
+	color: #000;
+    text-decoration: none;
+	display: block;
+}
+.mr-notice {
+	background-color: #fff;
+	border: 1px solid #ccd0d4;
+    box-shadow: 0 1px 1px rgba(0,0,0,.04);
+}
+.mr-notice p {
+	padding: 15px;
+	margin: 0;
+}
+.mr-admin summary:focus {
+	outline: inherit;
+}
+.mr-admin details p {
+    box-sizing: border-box;
+}
+.mr-pagination-input {
+	width: 44px;
+	padding-right: 0 !important;
+}
+input.mr-input {
+	width: 35px !important;
+	padding-right: 0;
+}
+.mr-themes, .mr-layouts, .mr-label {
+	text-transform: capitalize;
+}
+input.mr-checkbox {
+	margin-left: 1px;
+}
+input.mr-pinbox {
+	margin-top: 1px;
+    margin-right: 10px;
+    margin-left: 1px;
+}
+input.mr-radio {
+	margin-right: 11px;
+	margin-top: 0;
+}
+.mr-halfsize {
+	width: 50%;
+	float: left;
+}
+.mr-halfsize + .mr-halfsize {
+	float: inherit;
+}
+.mr-checked {
+	background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/PjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iNDMuODQ1cHgiIGhlaWdodD0iNDMuODQ1cHgiIHZpZXdCb3g9IjAgMCA0My44NDUgNDMuODQ1IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA0My44NDUgNDMuODQ1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGc+PHBhdGggZD0iTTI0LjU1MiwyOS40OTFjMCwwLjU1My0xLjExNywxLTIuNSwxYy0xLjM4MSwwLTIuNS0wLjQ0Ny0yLjUtMXMxLjExOS0xLDIuNS0xQzIzLjQzNSwyOC40OTEsMjQuNTUyLDI4LjkzOSwyNC41NTIsMjkuNDkxeiBNNDMuNTUyLDI3LjI4MmMwLDIuOTM4LTEuODQ4LDUuNDM2LTQuMzg5LDYuMjY4Yy0zLjI1OCw2LjI1NS05LjgxMSwxMC4yOTUtMTcuMDgsMTAuMjk1Yy03LjI2MywwLTEzLjgwNy00LjAyOC0xNy4wNjgtMTAuMjcxYy0yLjU3OC0wLjgwNy00LjQ2My0zLjMyMS00LjQ2My02LjI5MWMwLTEuODE1LDAuNzEtMy40NTcsMS44NDgtNC42NDZjLTAuOC0wLjgxOS0xLjQwNy0xLjg2Ni0xLjc2MS0zLjA5NGMtMC41OTktMi4wNzctMC40MTYtNC40MTEsMC41MTYtNi41NzJjMS4xMTMtMi41ODYsMy4xNjQtNC41Myw1LjQ2Ni01LjMzNWMwLjUyLTUuNzU3LDEwLjI0OC03LjgyMiwxNi42ODItNy42MjJjOS4wOTMsMC4yODQsMTEuMjI0LDQuNDE4LDExLjYwMiw3LjI4MWMyLjkxNiwwLjMyNiw1LjY4NSwyLjUxMSw3LjA0Nyw1LjY3NmMwLjkzMSwyLjE2MSwxLjExNCw0LjQ5NSwwLjUxNyw2LjU3MmMtMC4yODMsMC45ODMtMC43MzEsMS44NTEtMS4zMDksMi41NzlDNDIuNjE0LDIzLjMyMSw0My41NTIsMjUuMTkxLDQzLjU1MiwyNy4yODJ6IE0yNC43MTQsMzguNTkyTDI0LjI0LDM2LjQ3aC00LjM0NmwtMC40ODcsMi4xMTNjMC42NjYtMC4yOTksMS42MDItMC40ODgsMi42NDUtMC40ODhDMjMuMTA2LDM4LjA5NSwyNC4wNDYsMzguMjg4LDI0LjcxNCwzOC41OTJ6IE0zOS41NTIsMjcuMjgyYzAtMS40MTYtMC45OTgtMi41NjMtMi4yNC0yLjU2M2MtMC4wMDEsMC0wLjAwNCwwLTAuMDA2LDAuMDAxYy0wLjM0LDAuNTQ3LTAuNzI5LDEuMDc0LTEuMTcsMS41NzVjMC4yNzctMC44OTYsMC40NjEtMS44MSwwLjU2MS0yLjcyNmMtMC4wMDEtMC4wMTUtMC4wMDMtMC4wMjYtMC4wMDQtMC4wMzljLTEuMzAzLTAuNjk0LTIuNjQxLTIuMTkyLTMuNTYxLTQuMTY2Yy0wLjk1OS0yLjA1OS0xLjIzMy00LjEzMy0wLjg2NC01LjU4OGMtMy42OTksMi4zNDYtOS45NjQsMS4yMzItOS45NjQsMS4yMzJjLTMuNzUsMC4yNS00Ljc1LDUtNC43NSw1Yy0xLjczOS0wLjM4Ny0zLjU1LTEuNTk2LTUuMTIyLTIuOTM0Yy0wLjE2OSwwLjc0NC0wLjQzLDEuNTE3LTAuNzksMi4yODdjLTEuMDczLDIuMzAyLTIuNzEzLDMuOTU3LTQuMjAyLDQuNDQyYzAuMTA1LDAuODM2LDAuMjc4LDEuNjcsMC41MzEsMi40ODdjLTAuNDQxLTAuNTAxLTAuODMxLTEuMDI4LTEuMTctMS41NzVjLTAuMDAyLDAtMC4wMDMtMC4wMDEtMC4wMDUtMC4wMDFjLTEuMjQ0LDAtMi4yNDIsMS4xNDctMi4yNDIsMi41NjNzMC45OTgsMi41NjIsMi4yNDIsMi41NjJjMC4zMTEsMCwwLjYwNS0wLjA3MSwwLjg3NC0wLjIwMWMwLjI3MSwwLjc5MSwwLjYxMiwxLjU1MiwxLjAwNywyLjI3N2MyLjIyNiwwLjc4Niw1LjQ3LDIuMzQ0LDcuMDEyLDQuOTkzbDAuNjY3LTIuODk1YzAuMjA5LTAuOTA3LDEuMDE3LTEuNTUyLDEuOTQ5LTEuNTUyaDcuNTQxYzAuOTM4LDAsMS43NSwwLjY0OSwxLjk1MywxLjU2NWwwLjYzNiwyLjg1M2MxLjU2NS0yLjY2NSw0Ljg1NC00LjIyLDcuMDc1LTQuOTk1YzAuMzg2LTAuNzExLDAuNzE4LTEuNDU1LDAuOTgzLTIuMjI5YzAuMjU0LDAuMTEzLDAuNTI4LDAuMTgyLDAuODE3LDAuMTgyQzM4LjU1NCwyOS44NDUsMzkuNTUyLDI4LjY5NiwzOS41NTIsMjcuMjgyeiBNMTUuMjYsMjEuNzYxYy0xLjI0MSwwLTIuMjUsMS4wMS0yLjI1LDIuMjVjMCwxLjI0LDEuMDA5LDIuMjUsMi4yNSwyLjI1YzEuMjQxLDAsMi4yNS0xLjAxLDIuMjUtMi4yNUMxNy41MSwyMi43NzEsMTYuNTAyLDIxLjc2MSwxNS4yNiwyMS43NjF6IE0yOC44NDUsMjEuNzYxYy0xLjI0LDAtMi4yNSwxLjAxLTIuMjUsMi4yNWMwLDEuMjQsMS4wMSwyLjI1LDIuMjUsMi4yNXMyLjI1LTEuMDEsMi4yNS0yLjI1QzMxLjA5NSwyMi43NzEsMzAuMDg1LDIxLjc2MSwyOC44NDUsMjEuNzYxeiIvPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48Zz48L2c+PGc+PC9nPjxnPjwvZz48L3N2Zz4=') !important;
+	background-size: contain !important;
+    background-repeat: no-repeat !important;
+}
+.mr-checked:checked {
+	background-image: inherit !important;
+}
+.mr-checked:checked:before {
+	content: "" !important;
+	background-color: transparent !important;
+}
+.mr-heading {
+	margin-bottom: 0;
+}
+.mr-heading label:not(:last-child) {
+	margin-right: 3px;
+}
+.mr-list {
+	height: 195px;
+    resize: vertical;
+    overflow: auto;
+    padding: 3px 0;
+}
+.mr-parents {
+	height: 70px;
+    overflow: auto;
+	padding: 3px;
+	resize: vertical;
+}
+.mr-list-container, .mr-parents {
+	display: flow-root;
+}
+.mr-parentscontainer {
+	border: 1px solid #7e8993;
+	padding: 6px 10px;
+	border-radius: 3px;
+}
+.mr-notchilds {
+	padding-left: 71px;
+}
+.mr-childs {
+	display: inline-flex;
+	align-items: center;
+	width: 100%;
+}
+.mr-childs .mr-input {
+	margin-right: 8px;
+    padding-right: 0;
+    min-height: inherit;
+    height: 20px;
+}
+.mr-list:not(.including) label:not(.selectall) .mr-checkbox:checked:before, #wpbody-content table.form-table input[type="checkbox"]:checked:before {
+	content: "\f530";
+	font: normal 19px/1 dashicons;
+    margin-left: -3px;
+}
+.mr-list.including label:not(.selectall) .mr-checkbox:checked:before {
+	content: "\f177";
+    font: normal 18px/1.2 dashicons;
+    margin-left: -3px;
+}
+.mr-list.including.selectall .mr-childs .mr-checkbox {
+	opacity: 0.3;
+}
+.mr-list.including.selectall label:not(.selectall):not(.mr-notchilds) .mr-checkbox:checked:before, .mr-list.including.selectall label:not(.selectall):not(.mr-notchilds) .mr-checkbox:not(:checked):before {
+	content: "\f177";
+    font: normal 18px/1.2 dashicons;
+    margin-left: -3px;
+}
+.mr-mediabtn {
+	float: inherit;
+	position: relative;
+}
+.mr-mediabtn .button {
+    text-align: center;
+    border-radius: 0;
+	margin: 0;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	min-height: 30px;
+    border-radius: 4px;
+}
+.mr-mediabtn .button:active {
+	position: absolute;
+	top: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.mr-mediabtn input {
+	width: 100%;
+	padding-right: 40px;
+}
+.mr-mediabtn img {
+	display: none;
+	position: absolute;
+    bottom: 29px;
+    right: 0;
+    width: auto;
+    height: 55px;
+	padding: 0;
+	box-shadow: 0 0 0 transparent;
+    border-radius: 4px;
+    border: 1px solid #7e8993;
+}
+.mr-mediabtn:hover img, .mr-mediabtn:focus img {
+	display: block;
+}
+.mr-imagessize, .mr-bottomlinktext {
+	width: 100%;
+}
+@media screen and (max-width: 782px) {
+	input.mr-input {
+		width: 45px !important;
+		height: 25px;
+		margin: 0 !important;
+		font-size: 14px;
+	}
+	.mr-notchilds {
+		padding-left: 84px;
+	}
+	.mr-childs .mr-input {
+		margin-right: 5px !important;
+		height: 25px;
+	}
+	input.mr-checkbox {
+		margin-top: 0;
+	}
+	input.mr-pinbox {
+		margin-right: 8px;
+		margin-left: 1px;
+	}
+	input.mr-radio {
+		margin-right: 8px;
+		margin-top: 0;
+	}
+	.mr-heading label:not(:last-child) {
+		margin-right: 10px;
+	}
+	.mr-list.including label:not(.selectall) .mr-checkbox:checked:before, .mr-list.including.selectall label:not(.selectall):not(.mr-notchilds) .mr-checkbox:checked:before, .mr-list.including.selectall label:not(.selectall):not(.mr-notchilds) .mr-checkbox:not(:checked):before, .mr-list:not(.including) label:not(.selectall) .mr-checkbox:checked:before, #wpbody-content table.form-table input[type="checkbox"]:checked:before {
+		font-size: 28px;
+	}
+	.mr-mediabtn .button {
+		min-height: 40px;
+	}
+	.mr-mediabtn img {
+		bottom: 39px;
+	}
+	.mr-parentscontainer {
+		padding: 11px 10px;
+	}
+}
+.description.column-description *:not(p) {
+	height: 100px !important;
+	width: auto !important;
+	overflow: hidden;
+	object-fit: cover;
+}
+.wp-editor-wrap {
+    width: 100%;
+}
