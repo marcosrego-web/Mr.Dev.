@@ -7,9 +7,9 @@
 -->
 <extension type="module" version="3.7" client="site" method="upgrade">
 	<name>Yng.Dev.</name>
-	<version>0.7.0</version>
+	<version>0.7.1</version>
 	<author>Marcos Rego</author>
-	<creationDate>February 2020</creationDate>
+	<creationDate>March 2020</creationDate>
 	<copyright>Copyright (c) 2020 Marcos Rego. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>web@marcosrego.com</authorEmail>
@@ -145,7 +145,7 @@
 					hint="∞"
 					filter="integer"
 				/>
-				<field name="pagetoggles" type="checkboxes" class="mrwid-checkbox" label="Toggles" default="0">
+				<field name="pagetoggles" type="checkboxes" class="mrwid-checkbox" label="Toggles">
 					<option value="0">Arrows</option>
 					<option value="1">Select</option>
 					<option value="2">Radio</option>
@@ -157,13 +157,26 @@
 					name="tabs"
 					type="list"
 					label="Tabs"
-					description=""
+					description="Choose the type of tabs to display and their position."
 					default="0"
 					filter="integer"
 				>
 					<option value="0">None</option>
 					<option value="1">Items</option>
 					<option value="2">Parent items</option>
+				</field>
+				<field
+					name="tabsposition"
+					type="list"
+					label=""
+					description=""
+					default="tabstop"
+					filter="safehtml"
+				>
+					<option value="tabstop">Top</option>
+					<option value="tabsright">Right</option>
+					<option value="tabsbottom">Bottom</option>
+					<option value="tabsleft">Left</option>
 				</field>
 				<field
 					name="pagetransition"

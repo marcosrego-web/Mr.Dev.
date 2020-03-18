@@ -1,62 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-				<form>
-					<field name="theme" type="list" class="mrwid-layouts" label="Theme" default="Default" filter="safehtml">
-					<option value="Default" id="Default">Default</option>
-					<option value="None" id="None">None</option>
-					<option value="Custom" id="Custom">Custom (Advanced)</option>
-				</field>
-				<field showon="theme:Default" name="layout" type="list" class="mrwid-layouts" label="Layout" default="Grid" filter="safehtml">
-					<option value="Grid" id="Grid">Grid</option>
-					<option value="Collapsible" id="Collapsible">Collapsible</option>
-					<option value="Accordion" id="Accordion">Accordion</option>
-					<option value="Slider" id="Slider">Slider</option>
-					<option value="Menu" id="Menu">Menu</option>
-					<option value="Tabs" id="Tabs">Tabs</option>
-					<option value="Mosaic" id="Mosaic">Mosaic</option>
-					<option value="Custom" id="Custom">Custom</option>
-				</field>
-				<field showon="theme:Default[AND]layout:Custom" name="layoutoptions" type="groupedlist"  class="mrwid-checkbox" label="Customize" multiple="true">
-					<group label="Style">
-						<option value="themestyle">Apply theme style</option>
-						<option value="checkcurrent">Current categories or link</option>
-						<option value="verticaltitle">Vertical titles</option>
-					</group>
-					<group label="Toggles">
-						<option value="toggle01">Plus</option>
-						<option value="toggle02">Direction</option>
-						<option value="toggle03">Close</option>
-						<option value="hambmob">Hamburguer mobile</option>
-					</group>
-					<group label="Transitions">
-						<option value="revealactive">Reveal active</option>
-						<option value="expandactive">Expand active</option>
-						<option value="scaleactive">Scale active</option>
-						<option value="opaqueactive">Opaque active</option>
-					</group>
-					<group label="Modes">
-						<option value="landscape">Landscape on portrait window</option>
-						<option value="portrait">Portrait on landscape window</option>
-					</group>
-				</field>
-				<field 
-					name="customthemeoptions"
-					type="subform"
-					formsource="templates/mrdev/index.xml"
-					label="Custom theme options"
-					showon="theme:Custom"
-					description="The custom theme options are located in /templates/mrdev/index.xml. Feel free to edit. Check Mr.Dev. documentation to know more."
-				/>
-				<field showon="theme:Default[AND]layout:Collapsible" name="collapsibleperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Accordion" name="accordionperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Slider" name="sliderperline" type="note" class="alert  alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Slider" name="sliderperpage" type="note" class="alert  alert-info" label="Items per page overriden" description="The current layout might force the items per page number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Slider" name="paginationinsidecontent" type="note" class="alert  alert-info" label="Option overriden" description="The current layout will be forcing the option 'Pagination inside content' on the 'Options' section. Customize or change layout if you want your changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Menu" name="menuperpage" type="note" class="alert alert-info" label="Items per page overriden" description="The current layout might force the items per page number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Menu" name="menuoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'Only show subcategories of active' and 'When active hide inactives' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
-				<field showon="theme:Default[AND]layout:Tabs" name="tabsperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Tabs" name="tabstabs" type="note" class="alert alert-info" label="Tabs overriden" description="The current layout will be forcing the 'Tabs' option on the 'Pagination' section to not be 'None'. You can still change the type of tabs but can't select 'None' while using the current layout." />
-				<field showon="theme:Default[AND]layout:Tabs" name="tabsoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'Only show actives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
-				<field showon="theme:Default[AND]layout:Mosaic" name="mosaicperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
-				<field showon="theme:Default[AND]layout:Mosaic" name="mosaictabs" type="note" class="alert alert-info" label="Tabs overriden" description="The current layout will be forcing the 'Tabs' option on the 'Pagination' section to not be 'None'. You can still change the type of tabs but can't select 'None' while using the current layout." />
-				<field showon="theme:Default[AND]layout:Mosaic" name="mosaicoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'On active hide inactives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
+<?xml version="1.0" encoding="UTF-8"?>
+				<form>
+					<field name="theme" type="list" class="mrwid-layouts" label="Theme" default="Default" filter="safehtml">
+					<option value="Default" id="Default">Default</option>
+					<option value="None" id="None">None</option>
+					<option value="Custom" id="Custom">Custom (Advanced)</option>
+				</field>
+				<field showon="theme:Default" name="layout" type="list" class="mrwid-layouts" label="Layout" default="Grid" filter="safehtml">
+					<option value="Grid" id="Grid">Grid</option>
+					<option value="Collapsible" id="Collapsible">Collapsible</option>
+					<option value="Accordion" id="Accordion">Accordion</option>
+					<option value="Slider" id="Slider">Slider</option>
+					<option value="Menu" id="Menu">Menu</option>
+					<option value="Tabs" id="Tabs">Tabs</option>
+					<option value="Mosaic" id="Mosaic">Mosaic</option>
+					<option value="Custom" id="Custom">Custom</option>
+				</field>
+				<field showon="theme:Default[AND]layout:Custom" name="layoutoptions" type="groupedlist"  class="mrwid-checkbox" label="Customize" multiple="true">
+					<group label="Style">
+						<option value="themestyle">Apply theme style</option>
+						<option value="checkcurrent">Current categories or link</option>
+						<option value="verticaltitle">Vertical titles</option>
+					</group>
+					<group label="Toggles">
+						<option value="toggle01">Plus</option>
+						<option value="toggle02">Direction</option>
+						<option value="toggle03">Close</option>
+						<option value="hambmob">Hamburguer mobile</option>
+					</group>
+					<group label="Transitions">
+						<option value="revealactive">Reveal active</option>
+						<option value="expandactive">Expand active</option>
+						<option value="scaleactive">Scale active</option>
+						<option value="opaqueactive">Opaque active</option>
+					</group>
+					<group label="Modes">
+						<option value="landscape">Landscape on portrait window</option>
+						<option value="portrait">Portrait on landscape window</option>
+					</group>
+				</field>
+				<field 
+					name="customthemeoptions"
+					type="subform"
+					formsource="templates/mrdev/index.xml"
+					label="Custom theme options"
+					showon="theme:Custom"
+					description="The custom theme options are located in /templates/mrdev/index.xml. Feel free to edit. Check Mr.Dev. documentation to know more."
+				/>
+				<field showon="theme:Default[AND]layout:Collapsible" name="collapsibleperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Accordion" name="accordionperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Slider" name="sliderperline" type="note" class="alert  alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Slider" name="sliderperpage" type="note" class="alert  alert-info" label="Items per page overriden" description="The current layout might force the items per page number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Slider" name="paginationinsidecontent" type="note" class="alert  alert-info" label="Option overriden" description="The current layout will be forcing the option 'Pagination inside content' on the 'Options' section. Customize or change layout if you want your changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Menu" name="menuperpage" type="note" class="alert alert-info" label="Items per page overriden" description="The current layout might force the items per page number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Menu" name="menuoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'Only show subcategories of active' and 'When active hide inactives' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
+				<field showon="theme:Default[AND]layout:Tabs" name="tabsperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Tabs" name="tabstabs" type="note" class="alert alert-info" label="Tabs overriden" description="The current layout will be forcing the 'Tabs' option on the 'Pagination' section to not be 'None'. You can still change the type of tabs but can't select 'None' while using the current layout." />
+				<field showon="theme:Default[AND]layout:Tabs" name="tabsoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'Only show actives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
+				<field showon="theme:Default[AND]layout:Mosaic" name="mosaicperline" type="note" class="alert alert-info" label="Items per line overriden" description="The current layout might force the items per line number on the 'Pagination' section. Customize or change layout if you want all changes on that option to take effect." />
+				<field showon="theme:Default[AND]layout:Mosaic" name="mosaictabs" type="note" class="alert alert-info" label="Tabs overriden" description="The current layout will be forcing the 'Tabs' option on the 'Pagination' section to not be 'None'. You can still change the type of tabs but can't select 'None' while using the current layout." />
+				<field showon="theme:Default[AND]layout:Mosaic" name="mosaicoptions" type="note" class="alert alert-info" label="Options overriden" description="The current layout will be forcing the options 'On active hide inactives' and 'Do not inactive on click' on the 'Options' section. Customize or change layout if you want your changes on those options to take effect." />
 				</form>

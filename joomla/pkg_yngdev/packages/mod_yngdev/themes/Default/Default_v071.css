@@ -1,0 +1,1055 @@
+.mr-theme.mr-default .mr-layout .mr-container {
+	position: relative;
+}
+.mr-theme.mr-default .mr-layout .mr-item, .mr-theme.mr-default .mr-layout .mr-item .mr-container .mr-content, .mr-theme.mr-default .mr-layout:not(.mr-parallax) .mr-item .mr-container .mr-image, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image figcaption, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image figcaption small, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab:after {
+	-o-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -webkit-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-windowheight) .mr-pages.mr-perliner .mr-item:not(.active) {
+  min-height: 4.5rem;
+}
+.mr-theme.mr-default .mr-layout .mr-item:not(.active) {
+    width: 100%;
+    z-index: 0;
+	overflow: hidden;
+}
+/*----DO NOT AVOID CLICKABLE ELEMENTS IN SOME SITUATIONS---*/
+.mr-theme.mr-default .mr-layout .mr-pages.mr-1perpage .mr-item:not(.active):before, .mr-theme.mr-default .mr-layout:not(.mr-revealactive):not(.mr-expandactive) .mr-item:not(.active):before {
+	display: none;
+}
+/*----THEME STYLE----*/
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-title {
+	margin: 0;
+	z-index: 14;
+	padding: 0.75rem;
+	position: relative;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-thumbnail .mr-item .mr-container .mr-image {
+	position: relative;
+	margin: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item.active .mr-container .mr-image {
+	z-index: 2;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image {
+	padding: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image figcaption {
+	word-break: break-word;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-verticaltitle) .mr-title {
+	overflow-x: hidden;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content {
+  /*overflow-x: hidden;
+  overflow-y: hidden;*/
+  position: relative;
+  z-index: 2;
+}
+/*.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-windowheight) .mr-item .mr-container, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-windowheight .mr-1perpage .mr-item {
+  height: 100%;
+}*/
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab:after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    border: 0.0625rem solid;
+    opacity: 0.25;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-expandactive .mr-pages:not(.mr-1perline) .mr-item:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pages.mr-1perline .mr-item:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab:after {
+	top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	box-shadow: 0 0 0.3125rem 0 inset;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-expandactive) .mr-pages:not(.mr-1perline) .mr-item:after {
+	top: 0.75rem;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    left: 0.75rem;
+	box-shadow: 0 0 0.3125rem 0;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive) .mr-pages:not(.mr-1perline) .mr-item, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab {
+	padding: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive):not(.mr-revealactive) .mr-pages.mr-1perline .mr-item {
+	margin-top: 0.75rem;
+	margin-bottom: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive).mr-onlyactives .mr-pages:not(.mr-1perline) .mr-item:not(.active) {
+	padding: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item.active:before {
+  display: none;
+}
+/*--IMAGE OVERLAYS--*/
+/*.mr-theme.mr-default .mr-layout.mr-themestyle.mr-overlay .mr-item .mr-container[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay .mr-item .mr-container[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-overlay .mr-item .mr-container .mr-image[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay .mr-item .mr-container .mr-image[style*="background-image"]:after {
+	content: "";
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	filter: invert(1) hue-rotate(180deg);
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-overlay:not(.mr-gradientoverlay) .mr-item .mr-container[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-overlay:not(.mr-gradientoverlay) .mr-item .mr-container .mr-image[style*="background-image"]:after {
+	background-color: currentColor;
+	opacity: 0.5;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay:not(.mr-overlay) .mr-item .mr-container[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay:not(.mr-overlay) .mr-item .mr-container .mr-image[style*="background-image"]:after {
+	background: -moz-radial-gradient(center, ellipse cover,  transparent 0%, currentColor 100%);
+	background: -webkit-radial-gradient(center, ellipse cover,  transparent 0%,currentColor 100%);
+	background: radial-gradient(ellipse at center,  transparent 0%, currentColor 100%);
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay.mr-overlay .mr-item .mr-container[style*="background-image"]:after, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-gradientoverlay.mr-overlay .mr-item .mr-container .mr-image[style*="background-image"]:after {
+	background: -moz-linear-gradient(-45deg,  currentColor 50%, transparent 100%);
+	background: -webkit-linear-gradient(-45deg,  currentColor 50%, transparent 100%);
+	background: linear-gradient(135deg,  currentColor 50%, transparent 100%);
+	opacity: 0.85;
+}*/
+/*--PAGINATION--*/
+.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-contentpagination) .mr-pagination {
+	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:focus, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-next:focus, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-radio:focus, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pageselect:focus {
+	outline: none;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-next {
+	background: transparent;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev span, .mr-theme.mr-default .mr-layout.mr-themestyle  .mr-next span {
+	display: none;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev {
+	float: left;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-next {
+	float: right;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:after, .mr-theme.mr-default .mr-layout.mr-themestyle  .mr-next:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-below:not(.loading):after {
+	content: "";
+	display: block;
+    border-style: solid;
+    opacity: 0.25;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:after {
+	border-width: 0.75rem 0.75rem 0.75rem 0rem;
+	border-color: transparent currentColor transparent transparent;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-next:after {
+	border-width: 0.75rem 0 0.75rem 0.75rem;
+	border-color: transparent transparent transparent currentColor;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-pageselect {
+	margin: 0 auto;
+    background: transparent;
+	border: 0;
+	display: block;
+	opacity: 0.5;
+	width: auto;
+	border-radius: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-pageselect:checked {
+	background: currentColor;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio {
+	position: relative;
+	width: 1rem;
+	height: 1rem;
+    opacity: 0.5;
+    border-radius: 100%;
+    display: inline-block;
+	margin: 0.3rem;
+	vertical-align: middle;
+	-webkit-appearance: unset;
+	box-shadow: none;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio:before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 100%;
+	box-shadow: 0 0 0.2125rem 0 inset;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio[checked="true"]:before, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio[checked="checked"]:before {
+	background: currentColor;
+    opacity: 0.5;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:hover:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-next:hover:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio:hover, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio:hover:before, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-pageselect:hover, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:focus:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-next:focus:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio:focus, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio:focus:before, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-pageselect:focus {
+	opacity: 1;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below {
+	background: transparent;
+	opacity: 0.25;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	height: 0.75rem;
+	width: 1.5rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below {
+	margin-left: calc(50% - 0.75rem);
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-contentpagination) .mr-next + .mr-below {
+	margin-left: calc(50% - 1.5rem);
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below:not(.loading) span {
+	display: none;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below:not(.loading):after {
+	opacity: 1;
+	border-width: 0.75rem 0.75rem 0 0.75rem;
+	border-color: currentColor transparent transparent transparent;
+	width: 0.75rem;
+    margin: 0 auto;
+}
+.mr-theme .mr-layout.mr-themestyle.mr-contentpagination .mr-next, .mr-theme .mr-layout.mr-themestyle.mr-contentpagination .mr-prev {
+	top: calc(50% - 0.75rem);
+}
+.mr-theme .mr-layout.mr-themestyle.mr-contentpagination .mr-prev {
+	left: 0.75rem;
+}
+.mr-theme .mr-layout.mr-themestyle.mr-contentpagination .mr-next {
+	right: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-contentpagination .mr-below, .mr-theme.mr-default .mr-layout.mr-themestyle.mr-contentpagination .mr-pagination {
+	bottom: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-contentpagination .mr-below:not(.mr-hidden) + .mr-pagination {
+	bottom: 2rem;
+}
+@media only screen and (max-width: 59.94em) {
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-prev:after {
+		border-width: 1rem 1rem 1rem 0rem;
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-next:after {
+		border-width: 1rem 0 1rem 1rem;
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-radio {
+		width: 1.375rem;
+		height: 1.375rem;
+		margin: 0.325rem;
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pagination .mr-pageselect {
+		transform: scale(1.2);
+		transform-origin: center;
+		margin-top: 0.5rem;
+		margin-bottom: 0.5rem;
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below:not(.loading) {
+		height: 1rem;
+		width: 2rem;
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below {
+		margin-left: calc(50% - 1rem);
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-contentpagination) .mr-next + .mr-below {
+		margin-left: calc(50% - 2rem);
+	}
+	.mr-theme.mr-default .mr-layout.mr-themestyle .mr-below:not(.loading):after {
+		border-width: 1rem 1rem 0 1rem;
+		width: 1rem;
+	}
+}
+/*--IMAGES--*/
+/*.mr-theme.mr-default .mr-layout.mr-themestyle.mr-revealactive:not(.mr-expandactive) .mr-item .mr-container .mr-image {
+	min-height: 100%;
+}*/
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image {
+	margin: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item:not(.active) .mr-container .mr-image figcaption, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item:not(.active) .mr-container .mr-image figcaption small {
+	opacity: 0;
+	font-size: 0;
+	line-height: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item.active .mr-container .mr-image figcaption, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item.active .mr-container .mr-image figcaption small {
+	opacity: 1;
+}
+.mr-theme.mr-default .mr-layout.mr-revealactive:not(.mr-expandactive) .mr-item .mr-container .mr-image {
+	float: left;
+	max-width: 20%;
+	height: auto;
+}
+.mr-theme.mr-default .mr-layout.mr-revealactive:not(.mr-expandactive) .mr-item .mr-container .mr-image + .mr-title {
+	padding-left: 0;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-themestyle).mr-revealactive .mr-item .mr-container .mr-image {
+	margin-right: 0.75rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-revealactive):not(.mr-expandactive) .mr-item .mr-container .mr-image {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	text-align: center;
+}
+/*--CURRENT CATEGORIES AND ACTIVE TABS---*/
+.mr-theme.mr-default .mr-layout:not(.mr-themestyle).mr-checkcurrent .mr-item.mr-current .mr-container {
+	border-bottom: 1px solid;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab:after {
+	border-bottom: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-checkcurrent .mr-item.mr-current:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab.active:after, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-tab:hover:after {
+	opacity: 0.5;
+}
+/*----PER LINE----*/
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-pages:not(.mr-perliner) .mr-item {
+	overflow: hidden;
+}
+@media only screen and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-item  {
+		min-height: inherit;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-item:not(.active) .mr-content {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-item .mr-container .mr-image {
+		float: left;
+		max-width: 20%;
+		height: auto;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-item .mr-container .mr-image + .mr-title {
+		padding-left: 0;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-themestyle.mr-expandactive:not(.mr-portrait) .mr-item .mr-container .mr-image {
+		max-height: 20%;
+		max-width: inherit;
+	}*/
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-content {
+		width: auto;
+		width: intrinsic;
+		width: -moz-max-content;
+		width: -webkit-max-content;
+		width: max-content;
+	}
+	_:-ms-lang(x), _:-webkit-full-screen, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-content {
+		white-space: nowrap;
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-thumbnail).mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-content {
+		min-width: calc(100% - 0.75rem - 0.75rem);
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-thumbnail).mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle):not(.mr-contentpagination) .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle):not(.mr-contentpagination) .mr-pages .mr-item .mr-container .mr-content {
+		max-width: calc(100vw - 0.75rem - 0.75rem);
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-thumbnail).mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle).mr-contentpagination .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle).mr-contentpagination .mr-pages .mr-item .mr-container .mr-content {
+		max-width: calc(100vw - 0.75rem - 0.75rem - 1.75rem - 1.75rem);
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages:not(.mr-perliner) {
+		flex-direction: column;
+	}
+}
+@media only screen and (orientation: portrait) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-lanscape) .mr-item  {
+		min-height: inherit;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-container  {
+		max-width: inherit;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-landscape) .mr-item:not(.active) .mr-content {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-landscape) .mr-item .mr-container .mr-image {
+		float: left;
+		max-width: 20%;
+		height: auto;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-landscape) .mr-item .mr-container .mr-image + .mr-title {
+		padding-left: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-verticaltitle.mr-landscape .mr-pages:not(.mr-perliner) .mr-item {
+		height: 100%;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-themestyle.mr-expandactive.mr-landscape .mr-item .mr-container .mr-image {
+		max-height: 20%;
+		max-width: inherit;
+		float: inherit;
+	}*/
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		width: auto;
+		width: intrinsic;
+		width: -moz-max-content;
+		width: -webkit-max-content;
+		width: max-content;
+	}
+	_:-ms-lang(x), _:-webkit-full-screen, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		word-wrap: none;
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-thumbnail).mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait.mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		min-width: calc(100% - 0.75rem - 0.75rem);
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle):not(.mr-contentpagination) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait.mr-landscape:not(.mr-verticaltitle):not(.mr-contentpagination) .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle):not(.mr-contentpagination) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		max-width: calc(100vw - 0.75rem - 0.75rem);
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-thumbnail).mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle).mr-contentpagination .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait.mr-landscape:not(.mr-verticaltitle).mr-contentpagination .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle).mr-contentpagination .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		max-width: calc(100vw - 0.75rem - 0.75rem - 1.75rem - 1.75rem);
+	}
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive) .mr-pages:not(.mr-1perline), .mr-theme.mr-default .mr-layout:not(.mr-expandactive) .mr-tabs {
+	margin: 0 -0.75rem;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive):not(.mr-tabsleft):not(.mr-tabsright) .mr-pages:not(.mr-1perline), .mr-theme.mr-default .mr-layout:not(.mr-tabsleft):not(.mr-tabsright):not(.mr-expandactive) .mr-tabs {
+	width: calc(100% + 0.75rem + 0.75rem);
+}
+.mr-theme.mr-default .mr-layout.mr-tabsleft:not(.mr-expandactive) .mr-pages:not(.mr-1perline), .mr-theme.mr-default .mr-layout.mr-tabsright:not(.mr-expandactive) .mr-pages:not(.mr-1perline) {
+	width: calc(75% + 0.75rem + 0.75rem);
+}
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive) .mr-tab {
+	margin: 0.75rem;
+}
+/*--REVEAL ACTIVE--*/
+.mr-theme.mr-default .mr-layout.mr-revealactive .mr-item:not(.active) .mr-content {
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item, .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item .mr-container {
+	height: 100%;
+}
+.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item .mr-container {
+	overflow: hidden;
+}
+.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active, .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active .mr-container {
+	height: auto;
+}
+.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active .mr-container {
+	overflow: initial;
+	min-height: 100%;
+}
+/*--EXPAND ACTIVE---*/
+.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-verticaltitle .mr-pages:not(.mr-perliner) .mr-container {
+	width: auto;
+	width: intrinsic;
+	width: -moz-max-content;
+	width: -webkit-max-content;
+	width: max-content;
+}
+.mr-theme.mr-default .mr-layout.mr-expandactive.mr-verticaltitle .mr-pages:not(.mr-perliner) .mr-container {
+	min-width: calc(100% - 0.75rem - 0.75rem);
+	max-width: calc(100vw - 0.75rem - 0.75rem);
+}
+.mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages:not(.mr-perliner) .mr-item.active .mr-container {
+	height: 100%;
+    overflow: auto;
+}
+/*.mr-theme.mr-default .mr-layout.mr-expandactive.mr-contentpagination .mr-pages:not(.mr-1perpage) .mr-item .mr-container {
+	padding-right: 0;
+	padding-left: 0;
+}*/
+@media only screen and (orientation: landscape) {
+   .mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active .mr-container {
+	  overflow: auto;
+  }
+  /*.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-image img {
+	  max-width: inherit;
+  }*/
+  .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages:not(.mr-perliner) .mr-item.active {
+    width: 1600%;
+    z-index: 1;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-hideinactives:not(.mr-subitemactive) .mr-pages:not(.mr-perliner) .mr-item.inactive {
+	display: inherit;
+	width: 0%;
+  }
+  /*.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-2perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-3perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-4perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-5perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-6perline .mr-item,.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-7perline .mr-item,.mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-8perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-9perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-10perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-11perline .mr-item, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-12perline .mr-item {
+	width: 100%;
+  }*/
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-container  {
+	max-width: inherit;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight.mr-portrait .mr-pages:not(.mr-perliner) .mr-item.active {
+    height: 1600%;
+    z-index: 1;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight.mr-portrait:not(.mr-landscape).mr-hideinactives:not(.mr-subitemactive) .mr-pages:not(.mr-perliner) .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight.mr-portrait.mr-landscape .mr-pages:not(.mr-perliner).mr-hideinactives:not(.mr-subitemactive) .mr-item.inactive {
+	display: inherit;
+	height: 0%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight.mr-portrait:not(.mr-onlyactives) .mr-pages:not(.mr-perliner) .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-verticaltitle:not(.mr-portrait) .mr-pages:not(.mr-perliner) .mr-item {
+	  height: 100%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight.mr-portrait.mr-hideinactives:not(.mr-subitemactive) .mr-pages:not(.mr-perliner) .mr-item.inactive {
+	  height: 0%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-portrait:not(.mr-landscape) .mr-item:not(.active) .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-portrait.mr-landscape .mr-item:not(.active) .mr-content *, .mr-theme.mr-default .mr-layout.mr-revealactive .mr-pages .mr-item:not(.active) .mr-content * {
+		height: 0;
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		opacity: 0;
+   }
+   .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-portrait:not(.mr-landscape) .mr-item .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-portrait.mr-landscape .mr-item .mr-content *, .mr-theme.mr-default .mr-layout.mr-revealactive .mr-pages .mr-item .mr-content * {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+   }
+   .mr-theme.mr-default .mr-layout:not(.mr-autoscroll):not(.mr-windowheight).mr-portrait:not(.mr-landscape) .mr-item.active .mr-content *, .mr-theme.mr-default .mr-layout:not(.mr-autoscroll):not(.mr-windowheight).mr-portrait.mr-landscape .mr-item.active .mr-content *, .mr-theme.mr-default .mr-layout:not(.mr-autoscroll).mr-revealactive .mr-pages .mr-item.active .mr-content * {
+		height: 100%;
+	}
+}
+@media only screen and (min-width: 59.94em) and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.inactive:nth-child(2n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-3perline .mr-item.inactive:nth-child(3n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-4perline .mr-item.inactive:nth-child(4n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-5perline .mr-item.inactive:nth-child(5n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-6perline .mr-item.inactive:nth-child(6n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-7perline .mr-item.inactive:nth-child(7n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-8perline .mr-item.inactive:nth-child(8n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-9perline .mr-item.inactive:nth-child(9n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-10perline .mr-item.inactive:nth-child(10n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-11perline .mr-item.inactive:nth-child(11n), .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-12perline .mr-item.inactive:nth-child(12n) {
+		width: 75%;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.inactive {
+		width: 50%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.active:nth-child(odd) + .mr-item.inactive {
+		width: 25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.active:nth-child(even) + .mr-item.inactive {
+		width: 25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.inactive:nth-child(2n):nth-child(odd) {
+		width: 25%;
+	}*/
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-12perline .mr-item.inactive {
+		width: 2.272727272727273%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-11perline .mr-item.inactive {
+		width: 2.5%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-10perline .mr-item.inactive {
+		width: 2.777777777777778%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-9perline .mr-item.inactive {
+		width: 3.125%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-8perline .mr-item.inactive {
+		width: 3.571428571428571%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-7perline .mr-item.inactive {
+		width: 4.166666666666667%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-6perline .mr-item.inactive {
+		width: 5%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-5perline .mr-item.inactive {
+		width: 6.25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-4perline .mr-item.inactive {
+		width: 8.333333333333333%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-3perline .mr-item.inactive {
+		width: 8.333333333333333%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner.mr-2perline .mr-item.inactive {
+		width: 25%;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait.mr-landscape .mr-pages.mr-perliner.mr-1perline .mr-item.inactive {
+	width: 100%;
+	}*/
+}
+@media only screen and (max-width: 47.94em) and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active {
+		width: 75%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait) .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.inactive {
+		width: 25%;
+	}
+}
+@media only screen and (min-width: 47.94em) and (orientation: portrait) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-2perline .mr-item.inactive:nth-child(2n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-3perline .mr-item.inactive:nth-child(3n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-4perline .mr-item.inactive:nth-child(4n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-5perline .mr-item.inactive:nth-child(5n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-6perline .mr-item.inactive:nth-child(6n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-7perline .mr-item.inactive:nth-child(7n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-8perline .mr-item.inactive:nth-child(8n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-9perline .mr-item.inactive:nth-child(9n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-10perline .mr-item.inactive:nth-child(10n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-11perline .mr-item.inactive:nth-child(11n), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-12perline .mr-item.inactive:nth-child(12n) {
+		width: 75% !important;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-2perline .mr-item.inactive {
+		width: 50%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-2perline .mr-item.active:nth-child(odd) + .mr-item.inactive {
+		width: 25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-2perline .mr-item.active:nth-child(even) + .mr-item.inactive {
+		width: 25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-2perline .mr-item.inactive:nth-child(2n):nth-child(odd) {
+		width: 25%;
+	}*/
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-12perline .mr-item.inactive {
+		width: 2.272727272727273%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-11perline .mr-item.inactive {
+		width: 2.5%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-10perline .mr-item.inactive {
+		width: 2.777777777777778%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-9perline .mr-item.inactive {
+		width: 3.125%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-8perline .mr-item.inactive {
+		width: 3.571428571428571%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-7perline .mr-item.inactive {
+		width: 4.166666666666667%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-6perline .mr-item.inactive {
+		width: 5%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-5perline .mr-item.inactive {
+		width: 6.25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-4perline .mr-item.inactive {
+		width: 8.333333333333333%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-3perline .mr-item.inactive {
+		width: 8.333333333333333%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-2perline .mr-item.inactive {
+		width: 25%;
+	}
+}
+@media only screen and (orientation: portrait) {
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-1perline .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-portrait.mr-landscape .mr-pages.mr-perliner.mr-1perline .mr-item.inactive {
+	width: 100%;
+	}*/
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active {
+		width: 100%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.inactive {
+		width: 50%;
+	}*/
+	.mr-theme.mr-default .mr-layout .mr-pages.mr-perliner.mr-1perline {
+		flex-wrap: nowrap;
+		flex-direction: column;
+		width: 100%;
+		margin: 0 0;
+	}
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight:not(.mr-landscape):not(.mr-onlyactives) .mr-pages .mr-item:not(.active) {
+	height: 100%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight:not(.mr-landscape) .mr-pages .mr-item.active {
+    height: 1600%;
+    z-index: 1;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight:not(.mr-landscape).mr-hideinactives:not(.mr-subitemactive) .mr-pages .mr-item.inactive {
+	display: inherit;
+	height: 0%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages:not(.mr-perliner) .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-portrait .mr-pages:not(.mr-perliner) .mr-item.active {
+    width: 1600%;
+    z-index: 1;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-hideinactives:not(.mr-subitemactive) .mr-pages:not(.mr-perliner) .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-portrait.mr-hideinactives:not(.mr-subitemactive) .mr-pages:not(.mr-perliner) .mr-item.inactive {
+	display: inherit;
+	width: 0%;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-portrait .mr-item:not(.active) {
+    width: 100%;
+    z-index: 0;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-hideinactives:not(.mr-subitemactive) .mr-item.inactive, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape.mr-portrait.mr-hideinactives:not(.mr-subitemactive) .mr-item.inactive {
+    width: 100%;
+    z-index: 0;
+  }
+  .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-landscape:not(.mr-portrait) .mr-item:not(.active) .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-landscape.mr-portrait .mr-item:not(.active) .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight):not(.mr-landscape):not(.mr-portrait) .mr-item:not(.active) .mr-content *, .mr-theme.mr-default .mr-layout.mr-revealactive .mr-pages .mr-item:not(.active) .mr-content * {
+		margin-top: 0;
+		margin-bottom: 0;
+		padding-top: 0;
+		padding-bottom: 0;
+		opacity: 0;
+		height: 0;
+   }
+   .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-landscape:not(.mr-portrait) .mr-item .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight).mr-landscape.mr-portrait .mr-item .mr-content *, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-windowheight):not(.mr-landscape):not(.mr-portrait) .mr-item .mr-content *, .mr-theme.mr-default .mr-layout.mr-revealactive .mr-pages .mr-item .mr-content * {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+   }
+   .mr-theme.mr-default .mr-layout:not(.mr-autoscroll).mr-expandactive:not(.mr-windowheight).mr-landscape:not(.mr-portrait) .mr-item.active .mr-content *, .mr-theme.mr-default .mr-layout:not(.mr-autoscroll).mr-expandactive:not(.mr-windowheight).mr-landscape.mr-portrait .mr-item.active .mr-content *, .mr-theme.mr-default .mr-layout:not(.mr-autoscroll).mr-expandactive:not(.mr-windowheight):not(.mr-landscape):not(.mr-portrait) .mr-item.active .mr-content *, .mr-theme.mr-default .mr-layout:not(.mr-autoscroll).mr-revealactive .mr-pages .mr-item.active .mr-content * {
+		height: 100%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-landscape) .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline) .mr-item {
+		width: 100%;
+		overflow: hidden;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-windowheight:not(.mr-landscape) .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline) .mr-item.active .mr-container {
+		overflow: auto;
+    	/*height: 100%;*/
+	}
+}
+/*--SCALE ACTIVE---*/
+.mr-theme.mr-default .mr-layout.mr-scaleactive .mr-item.active {
+	transform: scale(1.05);
+	transform-origin: center;
+}
+.mr-theme.mr-default .mr-layout.mr-scaleactive, .mr-theme .mr-layout:not(.mr-list).mr-windowheight.mr-scaleactive .mr-pages:not(.mr-perliner) {
+	overflow: initial;
+}
+/*--OPAQUE ACTIVE---*/
+.mr-theme.mr-default .mr-layout.mr-opaqueactive .mr-item.inactive {
+	opacity: 0.5;
+}
+.mr-theme.mr-default .mr-layout.mr-opaqueactive .mr-item.active {
+	opacity: 1;
+}
+/*--TOGGLES--*/
+.mr-theme.mr-default .mr-layout:not(.mr-contentpagination):not(.mr-verticaltitle).mr-toggle01 .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-contentpagination):not(.mr-verticaltitle).mr-toggle02 .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-contentpagination):not(.mr-verticaltitle).mr-toggle03 .mr-container:after {
+	right: 0.85rem;
+}
+.mr-theme.mr-default .mr-layout.mr-contentpagination:not(.mr-verticaltitle).mr-toggle01 .mr-container:after, .mr-theme.mr-default .mr-layout.mr-contentpagination:not(.mr-verticaltitle).mr-toggle02 .mr-container:after, .mr-theme.mr-default .mr-layout.mr-contentpagination:not(.mr-verticaltitle).mr-toggle03 .mr-container:after {
+	right: 2.60rem;
+}
+/*----Plus/Minus Toggle------*/
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-toggle02) .mr-item .mr-container:after {
+    position: absolute;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.25;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-toggle02):not(.mr-verticaltitle) .mr-item .mr-container:after {
+    top: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-toggle02) .mr-item:not(.active) .mr-container:after {
+	content: "+";
+}
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-hover):not(.mr-donotinactive):not(.mr-toggle02):not(.mr-toggle03) .mr-item.active .mr-container:after {
+    content: "-";
+    right: 0.98rem;
+}
+/*----Direction Toggle------*/
+.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01) .mr-item .mr-container:after {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    cursor: pointer;
+    opacity: 0.25;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01):not(.mr-verticaltitle) .mr-item .mr-container:after {
+    top: 0.85rem;
+}
+@media only screen and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0 0.75rem;
+		border-color: currentColor transparent transparent transparent;
+	}
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-toggle03):not(.mr-donotinactive) .mr-item.active .mr-container:after {
+		content: "";
+		border-width: 0 0.75rem 0.75rem 0.75rem;
+		border-color: transparent transparent currentColor transparent;
+	}
+	.mr-theme.mr-default .mr-layout:not(.mr-portrait).mr-expandactive.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-portrait).mr-verticaltitle.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-portrait).mr-hideinactives.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-portrait).mr-subitemactive.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after  {
+		content: "";
+		border-width: 0.75rem 0 0.75rem 0.75rem;
+		border-color: transparent transparent transparent currentColor;
+	}
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover):not(.mr-portrait).mr-expandactive.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover):not(.mr-portrait).mr-verticaltitle.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-portrait).mr-hideinactives.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover):not(.mr-portrait).mr-subitemactive.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0.75rem 0rem;
+		border-color: transparent currentColor transparent transparent;
+	}
+}
+@media only screen and (orientation: portrait) {
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0 0.75rem;
+		border-color: currentColor transparent transparent transparent;
+	}
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover):not(.mr-toggle01):not(.mr-toggle03):not(.mr-donotinactive) .mr-item.active .mr-container:after {
+		content: "";
+		border-width: 0 0.75rem 0.75rem 0.75rem;
+		border-color: transparent transparent currentColor transparent;
+	}
+	.mr-theme.mr-default .mr-layout.mr-toggle02.mr-landscape.mr-expandactive:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after,.mr-theme.mr-default .mr-layout.mr-toggle02.mr-verticaltitle:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02.mr-landscape.mr-hideinactives:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02.mr-landscape.mr-subitemactive:not(.mr-toggle01) .mr-item:not(.active) .mr-container:after {
+		content: "";
+		border-width: 0.75rem 0 0.75rem 0.75rem;
+		border-color: transparent transparent transparent currentColor;
+	}
+	.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover).mr-landscape.mr-expandactive:not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover).mr-verticaltitle:not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover).mr-landscape.mr-hideinactives:not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after, .mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-hover).mr-landscape.mr-subitemactive:not(.mr-toggle01):not(.mr-donotinactive) .mr-item.active .mr-container:after {
+		content: "";
+		border-width: 0.75rem 0.75rem 0.75rem 0rem;
+		border-color: transparent currentColor transparent transparent;
+	}
+}
+/*----Close Toggle------*/
+.mr-theme.mr-default .mr-layout.mr-toggle03:not(.mr-hover) .mr-item.active .mr-container:after {
+    position: absolute;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.25;
+	border: 0;
+	width: auto;
+	height: auto;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle03:not(.mr-hover):not(.mr-verticaltitle) .mr-item.active .mr-container:after {
+    top: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle03:not(.mr-hover):not(.mr-donotinactive) .mr-item.active .mr-container:after {
+    content: "+" !important;
+	border: 0;
+	transform: rotate(45deg) scale(1.2);
+	width: 0;
+    height: 0;
+}
+/*----VERTICAL TITLES----*/
+.mr-theme.mr-default .mr-layout.mr-verticaltitle .mr-title {
+	-webkit-writing-mode: tb-rl;
+    writing-mode: tb-rl;
+	writing-mode: vertical-rl;
+	padding-bottom: 3rem;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-verticaltitle .mr-item .mr-container .mr-content {
+	height: 100%;
+	padding-bottom: 3rem;
+}
+.mr-theme.mr-default .mr-layout.mr-verticaltitle .mr-pages {
+	align-items: start;
+}
+.mr-theme.mr-default .mr-layout.mr-verticaltitle .mr-container {
+	display: -webkit-box;
+ 	display: -moz-box;
+ 	display: -ms-flexbox;
+  	display: -webkit-flex;
+	display: flex;
+	align-items: start;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-verticaltitle:not(.mr-windowheight) .mr-container {
+	height: auto;
+}
+.mr-theme.mr-default .mr-layout.mr-themestyle.mr-expandactive.mr-verticaltitle .mr-item:not(.active) .mr-image {
+	width: 0%;
+	height: 0%;
+	opacity: 0;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-toggle02).mr-verticaltitle:not(.mr-contentpagination) .mr-item .mr-container:after {
+	bottom: 0rem;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01).mr-verticaltitle:not(.mr-contentpagination) .mr-item .mr-container:after {
+    bottom: 0.85rem;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle03:not(.mr-hover).mr-verticaltitle:not(.mr-contentpagination) .mr-item.active .mr-container:after {
+    bottom: 3rem;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle01:not(.mr-toggle02).mr-verticaltitle.mr-contentpagination .mr-item .mr-container:after {
+	bottom: 4rem;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle02:not(.mr-toggle01).mr-verticaltitle.mr-contentpagination .mr-item .mr-container:after {
+    bottom: 4.85rem;
+}
+.mr-theme.mr-default .mr-layout.mr-toggle03:not(.mr-hover).mr-verticaltitle.mr-contentpagination .mr-item.active .mr-container:after {
+    bottom: 6.75rem;
+}
+.mr-theme.mr-default .mr-layout:not(.mr-contentpagination).mr-verticaltitle.mr-toggle01 .mr-container:after, .mr-theme.mr-default .mr-layout:not(.mr-contentpagination).mr-verticaltitle.mr-toggle02 .mr-container:after {
+	left: 1.25rem;
+}
+.mr-theme.mr-default .mr-layout.mr-verticaltitle.mr-toggle03 .mr-container:after {
+	left: 2.25rem;
+}
+.mr-theme.mr-default .mr-layout.mr-contentpagination.mr-verticaltitle.mr-toggle01 .mr-container:after, .mr-theme.mr-default .mr-layout.mr-contentpagination.mr-verticaltitle.mr-toggle02 .mr-container:after {
+	left: 3rem;
+}
+.mr-theme.mr-default .mr-layout.mr-contentpagination.mr-verticaltitle.mr-toggle03 .mr-item.active .mr-container:after {
+	left: 4rem;
+}
+/*----ONLY SHOW SUBCAT OF ACTIVE----*/
+.mr-theme.mr-default .mr-layout.mr-subitemactive.mr-opaqueactive .mr-item.mr-subcat {
+	opacity: 1;
+}
+/*----LANDSCAPE ON PORTRAIT---*/
+@media only screen and (max-width: 59.94em) and (min-width: 47.94em) {
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages:not(.mr-perliner):not(.mr-3perline):not(.mr-2perline):not(.mr-1perline) .mr-item, .mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline).mr-1perline .mr-item {
+		width: 100%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-3perline .mr-item {
+		width: 33.33333333333333%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-4perline .mr-item {
+		width: 25%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-5perline .mr-item {
+		width: 20%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-6perline .mr-item {
+		width: 16.66666666666667%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-7perline .mr-item {
+		width: 14.28571428571429%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-8perline .mr-item {
+		width: 12.5%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-9perline .mr-item {
+		width: 11.11111111111111%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-10perline .mr-item {
+		width: 10%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-11perline .mr-item {
+		width: 9.090909090909091%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline).mr-12perline .mr-item {
+		width: 8.333333333333333%;
+	}
+}
+@media only screen and (orientation: portrait) {
+	.mr-theme.mr-default .mr-layout.mr-landscape.mr-expandactive .mr-pages:not(.mr-perliner) {
+   		 flex-direction: row;
+	}
+}
+@media only screen and (orientation: portrait) and (max-width: 47.94em)  {
+	.mr-theme.mr-default .mr-layout.mr-landscape .mr-pages.mr-perliner:not(.mr-2perline):not(.mr-1perline) .mr-item {
+		width: 50%;
+	}
+	/*.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-1perline) .mr-item:not(.active):not(.inactive) {
+		width: 50%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.active {
+		width: 75%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner:not(.mr-1perline) .mr-item.inactive {
+		width: 25%;
+	}*/
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-2perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-3perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-4perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-5perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-6perline .mr-item:not(.active),.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-7perline .mr-item:not(.active),.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-8perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-9perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-10perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-11perline .mr-item:not(.active), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-12perline .mr-item:not(.active) {
+		width: 50%;
+	}
+	.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages:not(.mr-perliner), .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-1perline, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-2perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-3perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-4perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-5perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-6perline .mr-item.active,.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-7perline .mr-item.active,.mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-8perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-9perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-10perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-11perline .mr-item.active, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape .mr-pages.mr-perliner.mr-12perline .mr-item.active {
+		width: 100%;
+	}
+}
+/*----PORTRAIT ON LANDSCAPE---*/
+@media only screen and (orientation: landscape) {
+    .mr-theme.mr-default .mr-layout.mr-portrait .mr-pages {
+		flex-wrap: nowrap;
+		flex-direction: column;
+		width: 100%;
+		margin: 0 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-portrait .mr-pages .mr-item {
+		width: 100%;
+	}
+}
+@media only screen and (min-width: 59.94em) {
+	/*.mr-theme.mr-default .mr-layout.mr-portrait .mr-pages.mr-perliner:not(.mr-3perline):not(.mr-2perline):not(.mr-1perline) .mr-item {
+		width: 33.333333%;
+	}*/
+}
+@media only screen and (orientation: landscape) and (max-width: 47.94em) {
+	.mr-theme.mr-default .mr-layout.mr-portrait:not(.mr-expandactive):not(.mr-revealactive) .mr-pages.mr-perliner:not(.mr-2perline):not(.mr-1perline) .mr-item {
+		width: 100%;
+	}
+}
+/*---HIDE INACTIVE---*/
+.mr-theme.mr-default .mr-layout:not(.mr-expandactive).mr-hideinactives:not(.mr-subitemactive) .mr-item.inactive {
+	display: none;
+}
+/*---HAMBURGUER MOBILE TOGGLE---*/
+@media only screen and (min-width: 59.94em) and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:hover, .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:hover {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:not(:hover), .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:not(:hover) {
+		width: 2.5rem;
+		height: 1.5rem;
+		overflow: hidden;
+		position: relative;
+		margin: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:not(:hover):before, .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:not(:hover):before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 1.5rem;
+		border: 0.2rem solid;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0.2rem;
+		opacity: 0.25;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:not(:hover):after, .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:not(:hover):after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 0.85rem;
+		border-bottom: 0.2rem solid;
+		opacity: 0.25;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:not(:hover) li, .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:not(:hover) li {
+		opacity: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob.mr-portrait .mr-pages:not(:hover) li:first-child, .mr-theme.mr-default .mr-layout.mr-hambmob.mr-landscape.mr-portrait .mr-pages:not(:hover) li:first-child {
+		margin-top: 1.5rem;
+	}
+}
+@media only screen and (max-width: 59.94em), (orientation: portrait) {
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:hover {
+		-o-transition: all 0.5s ease-in-out;
+		-moz-transition: all 0.5s ease-in-out;
+		-webkit-transition: all 0.5s ease-in-out;
+		transition: all 0.5s ease-in-out;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:not(:hover) {
+		width: 2.5rem;
+		height: 1.5rem;
+		overflow: hidden;
+		position: relative;
+		margin: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:not(:hover):before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 1.5rem;
+		border: 0.2rem solid;
+		border-left: 0;
+		border-right: 0;
+		border-radius: 0.2rem;
+		opacity: 0.25;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:not(:hover):after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 2.5rem;
+		height: 0.85rem;
+		border-bottom: 0.2rem solid;
+		opacity: 0.25;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:not(:hover) li {
+		opacity: 0;
+	}
+	.mr-theme.mr-default .mr-layout.mr-hambmob .mr-pages:not(:hover) li:first-child {
+		margin-top: 1.5rem;
+	}
+}
+/*--SOME COMPABILITY FIXES-*/
+/*--Internet Explorer--*/
+@media all and (-ms-high-contrast: none) and (orientation: landscape), (-ms-high-contrast: active) and (orientation: landscape) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages .mr-item .mr-container .mr-content {
+		white-space: nowrap;
+	}
+}
+@media all and (-ms-high-contrast: none) and (orientation: portrait), (-ms-high-contrast: active) and (orientation: portrait) {
+ 	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait):not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-title, .mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item.mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-expandactive.mr-landscape:not(.mr-verticaltitle) .mr-pages:not(.mr-perliner) .mr-item .mr-container .mr-content {
+		white-space: nowrap;
+	}
+}
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-verticaltitle .mr-pages:not(.mr-perliner) .mr-container {
+		white-space: nowrap;
+	}
+}
