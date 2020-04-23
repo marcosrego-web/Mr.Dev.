@@ -183,12 +183,10 @@ defined('ABSPATH') or die;
 										$itemdescription = $item->post_content;
 									}
 								}
-								if($itemlink != 1 || $itemstitle != 2 && $itemstitle != 1  ) {
-									if (!$contenttypes || $contenttypes == 'category') {
-										$itemurl = str_replace("/./","/",get_category_link($itemid));
-									} else {
-										$itemurl = str_replace("/./","/",get_permalink($itemid));
-									}
+								if (!$contenttypes || $contenttypes == 'category') {
+									$itemurl = str_replace("/./","/",get_category_link($itemid));
+								} else {
+									$itemurl = str_replace("/./","/",get_permalink($itemid));
 								}
 								/*
 								Add the content of the current category in the container.
@@ -269,7 +267,7 @@ defined('ABSPATH') or die;
 													}
 												}
 												if($getimg) {
-													$showimage = "><figure class='mr-image' style='background-image: url(".$getimg.");'></figure";
+													$showimage = "><figure class='mr-image' style='background-image: url(".esc_url($getimg).");'></figure";
 												}
 											}
 											/*
@@ -283,7 +281,7 @@ defined('ABSPATH') or die;
 											} else if($itemstitle == 1)  { //No title
 												$showitemtitle = ''.((in_array("artcount", $itemoptions) && is_numeric($num_articles))?'<'.$titletag.' class="mr-title">('.$num_articles.')</'.$titletag.'>':"");
 											} else  { //Linked item title
-												$showitemtitle = '<'.$titletag.' class="mr-title">'.'<a href="'.$itemurl.'">'.$itemtitle.((in_array("artcount", $itemoptions) && is_numeric($num_articles))?' <small>('.$num_articles.')</small>':"").'</a>'.'</'.$titletag.'>';
+												$showitemtitle = '<'.$titletag.' class="mr-title">'.'<a href="'.esc_url($itemurl).'">'.$itemtitle.((in_array("artcount", $itemoptions) && is_numeric($num_articles))?' <small>('.$num_articles.')</small>':"").'</a>'.'</'.$titletag.'>';
 											}
 											/*
 											Description starts here
@@ -330,7 +328,7 @@ defined('ABSPATH') or die;
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mr-link"><a class="'.$bottomlinkclasses.'" href="'.$itemurl.'" title="'. $cattitle .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mr-link"><a class="'.$bottomlinkclasses.'" href="'.esc_url($itemurl).'" title="'. $cattitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.

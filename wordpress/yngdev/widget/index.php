@@ -58,9 +58,9 @@ class yng_developer extends WP_Widget {
 		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'mrdev_scripts', plugin_dir_url( __DIR__ ).'assets/js/yngdev_v071.js');
+			wp_register_script( 'mrdev_scripts', plugin_dir_url( __DIR__ ).'assets/js/yngdev_v080.js');
 			wp_enqueue_script( 'mrdev_scripts' );
-			wp_enqueue_style( 'mrdev_css', plugin_dir_url( __DIR__ ).'assets/css/yngdev_v071.css');
+			wp_enqueue_style( 'mrdev_css', plugin_dir_url( __DIR__ ).'assets/css/yngdev_v080.css');
 				$content = '';
 				/*
 				Check if it's an official theme or a custom one.
@@ -69,11 +69,11 @@ class yng_developer extends WP_Widget {
 				*/
 				if(!$theme) {
 					include plugin_dir_path( __DIR__ ).'widget/themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default_v071.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default_v080.css');
 				} else if($theme == "default") {
 					//Official Themes
 					include plugin_dir_path( __DIR__ ).'widget/themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'_v071.css');
+					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'_v080.css');
 				} else if($theme == "none") {
 				} else {
 					//Custom Themes
@@ -86,7 +86,7 @@ class yng_developer extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v071.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v080.css');
 		?>
 		<div class="mr-admin">
 		<p class="mr-section"><a href="https://marcosrego.com/en/web-en/yngdev-en/" target="_blank"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ1LjEyOSA0NS4xMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDUuMTI5IDQ1LjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGVsbGlwc2UgY3g9IjIyLjU2NSIgY3k9IjMxLjE5MiIgcng9IjIuNSIgcnk9IjEiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDIuNjksMjQuNDY5VjE1LjljMC0wLjU5Ny0wLjA1LTEuMTQzLTAuMTIyLTEuNjY1Yy0wLjAxMi0wLjA4MS0wLjAwNy0wLjE0Ni0wLjAyMi0wLjIzICAgIGMtMC4wMTUtMC4wNzEtMC4wMzktMC4xNDUtMC4wNTUtMC4yMTVjLTAuMTM3LTAuNzQyLTAuMzQ5LTEuNDEtMC42MzEtMi4wMDhjLTIuMTk3LTUuMTgtOC40MzQtMTAuMDctMTUuNjI4LTExLjQ2NyAgICBDMTguNTc3LTEuMTY5LDEwLjQyNiwyLjc5OSw4LjQ5OSw3LjcxOUM0Ljg0MSw4Ljc5NywyLjQ0LDExLjExOSwyLjQ0LDE1Ljl2OC41NzNjLTAuODU3LDEuMTIzLTEuMzc1LDIuNTQ0LTEuMzc1LDQuMDk0ICAgIGMwLDIuOTcxLDEuODg3LDUuNDgzLDQuNDY0LDYuMjkxQzguNzksNDEuMTAxLDE1LjMzNSw0NS4xMywyMi41OTYsNDUuMTNjNy4yNjksMCwxMy44MjEtNC4wMzksMTcuMDgxLTEwLjI5NSAgICBjMi41MzktMC44MzIsNC4zODktMy4zMjYsNC4zODktNi4yNjlDNDQuMDY1LDI3LjAxOCw0My41NDcsMjUuNTkyLDQyLjY5LDI0LjQ2OXogTTM3LjgyMywzMS4xMjljLTAuMjksMC0wLjU2NC0wLjA2Ni0wLjgxOC0wLjE4MyAgICBjLTIuMDM5LDUuOTE4LTcuNzExLDEwLjE4My0xNC40MDYsMTAuMTgzYy02LjcwMywwLTEyLjM4NC00LjI3Mi0xNC40MTUtMTAuMmMtMC4yNywwLjEyOS0wLjU2MywwLjItMC44NzQsMC4yICAgIGMtMS4yNDQsMC0yLjI0Mi0xLjE0Ni0yLjI0Mi0yLjU2M3MwLjk5OC0yLjU2MiwyLjI0Mi0yLjU2MmMwLjAyMiwwLDAuMDQ1LDAuMDA2LDAuMDY5LDAuMDA4YzAuMDE2LTIsMC40MzktNS4xNiwxLjE3OC03LjA2NyAgICBjMC45NzIsMS4zNTgsMi40NTgsMi42MjgsNC42NDUsMi42MjhjMCwwLDAsMCwwLjAwMiwwYzAuMTAyLDAsMC4yMDQtMC4wMDMsMC4zMDktMC4wMDljMC4yMDMtMC4wMTEsMC4zNzktMC4xNDQsMC40NDUtMC4zMzUgICAgYzAuMDE5LTAuMDUzLDEuODQ0LTUuMTQ2LDYuNjQ0LTUuNjM1YzAuMjAyLDAuOTkyLDAuNTA4LDMuNjktMS42NjUsNS4zMmMtMC4xNjEsMC4xMi0wLjIzNCwwLjMyNS0wLjE4NiwwLjUyMSAgICBzMC4yMTEsMC4zNDIsMC40MSwwLjM3MmMwLjA0MSwwLjAwNywxLjAzNSwwLjE1MywyLjUxNiwwLjE1M2MyLjUyNCwwLDcuMTEtMC40NTksMTAuMDk5LTMuNDYxICAgIGMwLjUwMSwwLjUwNCwxLjM4MiwxLjc0MywwLjk3LDMuOTczYy0wLjAzOSwwLjIwOCwwLjA1OSwwLjQxOCwwLjI0MSwwLjUyM2MwLjA3OCwwLjA0NSwwLjE2NCwwLjA2NSwwLjI1LDAuMDY1ICAgIGMwLjExNiwwLDAuMjMxLTAuMDQxLDAuMzI1LTAuMTJjMC4xMDctMC4wOTIsMS45NjQtMS42OTUsMy4yNzMtMy40N2MwLjYxNywxLjkyNCwwLjk3Miw0LjcxMSwwLjk4Myw2LjUyOSAgICBjMC4wMDMsMCwwLjAwNSwwLDAuMDA3LDBjMS4yNDQsMCwyLjI0MiwxLjE0NiwyLjI0MiwyLjU2MlMzOS4wNjcsMzEuMTI5LDM3LjgyMywzMS4xMjl6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMTUuNzczIiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMjkuMzU3IiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" alt="Yng.Dev. Signature" title="Icon made by Freepik from flaticon.com" style="margin-bottom: -7px; margin-right: 3px;"><strong style="font-weight:700;">Yng.Dev.</strong></a>
@@ -270,7 +270,7 @@ class yng_developer extends WP_Widget {
 							$globallayoutoptions = array();
 						}
 						if ( !is_array($pagetoggles) || empty($pagetoggles) ) {
-							$pagetoggles = array(0); //Defaults to 'Arrows'
+							$pagetoggles = array();
 						}
 						?>
 						<p>
@@ -524,8 +524,9 @@ class yng_developer extends WP_Widget {
 							<p>
 							If you need more features then you need <strong>Mr.Dev.</strong><br>:</p>
 							<ol>
-							<li>Insert widgets inside the content on posts/pages/categories using <strong>blocks, classic editor button or shortcodes</strong>.</li>
-							<li><strong>More content types</strong> such as pages, tags and other Wordpress registered terms and post types.</li>
+							<li>Insert widgets inside the content section on posts/pages/categories using <strong>blocks, classic editor button or shortcodes</strong>.</li>
+							<li><strong>More content types</strong> such as pages, tags and other Wordpress/third-party registered terms/post-types (such as events and products).</li>
+							<li>Override the content of each item per widget, without affecting the original content.</li>
 							<li>Choose <strong>items' parents such as parent categories, categories and tags</strong> to only display their childs.</li>
 							<li>Manually <strong>reorder</strong>.</li>
 							<li><strong>Pin</strong> to choose the ones starting active.</li>
@@ -543,129 +544,11 @@ class yng_developer extends WP_Widget {
 							<?php } ?> 
 						</details>
 						<?php
-						/* The following script is inline to run even after saving the widget */
+							wp_register_script( 'yngdev_admin', plugin_dir_url( __DIR__ ).'assets/js/admin_v080.js');
+							wp_enqueue_script( 'yngdev_admin' );
 						?>
-						<script>
-						function mrSlideUp(target) {
-							let duration = 500;
-							target.style.transitionProperty = 'height, margin, padding';
-							target.style.transitionDuration = duration + 'ms';
-							target.style.boxSizing = 'border-box';
-							target.style.height = target.offsetHeight + 'px';
-							target.offsetHeight;
-							target.style.overflow = 'hidden';
-							target.style.height = 0;
-							target.style.paddingTop = 0;
-							target.style.paddingBottom = 0;
-							target.style.marginTop = 0;
-							target.style.marginBottom = 0;
-							window.setTimeout( function() {
-								target.style.display = 'none';
-								target.style.removeProperty('height');
-								target.style.removeProperty('padding-top');
-								target.style.removeProperty('padding-bottom');
-								target.style.removeProperty('margin-top');
-								target.style.removeProperty('margin-bottom');
-								target.style.removeProperty('overflow');
-								target.style.removeProperty('transition-duration');
-								target.style.removeProperty('transition-property');
-							}, duration);
-						}
-						function mrSlideDown(target) {
-							let duration = 500;
-							let display = window.getComputedStyle(target).display;
-							if (display === 'none' && display != 'block') {
-								target.style.removeProperty('display');
-								display = 'block';
-								target.style.display = display;
-								let height = target.offsetHeight;
-								target.style.overflow = 'hidden';
-								target.style.height = 0;
-								target.style.paddingTop = 0;
-								target.style.paddingBottom = 0;
-								target.style.marginTop = 0;
-								target.style.marginBottom = 0;
-								target.offsetHeight;
-								target.style.boxSizing = 'border-box';
-								target.style.transitionProperty = "height, margin, padding";
-								target.style.transitionDuration = duration + 'ms';
-								target.style.height = height + 'px';
-								target.style.removeProperty('padding-top');
-								target.style.removeProperty('padding-bottom');
-								target.style.removeProperty('margin-top');
-								target.style.removeProperty('margin-bottom');
-								window.setTimeout( function() {
-									target.style.removeProperty('height');
-									target.style.removeProperty('overflow');
-									target.style.removeProperty('transition-duration');
-									target.style.removeProperty('transition-property');
-								}, duration);
-							}
-						}
-						document.addEventListener('click',function(event) {
-							if(event.target.matches('.mr-admin details:not([open]) .mr-section')) {
-								event.target.closest('.mr-admin').querySelector("input.lastactivedetails").value = event.target.parentElement.getAttribute('class');
-								var mrwidDetails = document.querySelectorAll(".mr-admin details");
-								for (var id = 0; id < mrwidDetails.length; id++) {
-									var mrwidDetail = mrwidDetails[id];
-									if (!mrwidDetail.classList.contains('mr-mainitemcontainer') && mrwidDetail !== event.target) {
-										mrwidDetail.removeAttribute("open");
-									}
-								}
-							} else if (event.target.matches('.mr-themes')) {
-								event.target.addEventListener('change',function(event) {
-									mrSlideUp(event.target.closest('.mr-admin').querySelector(".mr-themeoptions"));
-									mrSlideDown(event.target.closest('.mr-admin').querySelector(".mr-savetheme"));
-								});
-							}else if (event.target.matches('select.mr-contenttypes')) {
-								event.target.addEventListener('change',function(event) {
-									mrSlideUp(event.target.closest('.mr-admin').querySelector(".mr-itemscontainer"));
-									mrSlideDown(event.target.closest('.mr-admin').querySelector(".mr-saveexcludeinclude"));
-								});
-							} else if (event.target.matches('.mr-excludeinclude')) {
-								event.target.addEventListener('change',function(event) {
-									if(event.target.value != 0) {
-										event.target.closest('.mr-admin').querySelector(".mr-list").classList.add('including');
-									} else {
-										if(event.target.closest('.mr-admin').querySelector(".mr-list").classList.contains('including')) {
-											event.target.closest('.mr-admin').querySelector(".mr-list").classList.remove('including');
-										}
-									}
-								});
-							} else if (event.target.matches('.mr-itemstitleinput')) {
-								event.target.addEventListener('change',function(event) {
-									if(event.target.value != 1) {
-										mrSlideDown(event.target.closest('.mr-admin').querySelector('.mr-itemstitlemax'));
-									} else {
-										mrSlideUp(event.target.closest('.mr-admin').querySelector('.mr-itemstitlemax'));
-									}
-								});
-							} else if (event.target.matches('.mr-itemdescinput')) {
-								event.target.addEventListener('change',function(event) {
-									if(event.target.value != 1) {
-										mrSlideDown(event.target.closest('.mr-admin').querySelector('.mr-itemdescmax'));
-									} else {
-										mrSlideUp(event.target.closest('.mr-admin').querySelector('.mr-itemdescmax'));
-									}
-								});
-							} else if (event.target.matches('.mr-bottomlinkinput')) {
-								event.target.addEventListener('change',function(event) {
-									if(event.target.value != 1) {
-										mrSlideDown(event.target.closest('.mr-admin').querySelector('.mr-bottomlinktext'));
-									} else {
-										mrSlideUp(event.target.closest('.mr-admin').querySelector('.mr-bottomlinktext'));
-									}
-								});
-							}
-						});
-						</script>
 						</div>
 			<?php
-						/*
-						wp_register_script( 'mrdev_polyfill', '//polyfill.io/v3/polyfill.min.js');
-						wp_enqueue_script( 'mrdev_polyfill' );
-						wp_script_add_data( 'mrdev_polyfill', 'crossorigin' , 'anonymous' );
-						*/
 	}
 	public function update( $new_instance, $old_instance ) {
 		$instance = array();
