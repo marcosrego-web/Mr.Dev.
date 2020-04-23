@@ -9,10 +9,10 @@
 	]]></description>
 		<element>pkg_yngdev</element>
 		<type>package</type>
-		<version>0.7.1</version>
+		<version>0.8.0</version>
 		<infourl title="Yng.Dev.">https://marcosrego.com/en/web-en/yngdev-en/</infourl>
 		<downloads>
-			<downloadurl type="full" format="zip">https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.7.1/pkg_yngdev-joomla.zip</downloadurl>
+			<downloadurl type="full" format="zip">https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.8.0/pkg_yngdev-joomla.zip</downloadurl>
 		</downloads>
 		<tags>
 			<tag>stable</tag>
