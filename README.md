@@ -17,8 +17,6 @@ All tools are optional and you can hide parts of the widgets/modules to specific
 The widget/module initially comes with the themes ‘None’ and ‘Default’.
 'Default' has many layouts to choose from including a custom layout to choose each option. It's also possible to develop new custom themes. This is perfect if you already have a website and want to display your content in a new way, while keeping the look & feel of your current template.
 
-The widget/module already has compatibility with events, products and other types of content. Choosing a parent, categorization and better support on those will be added in the future.
-
 Mr.Dev. starts with categories because some *content display plugins* and *CMS* do not highlight categories as much as posts/articles. But that could be practical for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.
 ##
 ### Compatibility Warning ⚠ 
