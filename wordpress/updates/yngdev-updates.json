@@ -18,7 +18,7 @@
     },
     
     "sections" : {
-        "description" : "<p><strong>Yng.Dev.</strong> brings you for free a widget / module to display categories and posts with descriptions, media and links, in a variety of layouts with many customizable options.</p><p>Some content display plugins and CMS do not highlight categories as much as posts. But that could be practicle for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.</p><p>Mr.Cat. makes it easier and faster to display categories and have your websites structured in ways such as:</p><p>Page with categories > Category page with posts > Post</p>",
+        "description" : "<p><strong>Yng.Dev.</strong> brings you for free a widget / module to display categories and posts with descriptions, media and links, in a variety of layouts with many customizable options.</p>",
         "changelog" : "<p><em>See the changelog on <strong><a href='https://github.com/marcosrego-web/Mr.Dev./releases' target='_blank'>Github</a></strong>.</em></p>"
     }
 }
