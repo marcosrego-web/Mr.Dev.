@@ -1,0 +1,286 @@
+.mr-1perline, .mr-2perline, .mr-3perline, .mr-4perline, .mr-5perline, .mr-6perline, .mr-7perline, .mr-8perline, .mr-9perline, .mr-10perline, .mr-11perline, .mr-12perline {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+	display: flex;
+    flex-wrap: wrap;
+}
+.mr-item {
+    width: 100%;
+}
+.mr-2perline .mr-item {
+    width: 50%;
+}
+.mr-3perline .mr-item {
+    width: 33.33333333333333%;
+}
+.mr-4perline .mr-item {
+    width: 25%;
+}
+.mr-5perline .mr-item {
+    width: 20%;
+}
+.mr-6perline .mr-item {
+    width: 16.66666666666667%;
+}
+.mr-7perline .mr-item {
+    width: 14.28571428571429%;
+}
+.mr-8perline .mr-item {
+    width: 12.5%;
+}
+.mr-9perline .mr-item {
+    width: 11.11111111111111%;
+}
+.mr-10perline .mr-item {
+    width: 10%;
+}
+.mr-11perline .mr-item {
+    width: 9.090909090909091%;
+}
+.mr-12perline .mr-item {
+    width: 8.333333333333333%;
+}
+.mr-hidden {
+    display: none !important;
+}
+.mr-scroll {
+    overflow: auto;
+}
+.mr-noscroll {
+    overflow: hidden;
+}
+@supports (-webkit-overflow-scrolling: touch) {
+    .mr-iosscroll {
+        overflow-y: scroll !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+}
+.mr-boxsize {
+	box-sizing: border-box;
+}
+.mr-boxsize *, .mr-boxsize *::before, .mr-boxsize *::after {
+    box-sizing: inherit;
+}
+.mr-nobullets {
+    list-style-type: none;
+    margin: 0;
+}
+.mr-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+	display: flex;
+}
+.mr-wrap {
+    flex-wrap: wrap;
+}
+@keyframes fadeOut {
+    0% { 
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes fadeIn {
+    0% { 
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes slideOut {
+    0% { 
+        -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+    100% {
+        -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+        transform: translateY(-100%);
+    }
+}
+@keyframes slideIn {
+    0% { 
+        -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+        transform: translateY(100%);
+    }
+    100% {
+        -webkit-transform: translateY(0%);
+        -ms-transform: translateY(0%);
+        transform: translateY(0%);
+    }
+}
+@keyframes slideOutRight {
+    0% { 
+        -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+    100% {
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+}
+@keyframes slideInRight {
+    0% { 
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+    100% {
+        -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+}
+@keyframes slideOutLeft {
+    0% { 
+        -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+    100% {
+        -webkit-transform: translateX(100%);
+        -ms-transform: translateX(100%);
+        transform: translateX(100%);
+    }
+}
+@keyframes slideInLeft {
+    0% { 
+        -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+        transform: translateX(-100%);
+    }
+    100% {
+        -webkit-transform: translateX(0%);
+        -ms-transform: translateX(0%);
+        transform: translateX(0%);
+    }
+}
+@keyframes scaleOut {
+    0% { 
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    100% {
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+}
+@keyframes scaleIn {
+    0% { 
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes zoomOut {
+    0% { 
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: scale(2);
+        -ms-transform: scale(2);
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+@keyframes zoomIn {
+    0% { 
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.mr-fade {
+    -webkit-animation: fadeOut 0.5s;
+    animation: fadeOut 0.5s;
+}
+.mr-fade.active:not(.inactive) {
+    -webkit-animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s;
+}
+.mr-slide {
+    -webkit-animation: slideOut 0.5s;
+    animation: slideOut 0.5s;
+}
+.mr-slide.active:not(.inactive) {
+    -webkit-animation: slideIn 0.5s;
+    animation: slideIn 0.5s;
+}
+.mr-transitionright .mr-slide {
+    -webkit-animation: slideOutRight 0.5s;
+    animation: slideOutRight 0.5s;
+}
+.mr-transitionright .mr-slide.active:not(.inactive) {
+    -webkit-animation: slideInRight 0.5s;
+    animation: slideInRight 0.5s;
+}
+.mr-transitionleft .mr-slide {
+    -webkit-animation: slideOutLeft 0.5s;
+    animation: slideOutLeft 0.5s;
+}
+.mr-transitionleft .mr-slide.active:not(.inactive) {
+    -webkit-animation: slideInLeft 0.5s;
+    animation: slideInLeft 0.5s;
+}
+.mr-scale {
+    transform-origin: center;
+    -webkit-animation: scaleOut 0.5s;
+    animation: scaleOut 0.5s;
+}
+.mr-scale.active:not(.inactive) {
+    -webkit-animation: scaleIn 0.5s;
+    animation: scaleIn 0.5s;
+}
+.mr-transitionleft .mr-scale:not(.active), .mr-transitionright .mr-scale.active {
+    transform-origin: right center;
+}
+.mr-transitionright .mr-scale:not(.active), .mr-transitionleft .mr-scale.active {
+    transform-origin: left center;
+}
+.mr-zoom {
+    transform-origin: center;
+    -webkit-animation: zoomOut 0.5s;
+    animation: zoomOut 0.5s;
+}
+.mr-zoom.active:not(.inactive) {
+    -webkit-animation: zoomIn 0.5s;
+    animation: zoomIn 0.5s;
+}
+.mr-transitionleft .mr-zoom:not(.active), .mr-transitionleft .mr-zoom.active {
+    transform-origin: left center;
+}
+.mr-transitionright .mr-zoom:not(.active), .mr-transitionright .mr-zoom.active {
+    transform-origin: right center;
+}
+@media only screen and (max-width: 59.94em) {
+	.mr-4perline .mr-item, .mr-5perline .mr-item, .mr-6perline .mr-item, .mr-7perline .mr-item, .mr-8perline .mr-item, .mr-9perline .mr-item, .mr-10perline .mr-item, .mr-11perline .mr-item, .mr-12perline .mr-item {
+		width: 33.333333%;
+    }
+}

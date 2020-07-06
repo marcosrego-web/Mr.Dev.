@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @copyright	Copyright (c) 2020 Marcos Rego. All rights reserved.
+ * @license		http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ */
+-->
+<extension type="module" version="3.7" client="site" method="upgrade">
+	<name>Yng.Dev.</name>
+	<version>0.9.0</version>
+	<author>Marcos Rego</author>
+	<creationDate>July 2020</creationDate>
+	<copyright>Copyright (c) 2020 Marcos Rego. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>web@marcosrego.com</authorEmail>
+	<authorUrl>https://marcosrego.com</authorUrl>
+	<description>
+	<![CDATA[
+<span class="readonly"><p><a href="https://marcosrego.com/en/web-en/yngdev-en/" target="_blank" style="color: #000;">
+		<img style="height: 20px; margin-bottom: 5px;" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ1LjEyOSA0NS4xMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDUuMTI5IDQ1LjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGVsbGlwc2UgY3g9IjIyLjU2NSIgY3k9IjMxLjE5MiIgcng9IjIuNSIgcnk9IjEiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDIuNjksMjQuNDY5VjE1LjljMC0wLjU5Ny0wLjA1LTEuMTQzLTAuMTIyLTEuNjY1Yy0wLjAxMi0wLjA4MS0wLjAwNy0wLjE0Ni0wLjAyMi0wLjIzICAgIGMtMC4wMTUtMC4wNzEtMC4wMzktMC4xNDUtMC4wNTUtMC4yMTVjLTAuMTM3LTAuNzQyLTAuMzQ5LTEuNDEtMC42MzEtMi4wMDhjLTIuMTk3LTUuMTgtOC40MzQtMTAuMDctMTUuNjI4LTExLjQ2NyAgICBDMTguNTc3LTEuMTY5LDEwLjQyNiwyLjc5OSw4LjQ5OSw3LjcxOUM0Ljg0MSw4Ljc5NywyLjQ0LDExLjExOSwyLjQ0LDE1Ljl2OC41NzNjLTAuODU3LDEuMTIzLTEuMzc1LDIuNTQ0LTEuMzc1LDQuMDk0ICAgIGMwLDIuOTcxLDEuODg3LDUuNDgzLDQuNDY0LDYuMjkxQzguNzksNDEuMTAxLDE1LjMzNSw0NS4xMywyMi41OTYsNDUuMTNjNy4yNjksMCwxMy44MjEtNC4wMzksMTcuMDgxLTEwLjI5NSAgICBjMi41MzktMC44MzIsNC4zODktMy4zMjYsNC4zODktNi4yNjlDNDQuMDY1LDI3LjAxOCw0My41NDcsMjUuNTkyLDQyLjY5LDI0LjQ2OXogTTM3LjgyMywzMS4xMjljLTAuMjksMC0wLjU2NC0wLjA2Ni0wLjgxOC0wLjE4MyAgICBjLTIuMDM5LDUuOTE4LTcuNzExLDEwLjE4My0xNC40MDYsMTAuMTgzYy02LjcwMywwLTEyLjM4NC00LjI3Mi0xNC40MTUtMTAuMmMtMC4yNywwLjEyOS0wLjU2MywwLjItMC44NzQsMC4yICAgIGMtMS4yNDQsMC0yLjI0Mi0xLjE0Ni0yLjI0Mi0yLjU2M3MwLjk5OC0yLjU2MiwyLjI0Mi0yLjU2MmMwLjAyMiwwLDAuMDQ1LDAuMDA2LDAuMDY5LDAuMDA4YzAuMDE2LTIsMC40MzktNS4xNiwxLjE3OC03LjA2NyAgICBjMC45NzIsMS4zNTgsMi40NTgsMi42MjgsNC42NDUsMi42MjhjMCwwLDAsMCwwLjAwMiwwYzAuMTAyLDAsMC4yMDQtMC4wMDMsMC4zMDktMC4wMDljMC4yMDMtMC4wMTEsMC4zNzktMC4xNDQsMC40NDUtMC4zMzUgICAgYzAuMDE5LTAuMDUzLDEuODQ0LTUuMTQ2LDYuNjQ0LTUuNjM1YzAuMjAyLDAuOTkyLDAuNTA4LDMuNjktMS42NjUsNS4zMmMtMC4xNjEsMC4xMi0wLjIzNCwwLjMyNS0wLjE4NiwwLjUyMSAgICBzMC4yMTEsMC4zNDIsMC40MSwwLjM3MmMwLjA0MSwwLjAwNywxLjAzNSwwLjE1MywyLjUxNiwwLjE1M2MyLjUyNCwwLDcuMTEtMC40NTksMTAuMDk5LTMuNDYxICAgIGMwLjUwMSwwLjUwNCwxLjM4MiwxLjc0MywwLjk3LDMuOTczYy0wLjAzOSwwLjIwOCwwLjA1OSwwLjQxOCwwLjI0MSwwLjUyM2MwLjA3OCwwLjA0NSwwLjE2NCwwLjA2NSwwLjI1LDAuMDY1ICAgIGMwLjExNiwwLDAuMjMxLTAuMDQxLDAuMzI1LTAuMTJjMC4xMDctMC4wOTIsMS45NjQtMS42OTUsMy4yNzMtMy40N2MwLjYxNywxLjkyNCwwLjk3Miw0LjcxMSwwLjk4Myw2LjUyOSAgICBjMC4wMDMsMCwwLjAwNSwwLDAuMDA3LDBjMS4yNDQsMCwyLjI0MiwxLjE0NiwyLjI0MiwyLjU2MlMzOS4wNjcsMzEuMTI5LDM3LjgyMywzMS4xMjl6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMTUuNzczIiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMjkuMzU3IiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" alt="Yng.Dev. Logo" title="Icon made by Freepik from flaticon.com"> <strong style="font-weight:700" title="Click to know Yng.Dev.">Yng.Dev.</strong></a> displays categories and posts in a variety of layouts and customizable options.</p></span>
+	]]>
+	</description>
+	<files>
+		<filename module="mod_yngdev">mod_yngdev.php</filename>
+		<filename>helper.php</filename>
+		<filename>items.php</filename>
+		<filename>index.html</filename>
+		<folder>themes</folder>
+		<folder>assets</folder>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+			</fieldset>
+			<fieldset name="yngdev_content" label="Content">
+				<field
+					name="contenttypes"
+					type="list"
+					label="Type"
+					multiple="false"
+					filter="safehtml"
+					default="categories"
+				>
+					<option value="categories">Categories</option>
+					<option value="content">Articles</option>
+				</field>
+				<field
+					name="orderby"
+					type="list"
+					label="Sort by"
+					description="Automatically sort items by a specific type of order."
+					filter="integer"
+					default="0"
+				>
+					<option value="0">Creation</option>
+					<option value="1">Title</option>
+					<option value="2">Parent</option>
+					<option value="4">Alias</option>
+					<option value="5">Ordering</option>
+					<option value="6">Level</option>
+				</field>
+				<field
+					name="order"
+					type="list"
+					label=""
+					description="Choose descending or ascending"
+					filter="integer"
+					default="0"
+				>
+					<option value="0">Descending</option>
+					<option value="1">Ascending</option>
+				</field>
+				<field
+					name="excludeinclude"
+					type="list"
+					label="Items"
+					description="Choose if to exclude or to include the manually selected items."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">Exclude</option>
+					<option value="1">Include</option>
+				</field>
+				<field 
+					name="catselect"
+					type="category"
+					extension="com_content"
+					label=""
+					description=""
+					multiple="true"
+					published="1"
+					filter="safehtml"
+					showon="contenttypes:categories"
+				/>
+				<field
+					name="artselect"
+					type="sql"
+					label=""
+					query="SELECT id, title FROM #__content"
+					key_field="id"
+					value_field="title"
+					multiple="true"
+					showon="contenttypes:content"
+					filter="safehtml"
+				/>
+			</fieldset>
+			<fieldset name="yngdev_appearance" label="Appearance">
+				<field 
+					name="appearance"
+					type="subform"
+					formsource="modules/mod_yngdev/themes/index.xml"
+					label="Appearance"
+					description=""
+				/>
+			</fieldset>
+			<fieldset name="yngdev_pagination" label="Pagination">
+				<field
+					name="perline"
+					type="list"
+					label="Items per line"
+					description="Choose number of items to show per line."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">∞</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</field>
+				<field
+					name="perpage"
+					type="number"
+					label="Items per page"
+					description="Choose number of items to show per page."
+					default=""
+					hint="∞"
+					filter="integer"
+				/>
+				<field name="pagetoggles" type="checkboxes" class="mrwid-checkbox" label="Toggles">
+					<option value="0">Arrows</option>
+					<option value="1">Select</option>
+					<option value="2">Radio</option>
+					<option value="5">Keyboard</option>
+					<option value="3">Below</option>
+					<option value="4">Scroll</option>
+				</field>
+				<field
+					name="tabs"
+					type="list"
+					label="Tabs"
+					description="Choose the type of tabs to display and their position."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">None</option>
+					<option value="1">Items</option>
+					<option value="2">Parent items</option>
+				</field>
+				<field
+					name="tabsposition"
+					type="list"
+					label=""
+					description=""
+					default="tabstop"
+					filter="safehtml"
+				>
+					<option value="tabstop">Top</option>
+					<option value="tabsright">Right</option>
+					<option value="tabsbottom">Bottom</option>
+					<option value="tabsleft">Left</option>
+				</field>
+				<field
+					name="pagetransition"
+					type="list"
+					label="Transition"
+					default="fade"
+					filter="safehtml"
+				>
+					<option value="fade">Fade</option>
+					<option value="slide">Slide</option>
+					<option value="scale">Scale</option>
+					<option value="zoom">Zoom</option>
+					<option value="none">None</option>
+				</field>
+				<field
+					name="autoplay"
+					type="number"
+					label="Autoplay"
+					description="Choose how many seconds the autoplay should take to change page. Leave empty or choose '0' to turn off autoplay."
+					default=""
+					hint="∞"
+					filter="integer"
+				/>
+			</fieldset>
+			<fieldset name="yngdev_display" label="Display">
+				<field
+					name="title"
+					type="list"
+					label="Module subtitle"
+					description=""
+					default="0"
+					filter="integer"
+				>
+					<option value="0">No module subtitle</option>
+					<option value="3">Theme and layout title</option>
+					<option value="4">Theme title</option>
+					<option value="5">Layout title</option>
+				</field>
+				<field
+					name="itemimage"
+					type="list"
+					label="Images"
+					description=""
+					default="1"
+					filter="integer"
+				>
+					<option value="1">Item intro image</option>
+					<option value="9">Item full image</option>
+					<option value="8">Description first image</option>
+					<option value="2">Latest featured article image</option>
+					<option value="3">Latest featured intro image</option>
+					<option value="4">Latest featured full image</option>
+					<option value="5">Latest article image</option>
+					<option value="6">Latest intro image</option>
+					<option value="7">Latest full image</option>
+					<option value="0">No image</option>
+				</field>
+				<field
+					name="itemstitle"
+					type="list"
+					label="Titles"
+					description="Choose the items' default title and the maximum number of characters to display."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">Linked item title</option>
+					<option value="2">Item title</option>
+					<option value="1">No title</option>
+				</field>
+				<field
+					name="itemstitlemax"
+					type="number"
+					label=""
+					description=""
+					default=""
+					hint="Max. characters"
+					filter="integer"
+					showon="itemstitle!:1"
+				/>
+				<field
+					name="itemdesc"
+					type="list"
+					label="Descriptions"
+					description="Choose the items' default description and the maximum number of characters to display."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">Item description</option>
+					<option value="2">Item intro text</option>
+					<option value="3">Item full text</option>
+					<option value="1">No description</option>
+				</field>
+				<field
+					name="itemdescmax"
+					type="number"
+					label=""
+					description=""
+					default=""
+					hint="Max. characters"
+					filter="integer"
+					showon="itemdesc!:1"
+				/>
+				<field
+					name="itemlink"
+					type="list"
+					label="Links"
+					description="Choose the items' default link and the bottom link text to display."
+					default="0"
+					filter="integer"
+				>
+					<option value="0">Item link</option>
+					<option value="1">No bottom link</option>
+				</field>
+				<field
+					name="bottomlink"
+					type="text"
+					label=""
+					description=""
+					default="Know more..."
+					hint="Bottom link text"
+					showon="itemlink!:1"
+					filter="safehtml"
+				/>
+				</fieldset>
+				<fieldset name="yngdev_options" label="Options">
+				<field name="globallayoutoptions" type="checkboxes" class="mrwid-checkbox" label="Global layout options">
+					<option value="windowheight">Window height</option>
+					<option value="onlyactives">Only show actives</option>
+					<option value="hideinactives">On active hide inactives</option>
+					<option value="keepactive">Keep other actives opened</option>
+					<option value="subitemactive">Only show subitems of active</option>
+					<option value="contentpagination">Pagination inside content</option>
+					<option value="donotinactive">Do not inactive on click</option>
+				</field>
+				<field name="itemoptions" type="checkboxes" class="mrwid-checkbox" label="Other options">
+					<option value="artcount">Show number of articles</option>
+					<option value="hover">Active on mouseover</option>
+					<option value="autoscroll">Auto scroll to active</option>
+					<option value="url">Change URL on active</option>
+					<option value="remember">Remember last active (uses cookies)</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC"
+					filter="safehtml"
+				/>
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+					filter="integer"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC"
+					filter="integer"
+				/>
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static"
+				>
+					<option value="static"></option>
+				</field>
+			</fieldset>
+			<fieldset name="mrdev" label="DO YOU NEED MORE FEATURES?">
+				<field name="mrdevtxt" type="note" class="alert alert-info" label="If you need more features then you need Mr.Dev." description="With Mr.Dev. you can select more content types such as tags and advanced types from the database. You can override the content of each item per module, without affecting the original content. Create and edit custom items directly on the modules. Choose items' parents such as parent categories, categories and tags to only display their childs. Manually reorder items. Pin to choose the ones starting active. Auto exclude Subcategories, Categories with no articles, same link, different link and others. More image options such as parallax and thumbnails. Choose a fallback image and images maximum size. More options for tabs  such as Categories and Tags. Hide module sections to specific users or groups. Other Advanced options such as preload pages, choose the titles tag (h2, h3, h4, p, etc), load polyfill on IE, add custom classes to the bottom links. And more..." />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
