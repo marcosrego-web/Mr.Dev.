@@ -58,9 +58,12 @@ class yng_developer extends WP_Widget {
 		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'mrdev_scripts', plugin_dir_url( __DIR__ ).'assets/js/yngdev_v080.js');
-			wp_enqueue_script( 'mrdev_scripts' );
-			wp_enqueue_style( 'mrdev_css', plugin_dir_url( __DIR__ ).'assets/css/yngdev_v080.css');
+			wp_register_script( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/js/utils_v090.js');
+			wp_enqueue_script( 'yngdev_utils' );
+			wp_register_script( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/js/main_v090.js');
+			wp_enqueue_script( 'yngdev_main' );
+			wp_enqueue_style( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/css/utils_v090.css');
+			wp_enqueue_style( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/css/main_v090.css');
 				$content = '';
 				/*
 				Check if it's an official theme or a custom one.
@@ -69,16 +72,16 @@ class yng_developer extends WP_Widget {
 				*/
 				if(!$theme) {
 					include plugin_dir_path( __DIR__ ).'widget/themes/default/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default_v080.css');
+					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default_v090.css');
 				} else if($theme == "default") {
 					//Official Themes
 					include plugin_dir_path( __DIR__ ).'widget/themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'_v080.css');
+					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'_v090.css');
 				} else if($theme == "none") {
 				} else {
 					//Custom Themes
 					include ABSPATH.'wp-content/themes/mrdev/'.$theme.'/index.php';
-					wp_enqueue_style( 'mrdev_'.$theme.'_css', get_template_directory_uri().'/mrdev/'.$theme.'/'.$theme.'.css');
+					wp_enqueue_style( 'yngdev_'.$theme.'_css', get_template_directory_uri().'/mrdev/'.$theme.'/'.$theme.'.css');
 				}
 				require trailingslashit( plugin_dir_path( __FILE__ )).'/items.php';
 			echo __( $content, 'yng_developer' );
@@ -86,7 +89,7 @@ class yng_developer extends WP_Widget {
 	}
 /*------WIDGET ADMIN------*/
 	public function form( $instance ) {
-		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v080.css');
+		wp_enqueue_style( 'mrwid_admin', plugin_dir_url( __DIR__ ).'assets/css/admin_v090.css');
 		?>
 		<div class="mr-admin">
 		<p class="mr-section"><a href="https://marcosrego.com/en/web-en/yngdev-en/" target="_blank"><img src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTYuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCIgdmlld0JveD0iMCAwIDQ1LjEyOSA0NS4xMyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDUuMTI5IDQ1LjEzOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxnPgoJPGc+CgkJPGVsbGlwc2UgY3g9IjIyLjU2NSIgY3k9IjMxLjE5MiIgcng9IjIuNSIgcnk9IjEiIGZpbGw9IiMwMDAwMDAiLz4KCQk8cGF0aCBkPSJNNDIuNjksMjQuNDY5VjE1LjljMC0wLjU5Ny0wLjA1LTEuMTQzLTAuMTIyLTEuNjY1Yy0wLjAxMi0wLjA4MS0wLjAwNy0wLjE0Ni0wLjAyMi0wLjIzICAgIGMtMC4wMTUtMC4wNzEtMC4wMzktMC4xNDUtMC4wNTUtMC4yMTVjLTAuMTM3LTAuNzQyLTAuMzQ5LTEuNDEtMC42MzEtMi4wMDhjLTIuMTk3LTUuMTgtOC40MzQtMTAuMDctMTUuNjI4LTExLjQ2NyAgICBDMTguNTc3LTEuMTY5LDEwLjQyNiwyLjc5OSw4LjQ5OSw3LjcxOUM0Ljg0MSw4Ljc5NywyLjQ0LDExLjExOSwyLjQ0LDE1Ljl2OC41NzNjLTAuODU3LDEuMTIzLTEuMzc1LDIuNTQ0LTEuMzc1LDQuMDk0ICAgIGMwLDIuOTcxLDEuODg3LDUuNDgzLDQuNDY0LDYuMjkxQzguNzksNDEuMTAxLDE1LjMzNSw0NS4xMywyMi41OTYsNDUuMTNjNy4yNjksMCwxMy44MjEtNC4wMzksMTcuMDgxLTEwLjI5NSAgICBjMi41MzktMC44MzIsNC4zODktMy4zMjYsNC4zODktNi4yNjlDNDQuMDY1LDI3LjAxOCw0My41NDcsMjUuNTkyLDQyLjY5LDI0LjQ2OXogTTM3LjgyMywzMS4xMjljLTAuMjksMC0wLjU2NC0wLjA2Ni0wLjgxOC0wLjE4MyAgICBjLTIuMDM5LDUuOTE4LTcuNzExLDEwLjE4My0xNC40MDYsMTAuMTgzYy02LjcwMywwLTEyLjM4NC00LjI3Mi0xNC40MTUtMTAuMmMtMC4yNywwLjEyOS0wLjU2MywwLjItMC44NzQsMC4yICAgIGMtMS4yNDQsMC0yLjI0Mi0xLjE0Ni0yLjI0Mi0yLjU2M3MwLjk5OC0yLjU2MiwyLjI0Mi0yLjU2MmMwLjAyMiwwLDAuMDQ1LDAuMDA2LDAuMDY5LDAuMDA4YzAuMDE2LTIsMC40MzktNS4xNiwxLjE3OC03LjA2NyAgICBjMC45NzIsMS4zNTgsMi40NTgsMi42MjgsNC42NDUsMi42MjhjMCwwLDAsMCwwLjAwMiwwYzAuMTAyLDAsMC4yMDQtMC4wMDMsMC4zMDktMC4wMDljMC4yMDMtMC4wMTEsMC4zNzktMC4xNDQsMC40NDUtMC4zMzUgICAgYzAuMDE5LTAuMDUzLDEuODQ0LTUuMTQ2LDYuNjQ0LTUuNjM1YzAuMjAyLDAuOTkyLDAuNTA4LDMuNjktMS42NjUsNS4zMmMtMC4xNjEsMC4xMi0wLjIzNCwwLjMyNS0wLjE4NiwwLjUyMSAgICBzMC4yMTEsMC4zNDIsMC40MSwwLjM3MmMwLjA0MSwwLjAwNywxLjAzNSwwLjE1MywyLjUxNiwwLjE1M2MyLjUyNCwwLDcuMTEtMC40NTksMTAuMDk5LTMuNDYxICAgIGMwLjUwMSwwLjUwNCwxLjM4MiwxLjc0MywwLjk3LDMuOTczYy0wLjAzOSwwLjIwOCwwLjA1OSwwLjQxOCwwLjI0MSwwLjUyM2MwLjA3OCwwLjA0NSwwLjE2NCwwLjA2NSwwLjI1LDAuMDY1ICAgIGMwLjExNiwwLDAuMjMxLTAuMDQxLDAuMzI1LTAuMTJjMC4xMDctMC4wOTIsMS45NjQtMS42OTUsMy4yNzMtMy40N2MwLjYxNywxLjkyNCwwLjk3Miw0LjcxMSwwLjk4Myw2LjUyOSAgICBjMC4wMDMsMCwwLjAwNSwwLDAuMDA3LDBjMS4yNDQsMCwyLjI0MiwxLjE0NiwyLjI0MiwyLjU2MlMzOS4wNjcsMzEuMTI5LDM3LjgyMywzMS4xMjl6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMTUuNzczIiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+CgkJPGNpcmNsZSBjeD0iMjkuMzU3IiBjeT0iMjUuMDYxIiByPSIyLjI1IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg==" alt="Yng.Dev. Signature" title="Icon made by Freepik from flaticon.com" style="margin-bottom: -7px; margin-right: 3px;"><strong style="font-weight:700;">Yng.Dev.</strong></a>
@@ -397,14 +400,14 @@ class yng_developer extends WP_Widget {
 						</p>
 						<p>
 							<label  for="<?php echo $this->get_field_id( 'tabs' ); ?>"><?php _e( 'Tabs:' ); ?></label><br>
-							<select <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> class="widefat mr-halfsize" id="<?php echo $this->get_field_id('tabs'); ?>" name="<?php echo $this->get_field_name('tabs'); ?>">
+							<select class="widefat mr-halfsize" id="<?php echo $this->get_field_id('tabs'); ?>" name="<?php echo $this->get_field_name('tabs'); ?>">
 										<?php
 											echo '<option value="0" id="notabs"', $tabs == 0 ? ' selected="selected"' : '', '>None</option>
 											<option value="1" id="itemstabs"', $tabs == 1 ? ' selected="selected"' : '', '>Items</option>
 											<option value="2" id="parenttabs"', $tabs == 2 ? ' selected="selected"' : '', '>Parent items</option>';
 										?>
 							</select>
-							<select <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> class="widefat mr-halfsize" id="<?php echo $this->get_field_id('tabsposition'); ?>" name="<?php echo $this->get_field_name('tabsposition'); ?>">
+							<select class="widefat mr-halfsize" id="<?php echo $this->get_field_id('tabsposition'); ?>" name="<?php echo $this->get_field_name('tabsposition'); ?>">
 										<?php
 											echo '<option value="tabstop" id="tabstop"', $tabsposition == 'tabstop' ? ' selected="selected"' : '', '>Top</option>
 											<option value="tabsright" id="tabsright"', $tabsposition == 'tabsright' ? ' selected="selected"' : '', '>Right</option>
@@ -427,7 +430,7 @@ class yng_developer extends WP_Widget {
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'autoplay' ); ?>"><?php _e( 'Autoplay:' ); ?></label><br>
-						<input <?php if($pagination_access == 'Denied') { echo 'disabled'; } ?> class="mr-pagination-input mr-autoplay-input" type="number" id="<?php echo $this->get_field_id( 'autoplay' ); ?>" name="<?php echo $this->get_field_name( 'autoplay' ); ?>" type="text" placeholder="∞" title="Choose how many seconds the autoplay should take to change page. Leave empty or choose '0' to turn off autoplay." value="<?php if(esc_attr( $autoplay ) == "" || esc_attr( $autoplay ) <= 0) { } else { echo esc_attr( $autoplay ); } ?>" /> seconds
+						<input class="mr-pagination-input mr-autoplay-input" type="number" id="<?php echo $this->get_field_id( 'autoplay' ); ?>" name="<?php echo $this->get_field_name( 'autoplay' ); ?>" type="text" placeholder="∞" title="Choose how many seconds the autoplay should take to change page. Leave empty or choose '0' to turn off autoplay." value="<?php if(esc_attr( $autoplay ) == "" || esc_attr( $autoplay ) <= 0) { } else { echo esc_attr( $autoplay ); } ?>" /> seconds
 						</p>
 						</details>
 						<details class="displayDetails" <?php if(esc_attr( $lastactivedetails ) == 'displayDetails') { echo 'open="open"'; } ?>>
@@ -446,7 +449,7 @@ class yng_developer extends WP_Widget {
 						</p>
 						<p>
 						<label  for="<?php echo $this->get_field_id( 'itemimage' ); ?>"><?php _e( 'Images:' ); ?></label><br>
-						<select <?php if($display_access == 'Denied') { echo 'disabled'; } ?> class="widefat mr-itemimage" id="<?php echo $this->get_field_id('itemimage'); ?>" name="<?php echo $this->get_field_name('itemimage'); ?>">
+						<select class="widefat mr-itemimage" id="<?php echo $this->get_field_id('itemimage'); ?>" name="<?php echo $this->get_field_name('itemimage'); ?>">
 										<?php
 											echo '<option value="0"', $itemimage == 0 ? ' selected="selected"' : '', '>No image</option>
 											<option value="1"', $itemimage == 1 ? ' selected="selected"' : '', '>Item image</option>
@@ -466,7 +469,7 @@ class yng_developer extends WP_Widget {
 									?>
 								</select><br>
 								<span class="mr-itemstitlemax" <?php if($itemstitle && $itemstitle == 1) { echo 'style="display: none;"'; } ?>>
-								<input <?php if($display_access == 'Denied') { echo 'disabled'; } ?> class="widefat mr-pagination-input" id="<?php echo $this->get_field_id( 'itemstitlemax' ); ?>" name="<?php echo $this->get_field_name( 'itemstitlemax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemstitlemax )) {  } else { echo esc_attr( $itemstitlemax ); } ?>" /> max. characters
+								<input class="widefat mr-pagination-input" id="<?php echo $this->get_field_id( 'itemstitlemax' ); ?>" name="<?php echo $this->get_field_name( 'itemstitlemax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemstitlemax )) {  } else { echo esc_attr( $itemstitlemax ); } ?>" /> max. characters
 								</span>
 						</p>
 						<p>
@@ -481,7 +484,7 @@ class yng_developer extends WP_Widget {
 									?>
 								</select><br>
 								<span class="mr-itemdescmax" <?php if($itemdesc && $itemdesc == 1) { echo 'style="display: none;"'; } ?> >
-								<input <?php if($display_access == 'Denied') { echo 'disabled'; } ?> class="widefat mr-pagination-input" id="<?php echo $this->get_field_id( 'itemdescmax' ); ?>" name="<?php echo $this->get_field_name( 'itemdescmax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemdescmax )) {  } else { echo esc_attr( $itemdescmax ); } ?>" /> max. characters
+								<input class="widefat mr-pagination-input" id="<?php echo $this->get_field_id( 'itemdescmax' ); ?>" name="<?php echo $this->get_field_name( 'itemdescmax' ); ?>" placeholder="∞" type="number" value="<?php if(!esc_attr( $itemdescmax )) {  } else { echo esc_attr( $itemdescmax ); } ?>" /> max. characters
 								</span>
 						</p>
 						<p>
@@ -525,14 +528,17 @@ class yng_developer extends WP_Widget {
 							If you need more features then you need <strong>Mr.Dev.</strong><br>:</p>
 							<ol>
 							<li>Insert widgets inside the content section on posts/pages/categories using <strong>blocks, classic editor button or shortcodes</strong>.</li>
-							<li><strong>More content types</strong> such as pages, tags and other Wordpress/third-party registered terms/post-types (such as events and products).</li>
+							<li><strong>More content types</strong> such as pages, tags and some compatibility with other third-party registered terms/post-types (such as events and products).</li>
 							<li>Override the content of each item per widget, without affecting the original content.</li>
+							<li>Create and edit <strong>custom items</strong> directly on the widgets.</li>
 							<li>Choose <strong>items' parents such as parent categories, categories and tags</strong> to only display their childs.</li>
 							<li>Manually <strong>reorder</strong>.</li>
 							<li><strong>Pin</strong> to choose the ones starting active.</li>
 							<li><strong>Auto exclude</strong> Subcategories, Categories with no posts, same link, different link and more.</li>
 							<li>More image options such as <strong>thumbnails and parallax</strong>.</li>
 							<li>Choose a <strong>fallback image</strong>.</li>
+							<li>Choose <strong>images maximum size</strong> together with <strong>srcset and native lazyload</strong>.</li>
+							<li><strong>More options for tabs</strong> such as Categories and Tags.</li>
 							<li><strong>Hide widget sections</strong> to specific users or roles.</li>
 							<li>Other <strong>Advanced</strong> options such as preload pages, choose the titles tag (h2, h3, h4, p, etc), do not load polyfill on IE and add custom classes to the bottom link.</li>
 							</ol>
@@ -544,7 +550,7 @@ class yng_developer extends WP_Widget {
 							<?php } ?> 
 						</details>
 						<?php
-							wp_register_script( 'yngdev_admin', plugin_dir_url( __DIR__ ).'assets/js/admin_v080.js');
+							wp_register_script( 'yngdev_admin', plugin_dir_url( __DIR__ ).'assets/js/admin_v090.js');
 							wp_enqueue_script( 'yngdev_admin' );
 						?>
 						</div>

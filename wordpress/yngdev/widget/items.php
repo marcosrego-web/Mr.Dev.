@@ -27,17 +27,17 @@ defined('ABSPATH') or die;
 					Get the perline number
 					*/
 					if($perline && $perline != "∞" && $perline > 0) {
-						$perlineclass = " mr-perliner mr-".$perline."perline";
+						$perlineclass = " mr-".$perline."perline";
 					} else {
-						$perlineclass = "";
+						$perlineclass = " mr-flex";
 					}
 					/*
 					Get the perpage number
 					*/
 					if($perpage && $perpage != "∞" && $perpage > 0) {
-						$perpageclass = "mr-pages mr-".$perpage."perpage";
+						$perpageclass = "mr-pages mr-".$perpage."perpage mr-nobullets";
 					} else {
-						$perpageclass = "mr-pages";
+						$perpageclass = "mr-pages mr-nobullets";
 					}
 					/*
 					Get the autoplay seconds
@@ -95,9 +95,9 @@ defined('ABSPATH') or die;
 						*/
 						if(is_admin()) {
 						} else {
-							$content .= '<div class="yngdev-widget mr-'.$contenttypes.' mr-theme mr-'.strtolower($theme).'"><div class="mr-layout mr-'.strtolower($layout).(($layoutoptions)?' mr-'.implode(" mr-", $layoutoptions):" ").(($globallayoutoptions)?' mr-'.implode(" mr-", $globallayoutoptions):" ").(($itemoptions)?' mr-'.implode(" mr-", $itemoptions):" ").(($tabsposition != 'tabstop')?' mr-'.$tabsposition:" ").$autoplay.'">';
+							$content .= '<div class="yngdev-widget mr-'.$contenttypes.' mr-theme mr-'.strtolower($theme).' mr-boxsize"><div class="mr-layout mr-'.strtolower($layout).(($layoutoptions)?' mr-'.implode(" mr-", $layoutoptions):" ").(($globallayoutoptions)?' mr-'.implode(" mr-", $globallayoutoptions):" ").(($itemoptions)?' mr-'.implode(" mr-", $itemoptions):" ").(($tabsposition != 'tabstop')?' mr-'.$tabsposition:" ").$autoplay.' mr-noscroll">';
 							if($tabs == 1) { //Items Tabs
-								$content .= '<ul class="mr-tabs mr-items">';
+								$content .= '<ul class="mr-tabs mr-items mr-flex mr-scroll mr-nobullets">';
 								foreach ( $itemlist as $key => $tab) {
 									if (!$contenttypes || $contenttypes == 'category') {
 										$tabid = $tab->term_id;
@@ -126,7 +126,7 @@ defined('ABSPATH') or die;
 								$content .= '</ul>';
 							}
 							if($tabs == 2) { //Parent Items Tabs
-								$content .= '<ul class="mr-tabs mr-parentitems">';
+								$content .= '<ul class="mr-tabs mr-parentitems mr-flex mr-scroll mr-nobullets">';
 								foreach ( $itemlist as $key => $tab) {
 									if (!$contenttypes || $contenttypes == 'category') {
 										$tabid = $tab->term_id;
@@ -206,9 +206,9 @@ defined('ABSPATH') or die;
 										echo "</div>";
 										$itemcount = ($itemcount + 1);
 										/*
-										If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
+										If the option 'only show subitems of active' is enabled and this item is a subitem, it should not close the page yet.
 										*/
-										if(in_array( "subcatactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses != null) {
+										if(in_array( "subitemactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses != null || in_array( "subitemactive", $layoutoptions ) && $mrclasses != '' && $mrclasses != null) {
 										} else {
 											if($itemcount == $perpage) {
 												echo '</div><hr>';
@@ -218,7 +218,7 @@ defined('ABSPATH') or die;
 										}
 								} else {
 										/*
-										Check if current category was not manually excluded.
+										Check if current item was not manually excluded.
 										*/
 										if($excludeinclude == 0 AND !in_array($itemid, $itemselect) OR $excludeinclude == 1 AND in_array($itemid, $itemselect) ) {
 											/*
@@ -273,9 +273,7 @@ defined('ABSPATH') or die;
 											/*
 											Title starts here
 											*/
-											if(!$titletag) {
-												$titletag = 'h3';
-											}
+											$titletag = 'h3';
 											if($itemstitle == 2) { //Item title
 												$showitemtitle = '<'.$titletag.' class="mr-title">'.$itemtitle.((in_array("artcount", $itemoptions) && is_numeric($num_articles))?' <small>('.$num_articles.')</small>':"").'</'.$titletag.'>';
 											} else if($itemstitle == 1)  { //No title
@@ -328,7 +326,7 @@ defined('ABSPATH') or die;
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mr-link"><a class="'.$bottomlinkclasses.'" href="'.esc_url($itemurl).'" title="'. $cattitle .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mr-link"><a href="'.esc_url($itemurl).'" title="'. $itemtitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
@@ -345,6 +343,12 @@ defined('ABSPATH') or die;
 											*/
 											if($itemparent) {
 												$mrclasses = 'mr-subitem parentitemid-'.$itemparent;
+												/*
+												If the option 'only show subitems of active' is enabled and this item is a subitem, it should be initially hidden.
+												*/
+												if(in_array( "subitemactive", $globallayoutoptions ) || in_array( "subitemactive", $layoutoptions )) {
+													$mrclasses .= ' mr-hidden';
+												}
 											} else {
 												$mrclasses = '';
 											}
@@ -376,9 +380,9 @@ defined('ABSPATH') or die;
 											$content .= '<li class="itemid-'.$itemid.' '.$itemslug.' '.$mrclasses.' mr-item '.$mrcurrent.'" '.((in_array("url", $itemoptions))?'url='.$itemurl:"").' ><div class="mr-container"'.$showimage.'>'.$showitemtitle.'<div class="mr-content">'.$showitemdesc.$bottomlinktext.'</div></div></li>';
 											$itemcount = ($itemcount + 1);
 											/*
-											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
+											If the option 'only show subitems of active' is enabled and this item is a subitem, it should not close the page yet.
 											*/
-											if(in_array( "subcatactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses != null) {
+											if(in_array( "subitemactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses != null || in_array( "subitemactive", $layoutoptions ) && $mrclasses != '' && $mrclasses != null) {
 											} else {
 												if($itemcount == $perpage) {
 													if($pagecount > 1) {
@@ -393,7 +397,7 @@ defined('ABSPATH') or die;
 								}
 						}
 						/*
-						Doublecheck if the last page was closed in case the last item was a hidden subcategory.
+						Doublecheck if the last page was closed in case the last item was a hidden subitem.
 						*/
 						if($itemcount != 0) {
 							if(is_admin()) {

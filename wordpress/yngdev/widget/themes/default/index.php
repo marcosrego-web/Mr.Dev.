@@ -11,7 +11,7 @@ if(is_admin()) {
 	Layout:<br>
 	<select  class="widefat mr-layouts" id="<?php echo $this->get_field_id('layout'); ?>" name="<?php echo $this->get_field_name('layout'); ?>">
 	<?php
-	$options = array( 'Grid','Collapsible','Accordion','Slider','Menu','Tabs','Mosaic','Custom');
+	$options = array( 'Grid','Collapsible','Accordion','Slider','Menu','Tabs','Mosaic','Popup','Custom');
 	foreach ( $options as $option ) {
 		echo '<option value="' . $option . '" id="' . $option . '"', $layout == $option ? ' selected="selected"' : '', '>' . $option . '</option>';
 	}
@@ -33,6 +33,7 @@ if(is_admin()) {
 	<p>Transitions:</p>
 	<label ><input  type="checkbox" class="mr-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="revealactive" <?php checked( ( is_array( $layoutoptions ) AND in_array( "revealactive", $layoutoptions ) ) ? "revealactive" : '', "revealactive" ); ?> /> <?php _e( 'Reveal active' ); ?></label><br>
 	<label ><input  type="checkbox" class="mr-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="expandactive" <?php checked( ( is_array( $layoutoptions ) AND in_array( "expandactive", $layoutoptions ) ) ? "expandactive" : '', "expandactive" ); ?> /> <?php _e( 'Expand active' ); ?></label><br>
+	<label ><input  type="checkbox" class="mr-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="fixactive" <?php checked( ( is_array( $layoutoptions ) AND in_array( "fixactive", $layoutoptions ) ) ? "fixactive" : '', "fixactive" ); ?> /> <?php _e( 'Fix active' ); ?></label><br>
 	<label ><input  type="checkbox" class="mr-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="scaleactive" <?php checked( ( is_array( $layoutoptions ) AND in_array( "scaleactive", $layoutoptions ) ) ? "scaleactive" : '', "scaleactive" ); ?> /> <?php _e( 'Scale active' ); ?></label><br>
 	<label ><input  type="checkbox" class="mr-checkbox" name="<?php echo esc_attr( $this->get_field_name( 'layoutoptions' ) ); ?>[]" value="opaqueactive" <?php checked( ( is_array( $layoutoptions ) AND in_array( "opaqueactive", $layoutoptions ) ) ? "opaqueactive" : '', "opaqueactive" ); ?> /> <?php _e( 'Opaque active' ); ?></label><br>
 	<p>Modes:</p>
@@ -132,7 +133,7 @@ if(is_admin()) {
 			$perline = 1;
 			$perpage = 1;
 		} else if($layout == 'Menu' ) {
-			$layoutoptions = array('checkcurrent','toggle02','toggle03','hambmob','revealactive','hideinactives','subcatactive');
+			$layoutoptions = array('checkcurrent','toggle02','toggle03','hambmob','revealactive','hideinactives','subitemactive');
 			$perpage = 0;
 		} else if($layout == 'Tabs' ) {
 			$layoutoptions = array('themestyle','expandactive','portrait','onlyactives','donotinactive');
@@ -148,6 +149,8 @@ if(is_admin()) {
 			if($perline == 0 || $perline == '∞') {
 				$perline = 3;
 			}
+		} else if($layout == 'Popup' ) {
+			$layoutoptions = array('themestyle','fixactive','revealactive','toggle01','toggle03');
 		}
 	}
 ?>

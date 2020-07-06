@@ -7,9 +7,7 @@ defined('_JEXEC') or die;
 					/*
 					Title starts here
 					*/
-					if(!$titletag) {
-						$titletag = 'h3';
-					}
+					$titletag = 'h3';
 					/*
 					Main title depends of the selected display option.
 					Widget title is the default.
@@ -26,17 +24,17 @@ defined('_JEXEC') or die;
 					Get the perline number
 					*/
 					if($perline && $perline != "∞" && $perline > 0) {
-						$perlineclass = " mr-perliner mr-".$perline."perline";
+						$perlineclass = " mr-".$perline."perline";
 					} else {
-						$perlineclass = "";
+						$perlineclass = " mr-flex";
 					}
 					/*
 					Get the perpage number
 					*/
 					if($perpage && $perpage != "∞" && $perpage > 0) {
-						$perpageclass = "mr-pages mr-".$perpage."perpage";
+						$perpageclass = "mr-pages mr-".$perpage."perpage mr-nobullets";
 					} else {
-						$perpageclass = "mr-pages";
+						$perpageclass = "mr-pages mr-nobullets";
 					}
 					/*
 					Get the autoplay seconds
@@ -117,9 +115,9 @@ defined('_JEXEC') or die;
 						Start the content with the container for the categories.
 						The theme name, the layout name and the global options are imploded in here has classes.
 						*/
-						echo  '<div class="yngdev-module mr-categories mr-theme mr-'.strtolower($theme).'"><div class="mr-layout mr-'.strtolower($layout).(($layoutoptions)?' mr-'.implode(" mr-", $layoutoptions):" ").(($globallayoutoptions)?' mr-'.implode(" mr-", $globallayoutoptions):" ").(($itemoptions)?' mr-'.implode(" mr-", $itemoptions):" ").(($tabsposition != 'tabstop')?' mr-'.$tabsposition:" ").$autoplay.'">';
+						echo  '<div class="yngdev-module mr-'.$contenttypes.' mr-theme mr-'.strtolower($theme).' mr-boxsize"><div class="mr-layout mr-'.strtolower($layout).(($layoutoptions)?' mr-'.implode(" mr-", $layoutoptions):" ").(($globallayoutoptions)?' mr-'.implode(" mr-", $globallayoutoptions):" ").(($itemoptions)?' mr-'.implode(" mr-", $itemoptions):" ").(($tabsposition != 'tabstop')?' mr-'.$tabsposition:" ").$autoplay.' mr-noscroll">';
 						if($tabs == 1) { //Items Tabs
-							echo '<ul class="mr-tabs mr-items">';
+							echo '<ul class="mr-tabs mr-items mr-flex mr-scroll mr-nobullets">';
 							foreach ( $itemlist as $key => $tab) {
 								$tabid = $tab->id;
 								echo '<li class="itemid-'.$tabid.' '.$tab->alias.' mr-tab">'.$tab->title.'</li>';
@@ -127,7 +125,7 @@ defined('_JEXEC') or die;
 							echo '</ul>';
 						}
 						if($tabs == 2) { //Parent Items Tabs
-							echo '<ul class="mr-tabs mr-parentitems">';
+							echo '<ul class="mr-tabs mr-parentitems mr-flex mr-scroll mr-nobullets">';
 							foreach ( $itemlist as $key => $tab) {
 								$tabid = $tab->id;
 								echo '<li class="parentitemid-'.$tabid.' '.$tab->alias.' mr-tab">'.$tab->title.'</li>';
@@ -356,7 +354,7 @@ defined('_JEXEC') or die;
 												if($bottomlink == "") {
 													$bottomlink = "Know more...";
 												}
-												$bottomlinktext = '<div class="mr-link"><a class="'.$bottomlinkclasses.'" href="'.filter_var($itemLink, FILTER_VALIDATE_URL).'" title="'. $cattitle .'">'.$bottomlink.'</a></div>';
+												$bottomlinktext = '<div class="mr-link"><a href="'.filter_var($itemLink, FILTER_VALIDATE_URL).'" title="'. $itemtitle .'">'.$bottomlink.'</a></div>';
 											}
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
@@ -388,9 +386,9 @@ defined('_JEXEC') or die;
 											echo  '<li class="itemid-'.$itemid.' '.$itemslug.' '.$mrclasses.' mr-item '.$mrcurrent.'" '.((in_array("url", $itemoptions))?'url='.$itemLink:"").'><div class="mr-container"'.$showimage.'>'.$showitemtitle.'<div class="mr-content">'.$showitemdesc.$bottomlinktext.'</div></div></li>';
 											$itemcount = ($itemcount + 1);
 											/*
-											If the option 'only show subcategories of active' is enabled and this item is a subcategory, it should not close the page yet.
+											If the option 'only show subitems of active' is enabled and this item is a subitem, it should not close the page yet.
 											*/
-											if(in_array( "subitemactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses) {
+											if(in_array( "subitemactive", $globallayoutoptions ) && $mrclasses != '' && $mrclasses || in_array( "subitemactive", $layoutoptions ) && $mrclasses != '' && $mrclasses) {
 											} else {
 												if($itemcount == $perpage) {
 														if($pagecount > 1) {
@@ -405,7 +403,7 @@ defined('_JEXEC') or die;
 							}
 						}
 						/*
-						Doublecheck if the last page was closed in case the last item was a hidden subcategory.
+						Doublecheck if the last page was closed in case the last item was a hidden subitem.
 						*/
 						if($itemcount != 0) {
 							if($pagecount > 1) {
