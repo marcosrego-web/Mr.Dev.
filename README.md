@@ -1,7 +1,7 @@
 # Mr.Dev.
 Mr.Dev. is your provider of developing tools for Wordpress and Joomla!
 
-He brings you a widget/module to display categories, tags, posts/articles and pages with many customizable layouts and options to choose from.
+He brings you a widget/module to display categories, tags, posts/articles, pages and custom items with many customizable layouts and options to choose from.
 All tools are optional and you can hide parts of the widgets/modules to specific users or roles/groups.
 
 
