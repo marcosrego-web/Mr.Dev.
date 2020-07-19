@@ -47,13 +47,13 @@ function mrScrollTo(to, duration) {
 function mrParallax(mrParElements) {
 	mrParElements = document.querySelectorAll(mrParElements);
 	if(mrParElements) {
-		var motionQuery = matchMedia('(prefers-reduced-motion)');
+		var motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
 		if (!motionQuery.matches) {
 			for (id = 0; id < mrParElements.length; id++)  {
 				const currentElement = mrParElements[id];
 				let x = currentElement.getBoundingClientRect().top / 6;
 				let y = Math.round(x * 100) / 100;
-				currentElement.style.backgroundPosition = 'center ' + y + 'px';
+				currentElement.style.backgroundPositionY = y + 'px';
 			}
 		}
 	}

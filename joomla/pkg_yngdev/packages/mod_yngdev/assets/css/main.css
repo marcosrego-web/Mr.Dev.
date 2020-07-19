@@ -125,6 +125,7 @@
 }
 .mr-theme .mr-layout .mr-image img {
     object-fit: cover;
+    width: auto;
 }
 .mr-theme .mr-layout:not(.mr-thumbnail) .mr-image {
     position: absolute;
@@ -134,9 +135,12 @@
     height: 100%;
 }
 .mr-theme .mr-layout .mr-image {
-    background-position: center;
+    background-position-x: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.mr-theme .mr-layout:not(.mr-parallax) .mr-image {
+    background-position-y: center;
 }
 @media (prefers-reduced-motion: no-preference) {
     .mr-theme .mr-layout.mr-parallax .mr-image {
@@ -145,13 +149,15 @@
     /*EDGE*/
     _:-ms-lang(x), _:-webkit-full-screen, .mr-theme .mr-layout.mr-parallax .mr-image {
         background-attachment: scroll !important;
-        background-position: center !important;
+        background-position-x: center !important;
+        background-position-y: center !important;
     }
     /*iOS*/
     @supports (-webkit-overflow-scrolling: touch) {
         .mr-theme .mr-layout.mr-parallax .mr-image {
             background-attachment: scroll !important;
-            background-position: center !important;
+            background-position-x: center !important;
+            background-position-y: center !important;
         }
     }
 }

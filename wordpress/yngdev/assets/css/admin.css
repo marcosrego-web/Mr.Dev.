@@ -30,6 +30,9 @@
 	width: 60px;
 	padding-right: 0 !important;
 }
+.mr-itemsnumber {
+	text-align: right;
+}
 input.mr-input {
 	width: 35px !important;
 	padding-right: 0;
@@ -189,7 +192,7 @@ input.mr-radio {
 	width: 100%;
 	background: #fff;
 	border: 1px solid #000;
-	padding: 45px 15px 15px 15px;
+	padding: 0px 15px 15px 15px;
 	border-radius: 3px;
 	-o-transition: opacity 0.5s ease-in-out;
 	-moz-transition: opacity 0.5s ease-in-out;
@@ -227,7 +230,7 @@ body.folded .mr-overridepanel div.mce-fullscreen, body.folded .mr-overridepanel:
 }
 .mr-childs.mr-openedpanel .mr-iteminput {
 	position: absolute;
-    top: 16px;
+    top: 35px;
     left: 15px;
     width: calc(100% - 30px);
 }

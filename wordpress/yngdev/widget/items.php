@@ -51,11 +51,11 @@ defined('ABSPATH') or die;
 				/*
 				Get current active categories.
 				*/
-				$currentcat = '';
+				$currentitem = '';
 				if (is_category()) {
-					$currentcat = get_query_var('cat');
+					$currentitem = get_query_var('cat');
 				} else if(is_single()) {
-					$currentcat = wp_get_post_categories(get_the_ID());
+					$currentitem = wp_get_post_categories(get_the_ID());
 				}
 				if(!$excludeinclude) {
 					$excludeinclude == 0;
@@ -83,9 +83,9 @@ defined('ABSPATH') or die;
 				Join all the previous options for the main array of categories.
 				*/
 				if (!$contenttypes || $contenttypes == 'category') {
-					$itemlist = get_terms(array('taxonomy' => 'category','orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang, 'hierarchical' => true));
+					$itemlist = get_terms(array('taxonomy' => 'category','orderby' => $orderby,'order' => $order,'hide_empty' => false, 'lang' => $lang, 'hierarchical' => true,'no_found_rows' => true, 'suppress_filter' => false));
 				} else {
-					$itemlist = get_posts(array('post_type' => 'post','numberposts'=> -1,'post_status'=>'publish','orderby' => $orderby,'order' => $order));
+					$itemlist = get_posts(array('post_type' => 'post','numberposts'=> -1,'post_status'=>'publish','orderby' => $orderby,'order' => $order, 'no_found_rows' => true, 'suppress_filters' => false));
 				}
 
 				if ( ! empty( $itemlist ) ) {
@@ -160,18 +160,8 @@ defined('ABSPATH') or die;
 									$itemslug = $item->post_name;
 									$itemtitle = $item->post_title;
 									$itemparent = $item->post_parent;
-									$itemcats = wp_get_post_categories($itemid);
-									if($itemcats && !is_array($itemcats)) {
-										$itemcats = array($itemcats);
-									} else if(!$itemcats) {
-										$itemcats = array();
-									}
-									$itemtags = wp_get_post_tags($itemid, array('fields' => 'ids'));
-									if($itemtags && !is_array($itemtags)) {
-										$itemtags = array($itemtags);
-									} else if(!$itemtags) {
-										$itemtags = array();
-									}
+									$itemcats = array();
+									$itemtags = array();
 								}
 								if(in_array("artcount", $itemoptions)) {
 									$num_articles = $item->count;
@@ -243,18 +233,18 @@ defined('ABSPATH') or die;
 														$sticky = get_option( 'sticky_posts' );
 														if ( !empty($sticky) ) {
 															if (!$contenttypes || $contenttypes == 'category') {
-																$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemid,'post_status' => 'publish','post__in' => $sticky,'ignore_sticky_posts' => 1));
+																$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemid,'post_status' => 'publish','post__in' => $sticky,'ignore_sticky_posts' => 1, 'no_found_rows' => true, 'suppress_filters' => false));
 															} else {
-																$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemcats[0],'post_status' => 'publish','post__in' => $sticky,'ignore_sticky_posts' => 1));
+																$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemcats[0],'post_status' => 'publish','post__in' => $sticky,'ignore_sticky_posts' => 1, 'no_found_rows' => true, 'suppress_filters' => false));
 															}
 														} else {
 															$posts = null;
 														}
 													} else if($itemimage == 5) { //Latest post
 														if (!$contenttypes || $contenttypes == 'category') {
-															$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemid,'post_status' => 'publish'));
+															$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemid,'post_status' => 'publish', 'no_found_rows' => true, 'suppress_filters' => false));
 														} else {
-															$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemcats[0],'post_status' => 'publish'));
+															$posts = get_posts(array('posts_per_page' => 1,'orderby' => 'date','order'=>'DESC','category__in' => $itemcats[0],'post_status' => 'publish', 'no_found_rows' => true, 'suppress_filters' => false));
 														}
 													} else {
 														$posts = null;
@@ -331,9 +321,9 @@ defined('ABSPATH') or die;
 											/*
 											Check front for active category/link and adds a class if it's the current category/link.
 											*/
-											if(is_array($currentcat) && in_array($itemid, $currentcat) || $itemurl == $currentLink) {
+											if(is_array($currentitem) && in_array($itemid, $currentitem) || $itemurl == $currentLink) {
 												$mrcurrent = 'mr-current';
-											} else if($currentcat != '' && $currentcat == $itemid) {
+											} else if($currentitem != '' && $currentitem == $itemid) {
 												$mrcurrent = 'mr-current';
 											} else {
 												$mrcurrent = '';
@@ -351,22 +341,6 @@ defined('ABSPATH') or die;
 												}
 											} else {
 												$mrclasses = '';
-											}
-											/*
-											Add classes for categories
-											*/
-											if (!$contenttypes || $contenttypes == 'category') {
-												if($itemcats) {
-													$mrclasses .= ' catid-'.$item->term_id;
-												} else {
-													$mrclasses .= '';
-												}
-											} else {
-												if($itemcats) {
-													$mrclasses .= ' catid-'.implode(" catid-",$itemcats);
-												} else {
-													$mrclasses .= '';
-												}
 											}
 											/*
 											Check if this item should be on a new page.
@@ -415,10 +389,10 @@ defined('ABSPATH') or die;
 						if(is_admin()) {
 						} else {
 							if($pagecount > 1) {
-								if( in_array( 0, $pagetoggles )) {
+								if( in_array( 0, $pagetoggles ) || empty($pagetoggles) && !$autoplay) {
 									$content .= '<button class="mr-arrows mr-prev" value="'.$pagecount.'"><span><</span></button>';
 								}
-								if( in_array( 0, $pagetoggles )) {
+								if( in_array( 0, $pagetoggles ) || empty($pagetoggles) && !$autoplay) {
 									$content .= '<button class="mr-arrows mr-next" value="2"><span>></span></button>';
 								}
 								if( in_array( 3, $pagetoggles ) || in_array( 4, $pagetoggles )) {
