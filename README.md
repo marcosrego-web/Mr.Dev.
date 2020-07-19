@@ -20,4 +20,4 @@ The widget/module initially comes with the themes ‘None’ and ‘Default’.
 Mr.Dev. starts with categories because some *content display plugins* and *CMS* do not highlight categories as much as posts/articles. But that could be practical for a better organization, structure, search engine optimization and a better understanding of the front and backoffice from clients and users.
 ##
 ### Compatibility Warning ⚠ 
-If you need the widget/module to work properly with Internet Explorer, you'll need to use a [polyfill](https://polyfill.io/v3/) if you are not yet using one. On the full version (Mr.Dev.) you can activate the polyfill from the settings page on Wordpress, to activate on Joomla you can find the option on the 'Advanced' tab of each module (do it only on one module per page).
+If you need the widget/module to work properly with Internet Explorer, you'll need to use a [polyfill](https://polyfill.io/v3/) if you are not yet using one. On the full version (Mr.Dev.) you can activate the polyfill from the settings page of the plugin.
