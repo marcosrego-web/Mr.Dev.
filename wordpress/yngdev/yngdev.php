@@ -3,7 +3,7 @@
 	Plugin Name: Yng.Dev.
 	Plugin URI:  https://marcosrego.com/en/web-en/yngdev-en/
 	Description: Yng.Dev. brings you a widget to display categories and posts with their descriptions, media and links, in a variety of layouts with many customizable options.
-	Version:     0.9.1
+	Version:     0.9.11
 	Author:      Marcos Rego
 	Author URI:  https://marcosrego.com
 	License:     GNU Public License version 2 or later
