@@ -2,9 +2,9 @@
     "name" : "Yng.Dev.",
     "slug" : "yngdev",
     "homepage" : "https://marcosrego.com/en/web-en/yngdev-en/",
-    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.9.1/yngdev-wordpress.zip",
+    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/v0.9.11/yngdev-wordpress.zip",
     
-    "version" : "0.9.1",
+    "version" : "0.9.11",
     "tested" : "5.4.2",
     "last_updated" : "2020-07-19 20:00:00",
     "upgrade_notice" : "",
