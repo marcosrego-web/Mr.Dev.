@@ -58,12 +58,12 @@ class yng_developer extends WP_Widget {
 		$lastactivedetails = htmlspecialchars($instance['lastactivedetails']);
 		echo $args['before_widget'];
 			/* Add the main global script and style */
-			wp_register_script( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/js/utils_v090.js',array(),'0.9.1');
+			wp_register_script( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/js/utils.js',array(),'0.9.1');
 			wp_enqueue_script( 'yngdev_utils' );
-			wp_register_script( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/js/main_v090.js', array('yngdev_utils'),'0.9.1');
+			wp_register_script( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/js/main.js', array('yngdev_utils'),'0.9.1');
 			wp_enqueue_script( 'yngdev_main' );
-			wp_enqueue_style( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/css/utils_v090.css',array(),'0.9.1');
-			wp_enqueue_style( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/css/main_v090.css', array('yngdev_utils'),'0.9.1');
+			wp_enqueue_style( 'yngdev_utils', plugin_dir_url( __DIR__ ).'assets/css/utils.css',array(),'0.9.1');
+			wp_enqueue_style( 'yngdev_main', plugin_dir_url( __DIR__ ).'assets/css/main.css', array('yngdev_utils'),'0.9.1');
 				$content = '';
 				/*
 				Check if it's an official theme or a custom one.
@@ -72,11 +72,11 @@ class yng_developer extends WP_Widget {
 				*/
 				if(!$theme) {
 					include plugin_dir_path( __DIR__ ).'widget/themes/default/index.php';
-					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default_v090.css',array('yngdev_main'),'0.9.1');
+					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/default/default.css',array('yngdev_main'),'0.9.1');
 				} else if($theme == "default") {
 					//Official Themes
 					include plugin_dir_path( __DIR__ ).'widget/themes/'.$theme.'/index.php';
-					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'_v090.css',array('yngdev_main'),'0.9.1');
+					wp_enqueue_style( 'yngdev_'.$theme.'_css', plugin_dir_url( __DIR__ ).'widget/themes/'.$theme.'/'.$theme.'.css',array('yngdev_main'),'0.9.1');
 				} else if($theme == "none") {
 				} else {
 					//Custom Themes
