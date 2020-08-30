@@ -32,7 +32,7 @@
 .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item.active .mr-container .mr-image {
 	z-index: 2;
 }
-.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image {
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-meta, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image {
 	padding: 0.75rem;
 }
 .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-image figcaption {
@@ -41,7 +41,7 @@
 .mr-theme.mr-default .mr-layout.mr-themestyle:not(.mr-verticaltitle) .mr-title {
 	overflow-x: hidden;
 }
-.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content {
+.mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-meta, .mr-theme.mr-default .mr-layout.mr-themestyle .mr-item .mr-container .mr-content {
   /*overflow-x: hidden;
   overflow-y: hidden;*/
   position: relative;
@@ -420,9 +420,10 @@
 .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item .mr-container {
 	overflow: hidden;
 }
-.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active, .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active .mr-container {
+/*.mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active, .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active .mr-container {
 	height: auto;
-}
+	height: 100%;
+}*/
 .mr-theme .mr-layout.mr-windowheight.mr-revealactive .mr-item.active .mr-container {
 	overflow: initial;
 	min-height: 100%;
@@ -718,15 +719,6 @@
 .mr-theme.mr-default .mr-layout.mr-fixactive.mr-toggle03:not(.mr-hover) .mr-item.active .mr-container:after {
 	opacity: 0.5;
 }
-.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active:after {
-	opacity: 0.75;
-    background: currentColor;
-	position: fixed;
-	-o-transition: opacity 0.5s ease-in-out;
-	-moz-transition: opacity 0.5s ease-in-out;
-	-webkit-transition: opacity 0.5s ease-in-out;
-	transition: opacity 0.5s ease-in-out;
-}
 .mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active:after, .mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle:not(.mr-expandactive) .mr-pages:not(.mr-1perline) .mr-item.active:after {
 	top: 0;
 	left: 0;
@@ -737,9 +729,19 @@
 	box-shadow: 0 0 0.3125rem 0;
 	z-index: 2;
 }
+.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active:after {
+	-webkit-backdrop-filter: brightness(0.5);
+	backdrop-filter: brightness(0.5);
+	opacity: 0.75;
+	position: fixed;
+	-o-transition: opacity 0.5s ease-in-out;
+	-moz-transition: opacity 0.5s ease-in-out;
+	-webkit-transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out;
+}
 .mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active .mr-container:before {
-    background: currentColor;
-    filter: invert(1);
+	-webkit-backdrop-filter: blur(80px) brightness(1.5);
+	backdrop-filter: blur(80px) brightness(1.5);
 }
 @media only screen and (min-width: 47.94em) {
 	.mr-theme.mr-default .mr-layout.mr-fixactive:not(.mr-portrait) .mr-pages:not(.mr-1perline):not(.mr-2perline):not(.mr-3perline):not(.mr-4perline):not(.mr-5perline):not(.mr-6perline):not(.mr-7perline):not(.mr-8perline):not(.mr-9perline):not(.mr-10perline):not(.mr-11perline):not(.mr-12perline) .mr-item.active {
@@ -1151,5 +1153,22 @@
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 	.mr-theme.mr-default .mr-layout.mr-expandactive:not(.mr-portrait).mr-verticaltitle .mr-pages:not(.mr-1perline):not(.mr-2perline):not(.mr-3perline):not(.mr-4perline):not(.mr-5perline):not(.mr-6perline):not(.mr-7perline):not(.mr-8perline):not(.mr-9perline):not(.mr-10perline):not(.mr-11perline):not(.mr-12perline) .mr-container {
 		white-space: nowrap;
+	}
+	.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active:after {
+		background: currentColor;
+	}
+	.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active .mr-container:before {
+		background: currentColor;
+		filter: invert(1);
+	}
+}
+/*--Firefox--*/
+@-moz-document url-prefix() {
+	.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active:after {
+		background: currentColor;
+	}
+	.mr-theme.mr-default .mr-layout.mr-fixactive.mr-themestyle .mr-item.active .mr-container:before {
+		background: currentColor;
+		filter: invert(1);
 	}
 }

@@ -3,7 +3,7 @@
 	Plugin Name: Yng.Dev.
 	Plugin URI:  https://marcosrego.com/en/web-en/yngdev-en/
 	Description: Yng.Dev. brings you a widget to display categories and posts with their descriptions, media and links, in a variety of layouts with many customizable options.
-	Version:     0.9.11
+	Version:     0.9.20
 	Author:      Marcos Rego
 	Author URI:  https://marcosrego.com
 	License:     GNU Public License version 2 or later
@@ -49,7 +49,7 @@ if(is_admin()) {
 	/*---Correct the Visual Term Description Editor appearing above the categories list in some resolutions---*/
 	if (strpos($url,'taxonomy=category') !== false || strpos($url,'taxonomy=post_tag') !== false) {
 		function yngdev_add_style() {
-			wp_enqueue_style( 'yngdev_admin', plugin_dir_url( __DIR__ ).'yngdev/assets/css/admin.css',array(),'0.9.1');
+			wp_enqueue_style( 'yngdev_admin', plugin_dir_url( __DIR__ ).'yngdev/assets/css/admin.css',array(),'0.9.20');
 		}
 		add_action('admin_footer', 'yngdev_add_style');
 	}

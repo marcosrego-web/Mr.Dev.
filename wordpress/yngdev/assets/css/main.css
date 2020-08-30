@@ -1,4 +1,4 @@
-.widget_mr_categories .widgettitle {
+.widget_mr_categories .widgettitle, .widget_yng_developer .widgettitle {
     text-transform: capitalize;
 }
 .mr-theme .mr-layout .mr-item:not(.active):before {
@@ -48,9 +48,15 @@
 .mr-theme .mr-layout.mr-tabsleft .mr-tabs {
     float: left;
 }
-.mr-theme .mr-layout.mr-tabsbottom {
+.mr-theme .mr-layout.mr-tabsbottom, .mr-theme .mr-layout .mr-meta {
     display: flex;
     flex-flow: column;
+}
+.mr-theme .mr-layout .mr-meta {
+    align-items: baseline;
+}
+.mr-theme .mr-layout .mr-meta .mr-date, .mr-theme .mr-layout .mr-meta .mr-author, .mr-theme .mr-layout .mr-meta .mr-categories, .mr-theme .mr-layout .mr-meta .mr-tags {
+    margin-right: 0.25rem;
 }
 .mr-theme .mr-layout.mr-tabsbottom .mr-tabs, .mr-theme .mr-layout.mr-tabsbottom .mr-arrows, .mr-theme .mr-layout.mr-tabsbottom .mr-below, .mr-theme .mr-layout.mr-tabsbottom .mr-pagination  {
     order: 1;
@@ -58,7 +64,7 @@
 .mr-theme .mr-layout.mr-tabsleft .mr-pages, .mr-theme .mr-layout.mr-tabsright .mr-pages {
     width: 75%;
 }
-.mr-theme .mr-layout .mr-item, .mr-theme .mr-layout .mr-title, .mr-theme .mr-layout .mr-content, .mr-theme .mr-layout .mr-tab {
+.mr-theme .mr-layout .mr-item, .mr-theme .mr-layout .mr-title, .mr-theme .mr-layout .mr-meta, .mr-theme .mr-layout .mr-content, .mr-theme .mr-layout .mr-tab {
     position: relative;
 }
 .mr-theme .mr-layout .mr-tab {

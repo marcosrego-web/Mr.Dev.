@@ -230,7 +230,7 @@ body.folded .mr-overridepanel div.mce-fullscreen, body.folded .mr-overridepanel:
 }
 .mr-childs.mr-openedpanel .mr-iteminput {
 	position: absolute;
-    top: 35px;
+    top: 95px;
     left: 15px;
     width: calc(100% - 30px);
 }
@@ -246,6 +246,9 @@ body:not(.mce-fullscreen) .mr-childs.mr-openedpanel .mr-iteminput {
 .mr-excludeinclude:not(:hover):not(:focus) {
 	font-size: 0;
 	padding: 0 25px 0 0;
+}
+.mr-childs.mr-openedpanel .mr-titleoverride.mr-noimagedisplay {
+	top: 35px;
 }
 @media screen and (max-width: 782px) {
 	input.mr-input {
