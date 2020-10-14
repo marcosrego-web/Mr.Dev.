@@ -185,7 +185,7 @@ document.addEventListener('click',function(event) {
                 }
             } else {
                 var dateoverrides = event.target.closest('.mr-admin').querySelectorAll('.mr-dateoverride');
-                for (var id = 0; id < authoroverrides.length; id++) {
+                for (var id = 0; id < dateoverrides.length; id++) {
                     mrSlideUp(dateoverrides[id]);
                 }
             }

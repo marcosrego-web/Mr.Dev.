@@ -2,11 +2,11 @@
 <extension type="package" version="1.6">
 	<name>Yng.Dev.</name>
 	<packagename>yngdev</packagename>
-	<version>0.9.20</version>
+	<version>0.9.30</version>
 	<url>https://marcosrego.com/en/web-en/yngdev-en/</url>
 	<author>Marcos Rego</author>
 	<packager>Marcos Rego</packager>
-	<creationDate>August 2020</creationDate>
+	<creationDate>October 2020</creationDate>
 	<packagerurl>https://marcosrego.com/en/web-en/yngdev-en/</packagerurl>
 	<description><![CDATA[
 <span class="readonly"><p><a href="https://marcosrego.com/en/web-en/yngdev-en/" target="_blank" style="color: #000;">

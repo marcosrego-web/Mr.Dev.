@@ -150,7 +150,7 @@ if(is_admin()) {
 				$perline = 3;
 			}
 		} else if($layout == 'Popup' ) {
-			$layoutoptions = array('themestyle','fixactive','revealactive','toggle01','toggle03');
+			$layoutoptions = array('defaultstyle','fixactive','revealactive','toggle01','toggle03');
 		}
 	}
 ?>
