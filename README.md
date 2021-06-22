@@ -1,3 +1,6 @@
+|Attention|
+|---|
+|This repository will soon belong to the **Joomla Module only**. If you are searching for the new version of the [Wordpress Widget, you can find it here](https://github.com/marcosrego-web/mrdev-widget). |
 # Mr.Dev.
 Mr.Dev. is your provider of developing tools for Wordpress and Joomla!
 
