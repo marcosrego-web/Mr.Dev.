@@ -7,7 +7,7 @@
     "version" : "0.9.426",
     "tested" : "5.8",
     "last_updated" : "2021-07-27 20:28:00",
-    "upgrade_notice" : "ATTENTION: Lots of changes were made since last version. It's highly recommended to do a backup before updating! You might need to update manually or do some changes to your widgets on a local/test environment. It will be worth it in the end.",
+    "upgrade_notice" : "ATTENTION: Lots of changes were made since last version, including class changes (for instance: mr-custom to mr-customlayout). It's highly recommended to do a backup before updating! You might need to update manually or do some changes to your widgets on a local/test environment. It will be worth it in the end.",
     
     "author" : "Marcos Rego",
     "author_homepage" : "https://marcosrego.com",
