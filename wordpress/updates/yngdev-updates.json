@@ -1,13 +1,13 @@
 {
     "name" : "Yng.Dev.",
     "slug" : "yngdev",
-    "homepage" : "https://marcosrego.com/en/web-en/yngdev-en/",
-    "download_url" : "https://github.com/marcosrego-web/Mr.Dev./releases/download/0.9.30/yngdev-wordpress.zip",
+    "homepage" : "https://marcosrego.com/en/web-en/mrdev-en/",
+    "download_url" : "https://github.com/marcosrego-web/mrdev-widget/archive/refs/heads/master.zip",
     
-    "version" : "0.9.30",
-    "tested" : "5.5",
-    "last_updated" : "2020-10-14 19:40:00",
-    "upgrade_notice" : "",
+    "version" : "0.9.426",
+    "tested" : "5.8",
+    "last_updated" : "2021-07-27 20:28:00",
+    "upgrade_notice" : "ATTENTION: Lots of changes were made since last version. It's highly recommended to do a backup before updating! You might need to update manually or do some changes to your widgets on a local/test environment. It will be worth it in the end.",
     
     "author" : "Marcos Rego",
     "author_homepage" : "https://marcosrego.com",
